@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { formatPrice } from '@/lib/utils';
+import { cn, formatPrice } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,13 +21,13 @@ import { UpdateCart } from './cart-update';
 import { useCart } from '@/contexts/cart-context';
 import Price from './price';
 
-export function CartSheet() {
+export function CartSheet({ className }: { className?: string }) {
   const { cart } = useCart();
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button aria-label="Cart" className="relative h-12">
+        <Button aria-label="Cart" className={cn('relative lg:h-12', className)}>
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"

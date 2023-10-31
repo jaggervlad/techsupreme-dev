@@ -16,15 +16,17 @@ import { Search } from '@/components/search';
 import { Collection } from '@/lib/shopify/types';
 import { usePathname } from 'next/navigation';
 import { footerNavigationData } from '@/lib/constants';
-import { MapPinIcon } from 'lucide-react';
+import { MapPinIcon, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MobileNav } from './mobile-nav';
 
 export function Header({ collections }: { collections: Collection[] }) {
-  const ContactIcon = footerNavigationData.contact[0].icon;
+  const sliceCollections = collections.slice(0, 8);
 
   return (
     <>
       <div className="bg-primary/5">
-        <div className="hidden md:flex py-4 h-10 items-center container  gap-5 ">
+        <div className="flex py-4 h-10 items-center container  gap-5 ">
           <div className="items-center flex gap-4">
             {footerNavigationData.social.map(({ icon: Icon, href }) => (
               <Link
@@ -37,7 +39,7 @@ export function Header({ collections }: { collections: Collection[] }) {
               </Link>
             ))}
           </div>
-          <div className="ml-auto items-center flex gap-4">
+          <div className="ml-auto hidden lg:flex items-center gap-4">
             <Link
               key={footerNavigationData.contact[0].href}
               href={footerNavigationData.contact[0].href}
@@ -52,27 +54,32 @@ export function Header({ collections }: { collections: Collection[] }) {
         </div>
       </div>
 
-      <header className="sticky bg-slate-50 top-0 z-20">
+      <header className="bg-slate-50">
         <nav className="">
           <div className="py-4 h-24 items-center flex gap-5 container">
             <Link href="/">
               <h1 className="text-5xl font-bold">Logo</h1>
             </Link>
 
-            <div className="flex w-full">
+            <div className="lg:flex hidden w-full">
               <Search />
             </div>
 
-            <div className="ml-auto flex gap-4">
-              <CartSheet />
+            <div className="ml-auto flex">
+              <CartSheet className="hidden lg:inline-flex" />
+              <MobileNav collections={sliceCollections} />
             </div>
           </div>
 
-          <div className="bg-primary">
+          <div className="lg:hidden block container w-full">
+            <Search />
+          </div>
+
+          <div className="hidden lg:block bg-primary">
             <div className="py-4 h-16 items-center flex gap-5 container">
               <NavigationMenu>
                 <NavigationMenuList className="gap-4">
-                  {collections.map((c) => (
+                  {sliceCollections.map((c) => (
                     <NavItem href={c.path} title={c.title} key={c.handle} />
                   ))}
                 </NavigationMenuList>
@@ -85,7 +92,7 @@ export function Header({ collections }: { collections: Collection[] }) {
   );
 }
 
-const NavItem = ({ href, title }: { href: string; title: string }) => {
+export const NavItem = ({ href, title }: { href: string; title: string }) => {
   const pathname = usePathname();
 
   const active = pathname === href;
@@ -106,29 +113,3 @@ const NavItem = ({ href, title }: { href: string; title: string }) => {
     </NavigationMenuItem>
   );
 };
-
-const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = 'ListItem';

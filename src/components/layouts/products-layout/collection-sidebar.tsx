@@ -7,7 +7,7 @@ export function CollectionSidebar({
   collections: Collection[];
 }) {
   return (
-    <aside className="w-56">
+    <aside className="w-56 hidden lg:block">
       <h4 className="font-bold text-sm text-primary/80 mb-2">Colecciones</h4>
 
       <ul className="flex flex-col space-y-2">

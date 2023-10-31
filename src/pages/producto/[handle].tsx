@@ -45,7 +45,17 @@ export default function ProductPage({
           <ChevronRight className="w-4 h-4" aria-hidden="true" />
         </div> */}
         <div className="flex flex-col items-start gap-8 md:flex-row md:gap-16 mb-10">
-          <div className="border sticky top-48 w-full md:w-1/2">
+          <Button
+            variant={'outline'}
+            className="mb-4 lg:hidden"
+            onClick={() => {
+              router.back();
+            }}
+          >
+            <ChevronLeft className="mr-2" /> Regresar
+          </Button>
+
+          <div className="border lg:sticky lg:top-12 w-full md:w-1/2">
             <ProductImageGallery images={product.images ?? []} />
           </div>
 
@@ -54,7 +64,7 @@ export default function ProductPage({
             <div>
               <Button
                 variant={'outline'}
-                className="mb-4"
+                className="mb-4 hidden lg:inline-flex"
                 onClick={() => {
                   router.back();
                 }}

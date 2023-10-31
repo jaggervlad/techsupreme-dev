@@ -22,20 +22,19 @@ export function ProductsLayout({
   const resultsText = products.length > 1 ? 'resultados' : 'resultado';
 
   return (
-    <MainLayout collections={collections}>
+    <MainLayout collections={collections} seo={{ title: 'Productos' }}>
       <div className="container py-10 flex flex-col space-y-12">
         <header id="products-page-header">
           <h2 className="text-4xl font-bold">{title || 'Productos'}</h2>
         </header>
 
-        <div className="flex gap-10 w-full">
+        <div className="flex flex-col lg:flex-row gap-10 w-full">
           <CollectionSidebar collections={collections} />
 
+          {!searchQuery && products.length === 0 && (
+            <p>No hay productos disponibles</p>
+          )}
           <div className="grid lg:grid-cols-4 gap-5 flex-1 ">
-            {!searchQuery && products.length === 0 && (
-              <p>No hay productos disponibles</p>
-            )}
-
             {searchQuery && (
               <p className="mb-4">
                 {products.length === 0

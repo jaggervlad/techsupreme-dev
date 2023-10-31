@@ -111,13 +111,13 @@ export const footerNavigationData = {
   ],
   utils: [
     {
-      name: 'Sitemap',
-      href: '/sitemap.xml',
+      name: 'Mapa del sitio',
+      href: '/sitemap-0.xml',
       isExternal: true,
     },
     {
-      name: 'Robot',
-      href: '/tobot.txt',
+      name: 'Robots.txt',
+      href: '/robots.txt',
       isExternal: true,
     },
   ],
