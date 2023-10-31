@@ -66,7 +66,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      products: products ?? [],
+      products: products.slice(0, 8) ?? [],
       collections: collections ?? [],
     },
     revalidate: 60 * 5,
