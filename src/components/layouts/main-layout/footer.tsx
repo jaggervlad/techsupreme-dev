@@ -9,8 +9,16 @@ export function Footer() {
   const { pages } = useGetPages();
 
   return (
-    <footer className="mt-auto text-white bg-primary pt-10 pb-24">
+    <footer className="mt-auto text-white bg-primary pt-10 pb-10">
       <div className="container space-y-8 lg:space-y-0 mb-12 grid md:grid-cols-2 lg:grid-cols-4">
+        <p className="max-w-[30ch] text-white/80">
+          Este sitio web y su contenido se proporcionan &quot;tal como
+          están&quot; y &quot;según estén disponibles&quot; sin ninguna garantía
+          o representación de ningún tipo, ya sea expresa o implícita. La
+          información sobre precios y disponibilidad está sujeta a cambios sin
+          previo aviso.
+        </p>
+
         <FooterListContainer title="Páginas">
           {pages.map(({ title, handle }) => (
             <FooterListItem key={handle} href={handle}>
@@ -18,15 +26,15 @@ export function Footer() {
             </FooterListItem>
           ))}
         </FooterListContainer>
-        <FooterListContainer title="CONÓCENOS">
-          {footerNavigationData.service.map(({ name, href, icon: Icon }) => (
+        <FooterListContainer title="ENLACES">
+          {footerNavigationData.utils.map(({ name, href }) => (
             <FooterListItem key={href} href={href}>
-              <Icon /> {name}
+              {name}
             </FooterListItem>
           ))}
         </FooterListContainer>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-y-8">
           <FooterListContainer title="CONTACTO">
             {footerNavigationData.contact.map(({ name, href, icon: Icon }) => (
               <FooterListItem key={href} href={href}>
@@ -41,7 +49,9 @@ export function Footer() {
             {footerNavigationData.social.map(
               ({ name, href, icon: Icon, isExternal }) => (
                 <FooterListItem key={href} href={href} isExternal={isExternal}>
-                  <Icon className="h-6 w-6" />
+                  <div className="border p-2 rounded-full hover:bg-slate-800">
+                    <Icon className="h-4 w-4" />
+                  </div>
                 </FooterListItem>
               )
             )}
@@ -71,7 +81,9 @@ function FooterListContainer({
 }: FooterListContainerProps) {
   return (
     <div>
-      <h4 className="font-bold mb-3 text-lg uppercase">{title}</h4>
+      <h4 className="font-bold mb-3 text-lg uppercase text-white/70">
+        {title}
+      </h4>
       <ul className={cn(className, 'text-base space-y-2')}>{children}</ul>
     </div>
   );
@@ -89,7 +101,7 @@ function FooterListItem({ children, href, isExternal }: FooterListItemProps) {
         href={href}
         target={isExternal ? '_blank' : undefined}
         referrerPolicy={isExternal ? 'no-referrer' : undefined}
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
       >
         {children}
       </Link>

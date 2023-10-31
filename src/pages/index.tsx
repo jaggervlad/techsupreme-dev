@@ -3,23 +3,9 @@ import { CollectionCard } from '@/components/collection-card';
 import { MainLayout } from '@/components/layouts/main-layout';
 import { ProductCard } from '@/components/product-card';
 import { buttonVariants } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  getCollection,
-  getCollections,
-  getPages,
-  getProducts,
-} from '@/lib/shopify';
+import { getCollections, getPages, getProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
-import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 interface ProductsPageProps {
   products: Product[];
@@ -32,19 +18,29 @@ export default function Home({ products, collections }: ProductsPageProps) {
         <BannerSlider />
 
         {/* Category Cards */}
-        <div className="grid lg:grid-cols-4 gap-4">
-          {collections.map((c) => (
-            <CollectionCard collection={c} key={c.path} />
-          ))}
+        <div className="space-y-10">
+          <div className="flex justify-between">
+            <h4 className="text-4xl font-bold">Colecciones</h4>
+
+            <Link href="/search" className={buttonVariants({ size: 'lg' })}>
+              Ver mas
+            </Link>
+          </div>
+
+          <div className="grid lg:grid-cols-4 gap-4">
+            {collections.map((c) => (
+              <CollectionCard collection={c} key={c.path} />
+            ))}
+          </div>
         </div>
 
         {/* New Arrivals List */}
 
-        <div className="space-y-5">
+        <div className="space-y-10">
           <div className="flex justify-between">
-            <h4 className="text-2xl font-bold">Novedades</h4>
+            <h4 className="text-4xl font-bold">Novedades</h4>
 
-            <Link href="/search" className={buttonVariants()}>
+            <Link href="/search" className={buttonVariants({ size: 'lg' })}>
               Ver mas
             </Link>
           </div>
@@ -67,7 +63,7 @@ export async function getStaticProps() {
   return {
     props: {
       products: products.slice(0, 8) ?? [],
-      collections: collections ?? [],
+      collections: collections.slice(0, 8) ?? [],
     },
     revalidate: 60 * 5,
   };

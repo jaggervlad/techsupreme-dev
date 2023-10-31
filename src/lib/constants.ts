@@ -1,5 +1,12 @@
 import { FaFacebook } from 'react-icons/fa';
-import { AlertOctagon, BookOpen, HelpCircle, Info, Mail } from 'lucide-react';
+import {
+  AlertOctagon,
+  BookOpen,
+  HelpCircle,
+  Info,
+  Mail,
+  Map,
+} from 'lucide-react';
 import { BsInstagram, BsYoutube } from 'react-icons/bs';
 
 export type SortFilterItem = {
@@ -94,6 +101,24 @@ export const footerNavigationData = {
       href: 'mailto:soporte@techsupreme.com',
       isExternal: true,
       icon: Mail,
+    },
+    {
+      name: 'Av Alameda Sur 1380',
+      href: '/',
+      isExternal: true,
+      icon: Map,
+    },
+  ],
+  utils: [
+    {
+      name: 'Sitemap',
+      href: '/sitemap.xml',
+      isExternal: true,
+    },
+    {
+      name: 'Robot',
+      href: '/tobot.txt',
+      isExternal: true,
     },
   ],
 };

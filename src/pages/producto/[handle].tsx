@@ -14,7 +14,7 @@ import {
 } from '@/lib/shopify';
 import { Collection, Product, ProductVariant } from '@/lib/shopify/types';
 import { cn, formatPrice } from '@/lib/utils';
-import { ChevronRight, PlusIcon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, PlusIcon } from 'lucide-react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 // @ts-ignore
@@ -22,6 +22,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useSearchParams } from 'next/navigation';
 import { ProductCard } from '@/components/product-card';
 import { multipleSliderOptions } from '@/lib/constants';
+import { useRouter } from 'next/router';
 
 export default function ProductPage({
   collections,
@@ -32,6 +33,8 @@ export default function ProductPage({
   product: Product;
   relatedProducts: Product[];
 }) {
+  const router = useRouter();
+
   return (
     <MainLayout collections={collections}>
       <div className="container py-14">
@@ -48,7 +51,17 @@ export default function ProductPage({
 
           <Separator className="mt-4 md:hidden" />
           <div className="flex flex-col w-full gap-4 md:w-1/2">
-            <div className="space-y-2">
+            <div>
+              <Button
+                variant={'outline'}
+                className="mb-4"
+                onClick={() => {
+                  router.back();
+                }}
+              >
+                <ChevronLeft className="mr-2" /> Regresar
+              </Button>
+
               <h2 className="text-2xl mb-8 font-bold lg:text-4xl">
                 {product.title}
               </h2>
@@ -59,7 +72,7 @@ export default function ProductPage({
 
               <div className="space-y-8">
                 <div className="">
-                  <p className="font-bold mb-4 text-sm">PRECIO</p>
+                  <p className="font-bold text-sm">PRECIO</p>
 
                   <p className="font-semibold text-primary text-3xl">
                     {formatPrice(+product.priceRange.maxVariantPrice.amount)}{' '}
@@ -125,7 +138,7 @@ function AddToCartButton({
   const selectedVariantId = variant?.id || defaultVariantId;
 
   const buttonClasses =
-    'relative flex w-full items-center justify-center rounded-full bg-primary p-4 tracking-wide text-white';
+    'relative flex w-full items-center justify-center bg-primary p-4 tracking-wide text-white';
   const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
   if (!availableForSale) {

@@ -16,11 +16,14 @@ import { Search } from '@/components/search';
 import { Collection } from '@/lib/shopify/types';
 import { usePathname } from 'next/navigation';
 import { footerNavigationData } from '@/lib/constants';
+import { MapPinIcon } from 'lucide-react';
 
 export function Header({ collections }: { collections: Collection[] }) {
+  const ContactIcon = footerNavigationData.contact[0].icon;
+
   return (
     <>
-      <div className="bg-slate-800 text-white">
+      <div className="bg-primary/5">
         <div className="hidden md:flex py-4 h-10 items-center container  gap-5 ">
           <div className="items-center flex gap-4">
             {footerNavigationData.social.map(({ icon: Icon, href }) => (
@@ -35,27 +38,25 @@ export function Header({ collections }: { collections: Collection[] }) {
             ))}
           </div>
           <div className="ml-auto items-center flex gap-4">
-            {footerNavigationData.contact.map(({ icon: Icon, href, name }) => (
-              <Link
-                key={href}
-                href={href}
-                target="_blank"
-                referrerPolicy="no-referrer"
-                className="flex items-center gap-2"
-              >
-                <Icon className="h-5 w-5 " />
-                {name}
-              </Link>
-            ))}
+            <Link
+              key={footerNavigationData.contact[0].href}
+              href={footerNavigationData.contact[0].href}
+              target="_blank"
+              referrerPolicy="no-referrer"
+              className="flex items-center gap-2"
+            >
+              <MapPinIcon className="h-5 w-5 " />
+              {footerNavigationData.contact[0].name}
+            </Link>
           </div>
         </div>
       </div>
 
-      <header className="bg-primary sticky top-0 z-20">
+      <header className="sticky bg-slate-50 top-0 z-20">
         <nav className="">
-          <div className="py-4 h-16  items-center flex gap-5 container">
+          <div className="py-4 h-24 items-center flex gap-5 container">
             <Link href="/">
-              <h1 className="text-white text-2xl font-bold">Logo</h1>
+              <h1 className="text-5xl font-bold">Logo</h1>
             </Link>
 
             <div className="flex w-full">
@@ -67,16 +68,16 @@ export function Header({ collections }: { collections: Collection[] }) {
             </div>
           </div>
 
-          <Separator />
-
-          <div className="py-4 h-16 items-center flex gap-5 container">
-            <NavigationMenu>
-              <NavigationMenuList className="gap-4">
-                {collections.map((c) => (
-                  <NavItem href={c.path} title={c.title} key={c.handle} />
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
+          <div className="bg-primary">
+            <div className="py-4 h-16 items-center flex gap-5 container">
+              <NavigationMenu>
+                <NavigationMenuList className="gap-4">
+                  {collections.map((c) => (
+                    <NavItem href={c.path} title={c.title} key={c.handle} />
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
           </div>
         </nav>
       </header>
@@ -92,9 +93,12 @@ const NavItem = ({ href, title }: { href: string; title: string }) => {
     <NavigationMenuItem>
       <Link href={href} legacyBehavior passHref>
         <NavigationMenuLink
-          className={cn('text-base text-white bg-primary font-medium', {
-            'underline underline-offset-4': active,
-          })}
+          className={cn(
+            'text-base hover:underline hover:underline-offset-4 text-white bg-primary font-medium',
+            {
+              'underline underline-offset-4': active,
+            }
+          )}
         >
           {title}
         </NavigationMenuLink>

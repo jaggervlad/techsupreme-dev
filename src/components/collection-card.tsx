@@ -15,11 +15,8 @@ interface CollectionCardProps {
 
 export function CollectionCard({ collection }: CollectionCardProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{collection.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="pb-6 border shadow-lg">
+      <Link href={collection.path}>
         <div className="relative max-h-96 w-full aspect-[4/6]">
           <Image
             className="w-full h-full"
@@ -28,18 +25,19 @@ export function CollectionCard({ collection }: CollectionCardProps) {
             src={collection?.image?.url || '/banner-example.png'}
           />
         </div>
-      </CardContent>
+      </Link>
 
-      <CardFooter>
+      <div className="flex justify-between pt-6 px-4">
+        <h4 className="text-xl font-bold">{collection.title}</h4>
         <Link
           className={
-            'font-medium text-base underline underline-offset-4 ml-auto'
+            'font-medium hover:scale-105 text-base underline underline-offset-4 ml-auto'
           }
           href={collection.path}
         >
           Ver más
         </Link>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }

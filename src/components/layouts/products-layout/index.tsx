@@ -3,6 +3,7 @@ import { MainLayout } from '../main-layout';
 import { CollectionSidebar } from './collection-sidebar';
 import { ProductCard } from '@/components/product-card';
 import { useRouter } from 'next/router';
+import { ScrollToTopButton } from '@/components/scroll-to-top';
 
 interface ProductLayoutProps {
   title?: string;
@@ -24,7 +25,7 @@ export function ProductsLayout({
     <MainLayout collections={collections}>
       <div className="container py-10 flex flex-col space-y-12">
         <header id="products-page-header">
-          <h2 className="text-4xl font-medium">{title || 'Productos'}</h2>
+          <h2 className="text-4xl font-bold">{title || 'Productos'}</h2>
         </header>
 
         <div className="flex gap-10 w-full">

@@ -1,29 +1,45 @@
 import { ProductsLayout } from '@/components/layouts/products-layout';
-import { getCollectionProducts, getCollections } from '@/lib/shopify';
+import {
+  getCollection,
+  getCollectionProducts,
+  getCollections,
+} from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import { GetStaticProps } from 'next';
 
 interface ProductCollectionPageProps {
   products: Product[];
   collections: Collection[];
+  collection?: Collection;
 }
 
 export default function ProductCollectionPage({
   products,
   collections,
+  collection,
 }: ProductCollectionPageProps) {
-  return <ProductsLayout collections={collections} products={products} />;
+  const title = collection && collection.title;
+
+  return (
+    <ProductsLayout
+      title={title}
+      collections={collections}
+      products={products}
+    />
+  );
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const collection = (ctx?.params?.collection || '') as string;
   const products = await getCollectionProducts({ collection });
   const collections = await getCollections();
+  const collectionShopify = await getCollection(collection);
 
   return {
     props: {
       products: products ?? [],
       collections: collections ?? [],
+      collection: collectionShopify,
     },
     revalidate: 60 * 5,
   };

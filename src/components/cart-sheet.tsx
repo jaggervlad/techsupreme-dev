@@ -27,11 +27,7 @@ export function CartSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          aria-label="Cart"
-          variant="ghost"
-          className="relative text-white"
-        >
+        <Button aria-label="Cart" className="relative h-12">
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"
@@ -78,8 +74,6 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
         <ScrollArea className="h-full">
           <div className="flex flex-col gap-5 pr-6">
             {cart.lines.map((item) => {
-              console.log({ item });
-
               return (
                 <div key={item.id} className="space-y-3">
                   <div className="flex items-center space-x-4">
