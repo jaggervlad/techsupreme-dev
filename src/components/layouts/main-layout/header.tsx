@@ -20,34 +20,37 @@ import { footerNavigationData } from '@/lib/constants';
 export function Header({ collections }: { collections: Collection[] }) {
   return (
     <>
-      <div className="hidden md:flex py-4 h-10 items-center  gap-5 container">
-        <div className="items-center flex gap-4">
-          {footerNavigationData.social.map(({ icon: Icon, href }) => (
-            <Link
-              key={href}
-              href={href}
-              target="_blank"
-              referrerPolicy="no-referrer"
-            >
-              <Icon className="h-5 w-5 text-primary/80" />
-            </Link>
-          ))}
-        </div>
-        <div className="ml-auto items-center flex gap-4">
-          {footerNavigationData.contact.map(({ icon: Icon, href, name }) => (
-            <Link
-              key={href}
-              href={href}
-              target="_blank"
-              referrerPolicy="no-referrer"
-              className="flex items-center gap-2"
-            >
-              <Icon className="h-5 w-5 text-primary/80" />
-              {name}
-            </Link>
-          ))}
+      <div className="bg-slate-800 text-white">
+        <div className="hidden md:flex py-4 h-10 items-center container  gap-5 ">
+          <div className="items-center flex gap-4">
+            {footerNavigationData.social.map(({ icon: Icon, href }) => (
+              <Link
+                key={href}
+                href={href}
+                target="_blank"
+                referrerPolicy="no-referrer"
+              >
+                <Icon className="h-5 w-5 " />
+              </Link>
+            ))}
+          </div>
+          <div className="ml-auto items-center flex gap-4">
+            {footerNavigationData.contact.map(({ icon: Icon, href, name }) => (
+              <Link
+                key={href}
+                href={href}
+                target="_blank"
+                referrerPolicy="no-referrer"
+                className="flex items-center gap-2"
+              >
+                <Icon className="h-5 w-5 " />
+                {name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
+
       <header className="bg-primary sticky top-0 z-20">
         <nav className="">
           <div className="py-4 h-16  items-center flex gap-5 container">

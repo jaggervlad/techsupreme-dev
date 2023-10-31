@@ -39,6 +39,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return {
     props: { collections: collections ?? [], page },
+    revalidate: 60 * 5,
   };
 };
 

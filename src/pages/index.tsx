@@ -69,5 +69,6 @@ export async function getStaticProps() {
       products: products ?? [],
       collections: collections ?? [],
     },
+    revalidate: 60 * 5,
   };
 }

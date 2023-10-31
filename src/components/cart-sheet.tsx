@@ -30,12 +30,12 @@ export function CartSheet() {
         <Button
           aria-label="Cart"
           variant="ghost"
-          className="relative text-zinc-200 hover:text-zinc-300 hover:bg-zinc-800"
+          className="relative text-white"
         >
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"
-              className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full -right-2 -top-2"
+              className="absolute flex border border-primary items-center justify-center w-6 h-6 p-2 rounded-full -right-2 -top-2"
             >
               {cart?.lines.length}
             </Badge>
@@ -109,7 +109,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                       )}
                     </div>
                     <div className="flex flex-col self-start flex-1 gap-1 text-sm">
-                      <span className="line-clamp-1">
+                      <span className="">
                         {item.merchandise.product.title}
                         {' - '}
                         {item.merchandise.title}

@@ -21,7 +21,11 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const collections = await getCollections();
 
   return {
-    props: { products: products ?? [], collections: collections ?? [] },
+    props: {
+      products: products ?? [],
+      collections: collections ?? [],
+    },
+    revalidate: 60 * 5,
   };
 };
 

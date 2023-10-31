@@ -16,7 +16,7 @@ export default function ProductsPage({
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const queryValue = (ctx?.query?.q || '') as string;
+  const queryValue = ctx?.query?.q as string;
 
   const products = await getProducts({ query: queryValue });
   const collections = await getCollections();
@@ -26,5 +26,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       products: products ?? [],
       collections: collections ?? [],
     },
+    revalidate: 60 * 5,
   };
 };

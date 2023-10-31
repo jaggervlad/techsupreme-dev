@@ -32,8 +32,6 @@ export default function ProductPage({
   product: Product;
   relatedProducts: Product[];
 }) {
-  console.log({ product });
-
   return (
     <MainLayout collections={collections}>
       <div className="container py-14">
@@ -43,16 +41,15 @@ export default function ProductPage({
           </Link>
           <ChevronRight className="w-4 h-4" aria-hidden="true" />
         </div> */}
-        <div className="flex flex-col gap-8 md:flex-row md:gap-16">
-          <ProductImageGallery
-            className="w-full md:w-1/2"
-            images={product.images ?? []}
-          />
+        <div className="flex flex-col items-start gap-8 md:flex-row md:gap-16 mb-10">
+          <div className="border sticky top-48 w-full md:w-1/2">
+            <ProductImageGallery images={product.images ?? []} />
+          </div>
 
           <Separator className="mt-4 md:hidden" />
           <div className="flex flex-col w-full gap-4 md:w-1/2">
             <div className="space-y-2">
-              <h2 className="text-2xl mb-8 font-bold line-clamp-1 lg:text-4xl">
+              <h2 className="text-2xl mb-8 font-bold lg:text-4xl">
                 {product.title}
               </h2>
 
@@ -84,9 +81,10 @@ export default function ProductPage({
               availableForSale={product.availableForSale}
             />
             <Separator className="mt-5" />
-            <div>
-              <p>{product.description}</p>
-            </div>
+            <div
+              className="prose"
+              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+            />
           </div>
         </div>
         {relatedProducts && relatedProducts.length > 0 ? (
@@ -192,7 +190,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   }
 
   return {
-    props: { collections: collections ?? [], product, relatedProducts },
+    props: {
+      collections: collections ?? [],
+      product,
+      relatedProducts,
+    },
+    revalidate: 60 * 5,
   };
 };
 
