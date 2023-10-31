@@ -58,7 +58,9 @@ export function Header({ collections }: { collections: Collection[] }) {
         <nav className="">
           <div className="py-4 h-24 items-center flex gap-5 container">
             <Link href="/">
-              <h1 className="text-5xl font-bold">Logo</h1>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
+                TechSupreme
+              </h1>
             </Link>
 
             <div className="lg:flex hidden w-full">
