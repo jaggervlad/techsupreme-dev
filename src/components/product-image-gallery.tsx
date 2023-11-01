@@ -61,7 +61,7 @@ export function ProductImageGallery({
       >
         {images.map((image, index) => (
           <SplideSlide key={index}>
-            <div className="aspect-[2/3] max-h-[600px] w-full relative">
+            <div className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative">
               <Image
                 fill
                 key={image.url}

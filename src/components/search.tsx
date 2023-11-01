@@ -38,6 +38,7 @@ export function Search() {
         className="block p-2.5 h-12 w-full z-20 text-sm text-gray-900 rounded-r-lg border-input  border focus:ring-1  focus:outline-none focus:ring-primary focus:border-primary "
         placeholder="Buscador de productos"
         required
+        value={searchParams?.get('q') || ''}
         onChange={(e) => setQuery(e.target.value)}
       />
       <button

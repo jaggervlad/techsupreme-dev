@@ -14,6 +14,7 @@ import {
   useState,
 } from 'react';
 import { useCookies } from 'react-cookie';
+import { toast } from 'sonner';
 
 type ContextProps = {
   cart: Cart | undefined;
@@ -80,6 +81,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         { merchandiseId: selectedVariantId, quantity: 1 },
       ]);
 
+      toast.success(`Se ha agregado un producto al carrito`);
       setCart(newCart);
     } catch (e) {
       setError('Error adding item to cart');

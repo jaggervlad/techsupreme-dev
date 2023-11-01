@@ -19,10 +19,12 @@ export default function ProductCollectionPage({
   collection,
 }: ProductCollectionPageProps) {
   const title = collection && collection.title;
+  const description = collection && collection.description;
 
   return (
     <ProductsLayout
       title={title}
+      description={description}
       collections={collections}
       products={products}
     />

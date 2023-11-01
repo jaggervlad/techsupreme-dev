@@ -122,6 +122,7 @@ export type ShopifyProduct = {
     minVariantPrice: Money;
   };
   variants: Connection<ProductVariant>;
+  collections?: Connection<ShopifyCollection>;
   featuredImage: Image;
   images: Connection<Image>;
   seo: SEO;

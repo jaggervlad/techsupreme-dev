@@ -1,28 +1,27 @@
-import LoadingDots from '@/components/dots';
 import { MainLayout } from '@/components/layouts/main-layout';
 import { ProductImageGallery } from '@/components/product-image-gallery';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { VariantSelector } from '@/components/variant-selector';
-import { useCart } from '@/contexts/cart-context';
-import { useAddCartItem } from '@/hooks/useAddCartItem';
 import {
   getCollections,
   getProduct,
   getProductRecommendations,
   getProducts,
+  removeEdgesAndNodes,
 } from '@/lib/shopify';
-import { Collection, Product, ProductVariant } from '@/lib/shopify/types';
-import { cn, formatPrice } from '@/lib/utils';
-import { ChevronLeft, ChevronRight, PlusIcon } from 'lucide-react';
+import { Collection, Product } from '@/lib/shopify/types';
+import { formatPrice } from '@/lib/utils';
+import { ChevronLeft } from 'lucide-react';
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
-// @ts-ignore
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { useSearchParams } from 'next/navigation';
+import { AddToCartButton } from '@/components/add-to-cart-button';
 import { ProductCard } from '@/components/product-card';
 import { multipleSliderOptions } from '@/lib/constants';
+// @ts-ignore
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useRouter } from 'next/router';
+import { useUrl } from '@/hooks/useUrl';
+import { ProductJsonLd } from 'next-seo';
 
 export default function ProductPage({
   collections,
@@ -34,9 +33,35 @@ export default function ProductPage({
   relatedProducts: Product[];
 }) {
   const router = useRouter();
+  const { href: currentUrl } = useUrl() ?? {};
+  const { url, width, height, altText: alt } = product.featuredImage || {};
+
+  const seoData = {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      url: currentUrl,
+      title: product.title,
+      description: product.description,
+      images: url ? [{ url, width, height, alt }] : undefined,
+    },
+  };
 
   return (
-    <MainLayout collections={collections}>
+    <MainLayout collections={collections} seo={seoData}>
+      <ProductJsonLd
+        productName={product.title}
+        description={product.description}
+        image={product.featuredImage.url}
+        offers={{
+          availability: product.availableForSale
+            ? 'https://schema.org/InStock'
+            : 'https://schema.org/OutOfStock',
+          priceCurrency: product.priceRange.minVariantPrice.currencyCode,
+          highPrice: product.priceRange.maxVariantPrice.amount,
+          lowPrice: product.priceRange.minVariantPrice.amount,
+        }}
+      />
       <div className="container py-14">
         {/* <div className="flex items-center space-x-1 text-sm capitalize text-muted-foreground">
           <Link href="/productos" className="truncate">
@@ -126,77 +151,6 @@ export default function ProductPage({
         ) : null}
       </div>
     </MainLayout>
-  );
-}
-
-function AddToCartButton({
-  variants,
-  availableForSale,
-}: {
-  variants: ProductVariant[];
-  availableForSale: boolean;
-}) {
-  const { addItem, isLoadingAdd } = useCart();
-  const searchParams = useSearchParams();
-  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
-  const variant = variants.find((variant: ProductVariant) =>
-    variant.selectedOptions.every(
-      (option) => option.value === searchParams.get(option.name.toLowerCase())
-    )
-  );
-
-  const selectedVariantId = variant?.id || defaultVariantId;
-
-  const buttonClasses =
-    'relative flex w-full items-center justify-center bg-primary p-4 tracking-wide text-white';
-  const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
-
-  if (!availableForSale) {
-    return (
-      <button aria-disabled className={cn(buttonClasses, disabledClasses)}>
-        Agotado
-      </button>
-    );
-  }
-
-  if (!selectedVariantId) {
-    return (
-      <button
-        aria-label="Please select an option"
-        aria-disabled
-        className={cn(buttonClasses, disabledClasses)}
-      >
-        <div className="absolute left-0 ml-4">
-          <PlusIcon className="h-5" />
-        </div>
-        Añadir al carrito
-      </button>
-    );
-  }
-
-  return (
-    <button
-      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-        if (isLoadingAdd) return;
-
-        addItem(selectedVariantId);
-      }}
-      aria-label="Añadir al carrito"
-      aria-disabled={isLoadingAdd}
-      className={cn(buttonClasses, {
-        'hover:opacity-90': true,
-        disabledClasses: isLoadingAdd,
-      })}
-    >
-      <div className="absolute left-0 ml-4">
-        {isLoadingAdd ? (
-          <LoadingDots className="mb-3 bg-white" />
-        ) : (
-          <PlusIcon className="h-5" />
-        )}
-      </div>
-      Añadir al carrito
-    </button>
   );
 }
 

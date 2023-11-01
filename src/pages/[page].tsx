@@ -37,6 +37,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const collections = await getCollections();
   const page = await getPage(pageParam);
 
+  if (!page) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: { collections: collections ?? [], page },
     revalidate: 60 * 5,

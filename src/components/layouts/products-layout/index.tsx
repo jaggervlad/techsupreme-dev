@@ -7,25 +7,31 @@ import { ScrollToTopButton } from '@/components/scroll-to-top';
 
 interface ProductLayoutProps {
   title?: string;
+  description?: string;
   collections: Collection[];
   products: Product[];
 }
 
 export function ProductsLayout({
   title,
+  description,
   collections,
   products,
 }: ProductLayoutProps) {
   const router = useRouter();
   const searchQuery = router.query.q;
 
+  const headerTitle = title || 'Productos';
   const resultsText = products.length > 1 ? 'resultados' : 'resultado';
 
   return (
-    <MainLayout collections={collections} seo={{ title: 'Productos' }}>
+    <MainLayout
+      collections={collections}
+      seo={{ title: headerTitle, description: description }}
+    >
       <div className="container py-10 flex flex-col space-y-12">
         <header id="products-page-header">
-          <h2 className="text-4xl font-bold">{title || 'Productos'}</h2>
+          <h2 className="text-4xl font-bold">{headerTitle}</h2>
         </header>
 
         <div className="flex flex-col lg:flex-row gap-10 w-full">
