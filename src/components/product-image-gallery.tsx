@@ -12,11 +12,13 @@ interface ProductImageCarouselProps
     HTMLDivElement
   > {
   images: ImageType[];
+  title: string;
 }
 
 export function ProductImageGallery({
   images,
   className,
+  title,
   ...props
 }: ProductImageCarouselProps) {
   const mainOptions: Options = {
@@ -66,7 +68,7 @@ export function ProductImageGallery({
                 fill
                 key={image.url}
                 src={image?.url || ''}
-                alt={image?.altText || ''}
+                alt={image?.altText || title}
                 role="group"
                 className=""
                 aria-roledescription="slide"

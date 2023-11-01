@@ -46,7 +46,7 @@ export function ProductCard({
                   product.featuredImage.url ??
                   '/images/product-placeholder.webp'
                 }
-                alt={product.featuredImage.altText}
+                alt={product.featuredImage.altText || product.title}
                 quality={100}
                 fill
                 priority

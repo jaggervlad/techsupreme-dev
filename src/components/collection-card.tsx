@@ -21,7 +21,7 @@ export function CollectionCard({ collection }: CollectionCardProps) {
           <Image
             className="w-full h-full"
             fill
-            alt={collection?.image?.altText || ''}
+            alt={collection?.image?.altText || collection.title}
             src={collection?.image?.url || '/banner-example.png'}
           />
         </div>

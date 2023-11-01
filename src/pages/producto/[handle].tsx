@@ -81,7 +81,10 @@ export default function ProductPage({
           </Button>
 
           <div className="border lg:sticky lg:top-12 w-full md:w-1/2">
-            <ProductImageGallery images={product.images ?? []} />
+            <ProductImageGallery
+              images={product.images ?? []}
+              title={product.title}
+            />
           </div>
 
           <Separator className="mt-4 md:hidden" />
