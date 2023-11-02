@@ -12,7 +12,13 @@ export default function DynamicPages({
   page: Page;
 }) {
   return (
-    <MainLayout collections={collections}>
+    <MainLayout
+      collections={collections}
+      seo={{
+        title: page.seo?.title ?? page.title,
+        description: page.seo?.description ?? `Página ${page.title}`,
+      }}
+    >
       <div className="max-w-6xl mx-auto py-14">
         <h1 className="mb-8 text-5xl font-bold">{page.title}</h1>
         <Prose className="mb-8" html={page.body as string} />

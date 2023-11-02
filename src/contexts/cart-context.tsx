@@ -84,6 +84,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       toast.success(`Se ha agregado un producto al carrito`);
       setCart(newCart);
     } catch (e) {
+      toast.error('Al salio mal porfavor intentalo de nuevo');
       setError('Error adding item to cart');
     } finally {
       setIsLoadingAdd(false);

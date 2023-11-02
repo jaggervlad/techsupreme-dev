@@ -50,56 +50,92 @@ export function ProductImageGallery({
     }
   }, [mainRef, thumbsRef]);
 
-  return (
-    <div
-      aria-label="Product image carousel"
-      className={cn('flex flex-col gap-2', className)}
-      {...props}
-    >
-      <Splide
-        options={mainOptions}
-        ref={mainRef}
-        aria-labelledby="thumbnail-slider-example"
+  if (images.length > 1) {
+    return (
+      <div
+        aria-label="Carusel de imágenes de productos"
+        className={cn('flex flex-col gap-2', className)}
+        {...props}
       >
-        {images.map((image, index) => (
-          <SplideSlide key={index}>
-            <div className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative">
+        <Splide
+          options={mainOptions}
+          ref={mainRef}
+          aria-labelledby="thumbnail-slider-example"
+        >
+          {images.map((image, index) => (
+            <SplideSlide key={index}>
+              <div className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative">
+                <Image
+                  fill
+                  key={image.url}
+                  src={image?.url || ''}
+                  alt={image?.altText || title}
+                  role="group"
+                  className=""
+                  aria-roledescription="slide"
+                  priority
+                  quality={100}
+                  sizes="(min-width: 480px ) 50vw,
+                      100vw"
+                />
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
+
+        <Splide
+          options={thumbsOptions}
+          ref={thumbsRef}
+          aria-label="El carrusel con miniaturas. Seleccionar una miniatura cambiará el carrusel principal."
+        >
+          {images.map((image, index) => (
+            <SplideSlide
+              key={index}
+              className="relative aspect-square max-h-36"
+            >
               <Image
-                fill
                 key={image.url}
                 src={image?.url || ''}
-                alt={image?.altText || title}
+                alt={image?.altText || ''}
                 role="group"
-                className=""
                 aria-roledescription="slide"
+                className="w-full h-full"
+                fill
                 priority
-                quality={100}
+                sizes="(min-width: 480px ) 50vw,
+                      (min-width: 728px) 33vw,
+                      (min-width: 976px) 25vw,
+                      100vw"
               />
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
+      </div>
+    );
+  }
 
-      <Splide
-        options={thumbsOptions}
-        ref={thumbsRef}
-        aria-label="The carousel with thumbnails. Selecting a thumbnail will change the main carousel"
-      >
-        {images.map((image, index) => (
-          <SplideSlide key={index} className="relative aspect-square max-h-36">
-            <Image
-              key={image.url}
-              src={image?.url || ''}
-              alt={image?.altText || ''}
-              role="group"
-              aria-roledescription="slide"
-              className="w-full h-full"
-              fill
-              priority
-            />
-          </SplideSlide>
-        ))}
-      </Splide>
+  return (
+    <div>
+      {images.map((image, index) => (
+        <div
+          key={image.url}
+          className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative"
+        >
+          <Image
+            fill
+            key={image.url}
+            src={image?.url || ''}
+            alt={image?.altText || title}
+            role="group"
+            className=""
+            aria-roledescription="slide"
+            priority
+            quality={100}
+            sizes="(min-width: 480px ) 50vw,
+                      100vw"
+          />
+        </div>
+      ))}
     </div>
   );
 }

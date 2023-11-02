@@ -69,7 +69,7 @@ export default function ProductPage({
           </Link>
           <ChevronRight className="w-4 h-4" aria-hidden="true" />
         </div> */}
-        <div className="flex flex-col items-start gap-8 md:flex-row md:gap-16 mb-10">
+        <div className="flex flex-col items-start gap-8 lg:flex-row md:gap-16 mb-10">
           <Button
             variant={'outline'}
             className="mb-4 lg:hidden"
@@ -80,15 +80,15 @@ export default function ProductPage({
             <ChevronLeft className="mr-2" /> Regresar
           </Button>
 
-          <div className="border lg:sticky lg:top-12 w-full md:w-1/2">
+          <div className="border lg:sticky lg:top-12 w-full lg:w-1/2">
             <ProductImageGallery
               images={product.images ?? []}
               title={product.title}
             />
           </div>
 
-          <Separator className="mt-4 md:hidden" />
-          <div className="flex flex-col w-full gap-4 md:w-1/2">
+          <Separator className="mt-4 lg:hidden" />
+          <div className="flex flex-col w-full gap-4 lg:w-1/2">
             <div>
               <Button
                 variant={'outline'}

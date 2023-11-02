@@ -77,19 +77,19 @@ export const footerNavigationData = {
   ],
   social: [
     {
-      name: '',
+      name: 'Facebook',
       href: 'https://facebook.com',
       isExternal: true,
       icon: FaFacebook,
     },
     {
-      name: '',
+      name: 'Instagram',
       href: 'https://instagram.com',
       isExternal: true,
       icon: BsInstagram,
     },
     {
-      name: '',
+      name: 'Youtube',
       href: 'https://youtube.com',
       isExternal: true,
       icon: BsYoutube,

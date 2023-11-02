@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="mt-auto text-white bg-primary pt-10 pb-10">
       <div className="container space-y-8 lg:space-y-0 mb-12 grid md:grid-cols-2 lg:grid-cols-4">
-        <p className="max-w-[30ch] text-white/80">
+        <p className="lg:max-w-[30ch] text-white/80">
           Este sitio web y su contenido se proporcionan &quot;tal como
           están&quot; y &quot;según estén disponibles&quot; sin ninguna garantía
           o representación de ningún tipo, ya sea expresa o implícita. La
@@ -48,9 +48,14 @@ export function Footer() {
           >
             {footerNavigationData.social.map(
               ({ name, href, icon: Icon, isExternal }) => (
-                <FooterListItem key={href} href={href} isExternal={isExternal}>
+                <FooterListItem
+                  label={`Red Social ${name}`}
+                  key={href}
+                  href={href}
+                  isExternal={isExternal}
+                >
                   <div className="border p-2 rounded-full hover:bg-slate-800">
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-4 w-4" aria-hidden />
                   </div>
                 </FooterListItem>
               )
@@ -92,9 +97,15 @@ function FooterListContainer({
 interface FooterListItemProps extends PropsWithChildren {
   href: string;
   isExternal?: boolean;
+  label?: string;
 }
 
-function FooterListItem({ children, href, isExternal }: FooterListItemProps) {
+function FooterListItem({
+  children,
+  label,
+  href,
+  isExternal,
+}: FooterListItemProps) {
   return (
     <li>
       <Link
@@ -102,6 +113,7 @@ function FooterListItem({ children, href, isExternal }: FooterListItemProps) {
         target={isExternal ? '_blank' : undefined}
         referrerPolicy={isExternal ? 'no-referrer' : undefined}
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        aria-label={label}
       >
         {children}
       </Link>

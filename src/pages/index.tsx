@@ -20,7 +20,9 @@ export default function Home({ products, collections }: ProductsPageProps) {
         {/* Category Cards */}
         <div className="space-y-10">
           <div className="flex justify-between">
-            <h3 className="text-4xl font-bold">Colecciones</h3>
+            <h2 className="text-4xl font-bold" id="titulo-colecciones">
+              Colecciones
+            </h2>
 
             <Link href="/search" className={buttonVariants({ size: 'lg' })}>
               Ver mas
@@ -38,7 +40,9 @@ export default function Home({ products, collections }: ProductsPageProps) {
 
         <div className="space-y-10">
           <div className="flex justify-between">
-            <h3 className="text-4xl font-bold">Novedades</h3>
+            <h3 className="text-4xl font-bold" id="titulo-novedades">
+              Novedades
+            </h3>
 
             <Link href="/search" className={buttonVariants({ size: 'lg' })}>
               Ver mas

@@ -31,11 +31,14 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <Card
-      className={cn('flex flex-col overflow-hidden shadow-lg', className)}
+      className={cn(
+        'flex flex-col hover:scale-105 transition-all overflow-hidden shadow-lg',
+        className
+      )}
       {...props}
     >
       <Link
-        aria-label={`View ${product.title} details`}
+        aria-label={`Ver detalles ${product.title}`}
         href={`/producto/${product.handle}`}
       >
         <CardHeader className="p-0 border-b">
@@ -71,10 +74,7 @@ export function ProductCard({
           </AspectRatio>
         </CardHeader>
       </Link>
-      <Link
-        aria-label={`View ${product.title} details`}
-        href={`/producto/${product.handle}`}
-      >
+      <Link href={`/producto/${product.handle}`}>
         <CardContent className="grid gap-2.5 p-4">
           <CardTitle className="text-xl truncate">{product.title}</CardTitle>
           <CardDescription>
@@ -86,6 +86,7 @@ export function ProductCard({
               {product.priceRange.maxVariantPrice.currencyCode}
             </span>
           </CardDescription>
+          <span className="sr-only">Ver detalles de {product.title}</span>
         </CardContent>
       </Link>
     </Card>

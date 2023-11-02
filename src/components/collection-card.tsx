@@ -28,7 +28,7 @@ export function CollectionCard({ collection }: CollectionCardProps) {
       </Link>
 
       <div className="flex justify-between pt-6 px-4">
-        <h4 className="text-xl font-bold">{collection.title}</h4>
+        <h3 className="text-xl font-bold">{collection.title}</h3>
         <Link
           className={
             'font-medium hover:scale-105 text-base underline underline-offset-4 ml-auto'

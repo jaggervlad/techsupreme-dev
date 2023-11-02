@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Link from 'next/link';
 
 import {
@@ -8,16 +6,14 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu';
-import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
 import { CartSheet } from '@/components/cart-sheet';
 import { Search } from '@/components/search';
-import { Collection } from '@/lib/shopify/types';
-import { usePathname } from 'next/navigation';
 import { footerNavigationData } from '@/lib/constants';
-import { MapPinIcon, Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Collection } from '@/lib/shopify/types';
+import { MapPinIcon } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { MobileNav } from './mobile-nav';
 
 export function Header({ collections }: { collections: Collection[] }) {
@@ -28,12 +24,13 @@ export function Header({ collections }: { collections: Collection[] }) {
       <div className="bg-primary/5">
         <div className="flex py-4 h-10 items-center container  gap-5 ">
           <div className="items-center flex gap-4">
-            {footerNavigationData.social.map(({ icon: Icon, href }) => (
+            {footerNavigationData.social.map(({ icon: Icon, href, name }) => (
               <Link
                 key={href}
                 href={href}
                 target="_blank"
                 referrerPolicy="no-referrer"
+                aria-label={`Red Social ${name}`}
               >
                 <Icon className="h-5 w-5 " />
               </Link>
@@ -41,13 +38,13 @@ export function Header({ collections }: { collections: Collection[] }) {
           </div>
           <div className="ml-auto hidden lg:flex items-center gap-4">
             <Link
-              key={footerNavigationData.contact[0].href}
               href={footerNavigationData.contact[0].href}
               target="_blank"
               referrerPolicy="no-referrer"
               className="flex items-center gap-2"
+              aria-label={footerNavigationData.contact[0].name}
             >
-              <MapPinIcon className="h-5 w-5 " />
+              <MapPinIcon className="h-5 w-5 " aria-hidden="true" />
               {footerNavigationData.contact[0].name}
             </Link>
           </div>
@@ -57,7 +54,7 @@ export function Header({ collections }: { collections: Collection[] }) {
       <header className="bg-slate-50">
         <nav className="">
           <div className="py-4 h-24 items-center flex gap-5 container">
-            <Link href="/">
+            <Link href="/" aria-label="TechSupreme Logo">
               <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
                 TechSupreme
               </h1>
@@ -100,7 +97,7 @@ export const NavItem = ({ href, title }: { href: string; title: string }) => {
   const active = pathname === href;
   return (
     <NavigationMenuItem>
-      <Link href={href} legacyBehavior passHref>
+      <Link href={href} legacyBehavior passHref aria-label={`Página ${title}`}>
         <NavigationMenuLink
           className={cn(
             'text-base hover:underline hover:underline-offset-4 text-white bg-primary font-medium',
