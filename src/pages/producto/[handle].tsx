@@ -126,16 +126,20 @@ export default function ProductPage({
               </div>
             </div>
 
-            <Separator className="my-1.5" />
             <AddToCartButton
               variants={product.variants}
               availableForSale={product.availableForSale}
             />
             <Separator className="mt-5" />
-            <div
-              className="prose"
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
+
+            <div>
+              <h3>Descripción y caracteristicas</h3>
+
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+              />
+            </div>
           </div>
         </div>
         {relatedProducts && relatedProducts.length > 0 ? (
