@@ -41,7 +41,7 @@ export function BannerSlider() {
     <Slider {...settings}>
       <div className="aspect-video max-h-96 relative">
         <Image
-          src="/banner-example.png "
+          src="/banner-example.png"
           className="h-full w-full rounded-lg"
           alt=""
           fill
@@ -49,7 +49,7 @@ export function BannerSlider() {
       </div>
       <div className="aspect-video max-h-96 relative">
         <Image
-          src="/banner-example.png "
+          src="/banner-example.png"
           className="h-full w-full rounded-lg"
           alt=""
           fill
@@ -57,7 +57,7 @@ export function BannerSlider() {
       </div>
       <div className="aspect-video max-h-96 relative">
         <Image
-          src="/banner-example.png "
+          src="/banner-example.png"
           className="h-full w-full rounded-lg"
           alt=""
           fill
