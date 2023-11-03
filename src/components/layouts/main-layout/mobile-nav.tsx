@@ -16,13 +16,24 @@ import { Menu } from 'lucide-react';
 import { NavItem } from './header';
 import Link from 'next/link';
 import { CartSheet } from '@/components/cart-sheet';
+import { useCart } from '@/contexts/cart-context';
+import { Badge } from '@/components/ui/badge';
 
 export function MobileNav({ collections }: { collections: Collection[] }) {
+  const { cart } = useCart();
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="lg:hidden">
-          <Menu />
+        <Button className="lg:hidden relative">
+          {cart && cart?.lines.length > 0 && (
+            <Badge
+              variant="secondary"
+              className="absolute flex border border-primary items-center justify-center w-6 h-6 p-2 rounded-full -right-2 -top-2"
+            >
+              {cart?.lines.length}
+            </Badge>
+          )}
+          <Menu aria-hidden />
         </Button>
       </SheetTrigger>
       <SheetContent className="py-12">

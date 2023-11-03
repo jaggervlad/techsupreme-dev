@@ -30,6 +30,7 @@ export function Header({ collections }: { collections: Collection[] }) {
                 href={href}
                 target="_blank"
                 referrerPolicy="no-referrer"
+                className="text-slate-600"
                 aria-label={`Red Social ${name}`}
               >
                 <Icon className="h-5 w-5 " />
@@ -41,7 +42,7 @@ export function Header({ collections }: { collections: Collection[] }) {
               href={footerNavigationData.contact[0].href}
               target="_blank"
               referrerPolicy="no-referrer"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-slate-600"
               aria-label={footerNavigationData.contact[0].name}
             >
               <MapPinIcon className="h-5 w-5 " aria-hidden="true" />

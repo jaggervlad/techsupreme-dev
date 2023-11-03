@@ -66,7 +66,7 @@ export function Footer() {
 
       <div className="container border-t pt-8  text-center">
         <p>
-          © {new Date().getFullYear()} Tech Store. Todos los derechos
+          © {new Date().getFullYear()} Tech Supreme. Todos los derechos
           reservados.
         </p>
       </div>

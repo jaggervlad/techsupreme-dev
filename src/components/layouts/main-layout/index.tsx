@@ -15,7 +15,7 @@ export const MainLayout = ({ children, collections, seo }: MainLayoutProps) => {
   return (
     <CartProvider>
       <NextSeo {...seo} />
-      <div className="flex bg-slate-50 flex-col min-h-screen">
+      <div className="flex bg-slate-100 flex-col min-h-screen">
         <Header collections={collections} />
         {children}
         <Footer />

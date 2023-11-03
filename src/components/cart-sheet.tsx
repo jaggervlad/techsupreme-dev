@@ -77,7 +77,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
               return (
                 <div key={item.id} className="space-y-3">
                   <div className="flex items-center space-x-4">
-                    <div className="relative w-16 h-16 overflow-hidden rounded">
+                    <div className="relative max-h-44 aspect-[3/6] h-full w-full overflow-hidden rounded">
                       {item?.merchandise.product.featuredImage ? (
                         <Image
                           src={
@@ -90,7 +90,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                           }
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           fill
-                          className="absolute object-cover"
+                          className="absolute w-full h-full object-contain"
                           loading="lazy"
                         />
                       ) : (
@@ -102,24 +102,28 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-col self-start flex-1 gap-1 text-sm">
-                      <span className="">
-                        {item.merchandise.product.title}
-                        {' - '}
-                        {item.merchandise.title}
-                      </span>
-                      <span className="line-clamp-1 text-muted-foreground">
-                        {formatPrice(
-                          parseFloat(
-                            item.merchandise.product.priceRange.maxVariantPrice
-                              .amount
-                          ) ?? 0
-                        )}{' '}
-                        x {item.quantity} ={' '}
-                        {formatPrice(parseFloat(item.cost.totalAmount.amount))}
-                      </span>
+                    <div className="space-y-4 flex-col flex">
+                      <div className="flex flex-col self-start flex-1 gap-1 text-sm">
+                        <span className="">
+                          {item.merchandise.product.title}
+                          {' - '}
+                          {item.merchandise.title}
+                        </span>
+                        <span className="line-clamp-1 text-muted-foreground">
+                          {formatPrice(
+                            parseFloat(
+                              item.merchandise.product.priceRange
+                                .maxVariantPrice.amount
+                            ) ?? 0
+                          )}{' '}
+                          x {item.quantity} ={' '}
+                          {formatPrice(
+                            parseFloat(item.cost.totalAmount.amount)
+                          )}
+                        </span>
+                      </div>
+                      <UpdateCart cartLineItem={item} />
                     </div>
-                    <UpdateCart cartLineItem={item} />
                   </div>
                   <Separator />
                 </div>
