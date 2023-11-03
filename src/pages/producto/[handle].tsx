@@ -80,7 +80,7 @@ export default function ProductPage({
             <ChevronLeft className="mr-2" /> Regresar
           </Button>
 
-          <div className="border lg:sticky lg:top-12 w-full lg:w-1/2">
+          <div className="lg:sticky lg:top-12 w-full lg:w-1/2">
             <ProductImageGallery
               images={product.images ?? []}
               title={product.title}
