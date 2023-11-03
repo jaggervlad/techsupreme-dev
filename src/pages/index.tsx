@@ -24,7 +24,13 @@ export default function Home({ products, collections }: ProductsPageProps) {
               Colecciones
             </h2>
 
-            <Link href="/search" className={buttonVariants({ size: 'lg' })}>
+            <Link
+              href="/search"
+              className={buttonVariants({
+                size: 'lg',
+                className: 'md:inline-flex hidden',
+              })}
+            >
               Ver mas
             </Link>
           </div>
@@ -44,7 +50,13 @@ export default function Home({ products, collections }: ProductsPageProps) {
               Novedades
             </h3>
 
-            <Link href="/search" className={buttonVariants({ size: 'lg' })}>
+            <Link
+              href="/search"
+              className={buttonVariants({
+                size: 'lg',
+                className: 'md:inline-flex hidden',
+              })}
+            >
               Ver mas
             </Link>
           </div>
