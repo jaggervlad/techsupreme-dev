@@ -1,26 +1,29 @@
 import { ProductsLayout } from '@/components/layouts/products-layout';
+import { defaultSort, sorting } from '@/lib/constants';
 import {
   getCollection,
   getCollectionProducts,
   getCollections,
+  getProducts,
 } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
-import { GetStaticProps } from 'next';
+import { getAsString } from '@/lib/utils';
+import { GetServerSideProps } from 'next';
 
 interface ProductCollectionPageProps {
   products: Product[];
   collections: Collection[];
   collection?: Collection;
+  title: string;
+  description: string;
 }
 
 export default function ProductCollectionPage({
   products,
   collections,
-  collection,
+  title,
+  description,
 }: ProductCollectionPageProps) {
-  const title = collection && collection.title;
-  const description = collection && collection.description;
-
   return (
     <ProductsLayout
       title={title}
@@ -31,39 +34,35 @@ export default function ProductCollectionPage({
   );
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const collection = (ctx?.params?.collection || '') as string;
-  const products = await getCollectionProducts({ collection });
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const collection = getAsString(ctx?.params?.collection || '');
+  const sort = getAsString(ctx?.query?.sort || '');
+
+  const { sortKey, reverse } =
+    sorting.find((item) => item.slug === sort) || defaultSort;
+
+  let products: Product[] = [];
+  let title = 'Todos los productos';
+  let description = 'Todos los productos de nuestro catálogo';
+
   const collections = await getCollections();
-  const collectionShopify = await getCollection(collection);
+
+  if (collection !== 'all') {
+    products = await getCollectionProducts({ collection, sortKey, reverse });
+    const collectionShopify = await getCollection(collection);
+
+    title = collectionShopify?.title || '';
+    description = collectionShopify?.description || '';
+  } else {
+    products = await getProducts({ sortKey, reverse });
+  }
 
   return {
     props: {
       products: products ?? [],
       collections: collections ?? [],
-      collection: collectionShopify,
+      title,
+      description,
     },
-    revalidate: 60 * 5,
-  };
-};
-
-export const getStaticPaths = async () => {
-  const collections = await getCollections();
-
-  const paths = collections
-    .map((c) => {
-      const collection = c.path.split('/')[2];
-
-      if (collection) {
-        return { params: { collection } };
-      }
-
-      return null;
-    })
-    .filter((item) => item !== null);
-
-  return {
-    paths: paths,
-    fallback: 'blocking',
   };
 };

@@ -339,7 +339,7 @@ export async function getCollections(): Promise<Collection[]> {
         title: 'Todos',
         description: 'Todos productos',
       },
-      path: '/search',
+      path: '/search/all',
       updatedAt: new Date().toISOString(),
     },
     // Filter out the `hidden` collections.
@@ -362,13 +362,28 @@ export async function getMenu(handle: string): Promise<Menu[]> {
   });
 
   return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
-      title: item.title,
-      path: item.url
-        .replace(domain, '')
-        .replace('/collections', '/search')
-        .replace('/pages', ''),
-    })) || []
+    res.body?.data?.menu?.items.map(
+      (item: {
+        title: string;
+        url: string;
+        items?: { title: string; url: string }[];
+      }) => ({
+        title: item.title,
+        path: item.url
+          .replace(domain, '')
+          .replace('/collections', '/search')
+          .replace('/pages', ''),
+        items: item.items
+          ? item.items.map((i) => ({
+              title: i.title,
+              path: i.url
+                .replace(domain, '')
+                .replace('/collections', '/search')
+                .replace('/pages', ''),
+            }))
+          : [],
+      })
+    ) || []
   );
 }
 

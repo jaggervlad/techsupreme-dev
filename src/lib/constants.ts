@@ -11,14 +11,14 @@ import { BsInstagram, BsYoutube } from 'react-icons/bs';
 
 export type SortFilterItem = {
   title: string;
-  slug: string | null;
+  slug: string;
   sortKey: 'RELEVANCE' | 'BEST_SELLING' | 'CREATED_AT' | 'PRICE';
   reverse: boolean;
 };
 
 export const defaultSort: SortFilterItem = {
-  title: 'Relevance',
-  slug: null,
+  title: 'Relevancia',
+  slug: 'all',
   sortKey: 'RELEVANCE',
   reverse: false,
 };
@@ -26,25 +26,25 @@ export const defaultSort: SortFilterItem = {
 export const sorting: SortFilterItem[] = [
   defaultSort,
   {
-    title: 'Trending',
+    title: 'Tendencias',
     slug: 'trending-desc',
     sortKey: 'BEST_SELLING',
     reverse: false,
   }, // asc
   {
-    title: 'Latest arrivals',
+    title: 'Últimas llegadas',
     slug: 'latest-desc',
     sortKey: 'CREATED_AT',
     reverse: true,
   },
   {
-    title: 'Price: Low to high',
+    title: 'Precio: De bajo a alto',
     slug: 'price-asc',
     sortKey: 'PRICE',
     reverse: false,
   }, // asc
   {
-    title: 'Price: High to low',
+    title: 'Precio: De alto a bajo',
     slug: 'price-desc',
     sortKey: 'PRICE',
     reverse: true,

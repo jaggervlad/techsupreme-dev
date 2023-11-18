@@ -27,7 +27,11 @@ export function CartSheet({ className }: { className?: string }) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button aria-label="Cart" className={cn('relative lg:h-12', className)}>
+        <Button
+          aria-label="Cart"
+          size={'sm'}
+          className={cn('relative lg:h-12', className)}
+        >
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"

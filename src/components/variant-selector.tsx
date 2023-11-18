@@ -3,7 +3,9 @@
 import clsx from 'clsx';
 import { ProductOption, ProductVariant } from '@/lib/shopify/types';
 import { createUrl } from '@/lib/utils';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 type Combination = {
   id: string;
@@ -25,6 +27,28 @@ export function VariantSelector({
     !options.length ||
     (options.length === 1 && options[0]?.values.length === 1);
 
+  useEffect(() => {
+    const initialAsPath = router.asPath;
+    const hasQueryParameters = initialAsPath.includes('?');
+
+    if (!hasQueryParameters) {
+      const newSearchParams = new URLSearchParams();
+
+      const defaultsOptions = options.map((o) => ({
+        name: o.name,
+        defaultValue: o.values[0],
+      }));
+
+      defaultsOptions.forEach((d) => {
+        newSearchParams.set(d.name.toLowerCase(), d.defaultValue);
+      });
+
+      router.replace(createUrl(pathname, newSearchParams), undefined, {
+        scroll: false,
+      });
+    }
+  }, [options, searchParams, pathname, router]);
+
   if (hasNoOptionsOrJustOneOption) {
     return null;
   }
@@ -32,7 +56,6 @@ export function VariantSelector({
   const combinations: Combination[] = variants.map((variant) => ({
     id: variant.id,
     availableForSale: variant.availableForSale,
-    // Adds key / value pairs for each variant (ie. "color": "Black" and "size": 'M").
     ...variant.selectedOptions.reduce(
       (accumulator, option) => ({
         ...accumulator,
@@ -94,7 +117,7 @@ export function VariantSelector({
               aria-disabled={!isAvailableForSale}
               disabled={!isAvailableForSale}
               onClick={() => {
-                router.replace(optionUrl, { scroll: false });
+                router.replace(optionUrl, undefined, { scroll: false });
               }}
               title={`${option.name} ${value}${
                 !isAvailableForSale ? ' (Out of Stock)' : ''

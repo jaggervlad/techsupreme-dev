@@ -38,6 +38,14 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
     ? stringToCheck
     : `${startsWith}${stringToCheck}`;
 
+export function getAsString(value: string | string[]): string {
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+
+  return value;
+}
+
 export const validateEnvironmentVariables = () => {
   const requiredEnvironmentVariables = [
     'SHOPIFY_STORE_DOMAIN',

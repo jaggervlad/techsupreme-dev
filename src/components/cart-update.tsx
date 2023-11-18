@@ -55,9 +55,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                 merchandiseId: cartLineItem.merchandise.id,
                 quantity: cartLineItem.quantity + 1,
               };
-              const data = await updateItem(payload);
-
-              console.log(data);
+              await updateItem(payload);
             } catch (error) {
               console.log(error);
 

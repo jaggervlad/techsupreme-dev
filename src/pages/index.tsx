@@ -3,7 +3,7 @@ import { CollectionCard } from '@/components/collection-card';
 import { MainLayout } from '@/components/layouts/main-layout';
 import { ProductCard } from '@/components/product-card';
 import { buttonVariants } from '@/components/ui/button';
-import { getCollections, getPages, getProducts } from '@/lib/shopify';
+import { getCollections, getMenu, getPages, getProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import Link from 'next/link';
 

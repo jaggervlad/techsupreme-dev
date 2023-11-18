@@ -4,6 +4,7 @@ import { CollectionSidebar } from './collection-sidebar';
 import { ProductCard } from '@/components/product-card';
 import { useRouter } from 'next/router';
 import { ScrollToTopButton } from '@/components/scroll-to-top';
+import { ProductHeaderFilters } from './product-header-filters';
 
 interface ProductLayoutProps {
   title?: string;
@@ -29,14 +30,14 @@ export function ProductsLayout({
       collections={collections}
       seo={{ title: headerTitle, description: description }}
     >
-      <div className="container py-10 flex flex-col space-y-12">
-        <header id="products-page-header">
-          <h2 className="text-4xl font-bold">{headerTitle}</h2>
+      <div className="container py-10 flex flex-col space-y-8 lg:space-y-12">
+        <header id="products-page-header" className="space-y-8">
+          <h2 className="text-3xl lg:text-4xl font-bold">{headerTitle}</h2>
+
+          <ProductHeaderFilters />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-10 w-full">
-          <CollectionSidebar collections={collections} />
-
           {!searchQuery && products.length === 0 && (
             <p>No hay productos disponibles</p>
           )}
