@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { CartSheet } from '@/components/cart-sheet';
 import { useCart } from '@/contexts/cart-context';
 import { Badge } from '@/components/ui/badge';
-import { Search } from '@/components/search';
+import { Search } from '@/components/layouts/main-layout/search';
 
 export function MobileNav({ collections }: { collections: Collection[] }) {
   const { cart } = useCart();
@@ -38,7 +38,7 @@ export function MobileNav({ collections }: { collections: Collection[] }) {
         </Button>
       </SheetTrigger>
       <SheetContent className="py-12">
-        <Search withButton={false} className="mb-4" />
+        <Search className="mb-4" />
 
         <div className="flex flex-col">
           <ul className="gap-4  w-full flex flex-col">

@@ -1,27 +1,25 @@
+import { AddToCartButton } from '@/components/add-to-cart-button';
 import { MainLayout } from '@/components/layouts/main-layout';
+import { ProductCard } from '@/components/product-card';
 import { ProductImageGallery } from '@/components/product-image-gallery';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { VariantSelector } from '@/components/variant-selector';
+import { multipleSliderOptions } from '@/lib/constants';
 import {
-  getCollections,
   getProduct,
   getProductRecommendations,
   getProducts,
-  removeEdgesAndNodes,
 } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import { formatPrice } from '@/lib/utils';
 import { ChevronLeft } from 'lucide-react';
 import { GetStaticProps } from 'next';
-import { AddToCartButton } from '@/components/add-to-cart-button';
-import { ProductCard } from '@/components/product-card';
-import { multipleSliderOptions } from '@/lib/constants';
-// @ts-ignore
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { useRouter } from 'next/router';
 import { useUrl } from '@/hooks/useUrl';
 import { ProductJsonLd } from 'next-seo';
+import { useRouter } from 'next/router';
+// @ts-ignore
+import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 export default function ProductPage({
   collections,
@@ -48,7 +46,7 @@ export default function ProductPage({
   };
 
   return (
-    <MainLayout collections={collections} seo={seoData}>
+    <MainLayout seo={seoData}>
       <ProductJsonLd
         productName={product.title}
         description={product.description}
@@ -163,7 +161,6 @@ export default function ProductPage({
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const handle = (ctx?.params?.handle || '') as string;
-  const collections = await getCollections();
 
   const product = await getProduct(handle);
 
@@ -175,7 +172,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return {
     props: {
-      collections: collections ?? [],
       product,
       relatedProducts,
     },

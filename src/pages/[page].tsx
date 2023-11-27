@@ -13,7 +13,6 @@ export default function DynamicPages({
 }) {
   return (
     <MainLayout
-      collections={collections}
       seo={{
         title: page.seo?.title ?? page.title,
         description: page.seo?.description ?? `Página ${page.title}`,
@@ -40,7 +39,6 @@ export default function DynamicPages({
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const pageParam = (ctx?.params?.page ?? '') as string;
 
-  const collections = await getCollections();
   const page = await getPage(pageParam);
 
   if (!page) {
@@ -50,7 +48,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   }
 
   return {
-    props: { collections: collections ?? [], page },
+    props: { page },
     revalidate: 60 * 5,
   };
 };

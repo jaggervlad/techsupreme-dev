@@ -1,11 +1,6 @@
 import { ProductsLayout } from '@/components/layouts/products-layout';
 import { defaultSort, sorting } from '@/lib/constants';
-import {
-  getCollection,
-  getCollectionProducts,
-  getCollections,
-  getProducts,
-} from '@/lib/shopify';
+import { getCollection, getCollectionProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import { getAsString } from '@/lib/utils';
 import { GetServerSideProps } from 'next';
@@ -20,7 +15,6 @@ interface ProductCollectionPageProps {
 
 export default function ProductCollectionPage({
   products,
-  collections,
   title,
   description,
 }: ProductCollectionPageProps) {
@@ -28,7 +22,6 @@ export default function ProductCollectionPage({
     <ProductsLayout
       title={title}
       description={description}
-      collections={collections}
       products={products}
     />
   );
@@ -41,26 +34,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort;
 
-  let products: Product[] = [];
-  let title = 'Todos los productos';
-  let description = 'Todos los productos de nuestro catálogo';
+  const collectionShopify = await getCollection(collection);
+  const products = await getCollectionProducts({
+    collection,
+    sortKey,
+    reverse,
+  });
 
-  const collections = await getCollections();
-
-  if (collection !== 'all') {
-    products = await getCollectionProducts({ collection, sortKey, reverse });
-    const collectionShopify = await getCollection(collection);
-
-    title = collectionShopify?.title || '';
-    description = collectionShopify?.description || '';
-  } else {
-    products = await getProducts({ sortKey, reverse });
-  }
+  const title = collectionShopify?.title || '';
+  const description = collectionShopify?.description || '';
 
   return {
     props: {
       products: products ?? [],
-      collections: collections ?? [],
       title,
       description,
     },

@@ -9,14 +9,12 @@ import { ProductHeaderFilters } from './product-header-filters';
 interface ProductLayoutProps {
   title?: string;
   description?: string;
-  collections: Collection[];
   products: Product[];
 }
 
 export function ProductsLayout({
   title,
   description,
-  collections,
   products,
 }: ProductLayoutProps) {
   const router = useRouter();
@@ -26,10 +24,7 @@ export function ProductsLayout({
   const resultsText = products.length > 1 ? 'resultados' : 'resultado';
 
   return (
-    <MainLayout
-      collections={collections}
-      seo={{ title: headerTitle, description: description }}
-    >
+    <MainLayout seo={{ title: headerTitle, description: description }}>
       <div className="container py-10 flex flex-col space-y-8 lg:space-y-12">
         <header id="products-page-header" className="space-y-8">
           <h2 className="text-3xl lg:text-4xl font-bold">{headerTitle}</h2>

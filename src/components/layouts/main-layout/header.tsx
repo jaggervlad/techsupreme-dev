@@ -11,7 +11,7 @@ import {
 import { cn } from '@/lib/utils';
 
 import { CartSheet } from '@/components/cart-sheet';
-import { Search } from '@/components/search';
+import { Search } from './search';
 import { footerNavigationData } from '@/lib/constants';
 import { Collection, Menu } from '@/lib/shopify/types';
 import { MapPinIcon } from 'lucide-react';
@@ -19,8 +19,10 @@ import { usePathname } from 'next/navigation';
 import { MobileNav } from './mobile-nav';
 import { useGetMenu } from '@/hooks/useGetMenu';
 import { forwardRef } from 'react';
+import { useGetCollections } from '@/hooks/useGetCollections';
 
-export function Header({ collections }: { collections: Collection[] }) {
+export function Header() {
+  const { collections } = useGetCollections();
   const sliceCollections = collections.slice(0, 8);
   const { menu } = useGetMenu('main-menu');
 

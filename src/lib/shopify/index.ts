@@ -339,7 +339,7 @@ export async function getCollections(): Promise<Collection[]> {
         title: 'Todos',
         description: 'Todos productos',
       },
-      path: '/search/all',
+      path: '/search',
       updatedAt: new Date().toISOString(),
     },
     // Filter out the `hidden` collections.

@@ -12,7 +12,16 @@ export function useGetMenu(handle: string) {
       setIsLoading(true);
       try {
         const data = await getMenu(handle);
-        setMenu(data);
+
+        const mapedData = data.map((d) => {
+          if (d.title.toLocaleLowerCase() === 'catalogo') {
+            return { ...d, path: '/search' };
+          }
+
+          return d;
+        });
+
+        setMenu(mapedData);
       } catch (err: any) {
         setError(err);
       } finally {

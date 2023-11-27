@@ -3,7 +3,7 @@ import { CollectionCard } from '@/components/collection-card';
 import { MainLayout } from '@/components/layouts/main-layout';
 import { ProductCard } from '@/components/product-card';
 import { buttonVariants } from '@/components/ui/button';
-import { getCollections, getMenu, getPages, getProducts } from '@/lib/shopify';
+import { getCollections, getProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import Link from 'next/link';
 
@@ -13,7 +13,7 @@ interface ProductsPageProps {
 }
 export default function Home({ products, collections }: ProductsPageProps) {
   return (
-    <MainLayout collections={collections}>
+    <MainLayout>
       <main className="container space-y-12 py-8">
         <BannerSlider />
 
@@ -79,7 +79,7 @@ export async function getStaticProps() {
   return {
     props: {
       products: products.slice(0, 8) ?? [],
-      collections: collections.slice(0, 8) ?? [],
+      collections: collections ?? [],
     },
     revalidate: 60 * 5,
   };
