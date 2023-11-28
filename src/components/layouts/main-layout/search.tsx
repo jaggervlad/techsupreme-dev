@@ -21,20 +21,18 @@ export function Search({ className }: SearchProps) {
       newParams.delete('q');
     }
 
-    router.push(createUrl('/search/all', newParams));
+    router.push(createUrl('/search', newParams));
   }, 500);
 
   return (
     <div className={cn('relative max-w-2xl mx-auto w-full', className)}>
-      <form action="">
-        <input
-          type="search"
-          className="block p-2.5 h-12 w-full z-20 text-sm text-gray-900 rounded-lg border-input  border focus:ring-1  focus:outline-none focus:ring-ring focus:border-primary"
-          placeholder="Buscador de productos"
-          defaultValue={defaultValue}
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </form>
+      <input
+        type="search"
+        className="block p-2.5 h-12 w-full z-20 text-sm text-gray-900 rounded-lg border-input  border focus:ring-1  focus:outline-none focus:ring-ring focus:border-primary"
+        placeholder="Buscador de productos"
+        defaultValue={defaultValue}
+        onChange={(e) => handleSearch(e.target.value)}
+      />
     </div>
   );
 }

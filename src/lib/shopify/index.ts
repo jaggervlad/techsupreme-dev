@@ -299,15 +299,18 @@ export async function getCollectionProducts({
   collection,
   reverse,
   sortKey,
+  filters,
 }: {
   collection: string;
   reverse?: boolean;
   sortKey?: string;
+  filters?: { [key: string]: any };
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
     query: getCollectionProductsQuery,
     tags: [TAGS.collections, TAGS.products],
     variables: {
+      filters,
       handle: collection,
       reverse,
       sortKey: sortKey === 'CREATED_AT' ? 'CREATED' : sortKey,

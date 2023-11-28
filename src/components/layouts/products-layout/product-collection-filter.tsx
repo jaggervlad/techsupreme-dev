@@ -44,13 +44,13 @@ export function ProductCollectionFilter() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="start">
           <DropdownMenuRadioGroup value={defaultCollectionSelect}>
-            {resCollections.collections.map((c) => {
+            {resCollections.collections.map((c, i) => {
               const collectionSlug = c.path.split('/')[2];
               const active = collectionSlug === defaultCollectionSelect;
 
               return (
                 <DropdownMenuRadioItem
-                  key={collectionSlug}
+                  key={i}
                   value={collectionSlug}
                   className={cn('hover:underline cursor-pointer', {
                     'underline font-medium': active,

@@ -203,6 +203,7 @@ export type ShopifyCollectionProductsOperation = {
     };
   };
   variables: {
+    filters?: { [key: string]: any };
     handle: string;
     reverse?: boolean;
     sortKey?: string;

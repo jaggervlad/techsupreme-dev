@@ -1,10 +1,8 @@
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { CartItem } from '@/lib/shopify/types';
 import { Minus, Plus, Trash } from 'lucide-react';
-import { useUpdateCart } from '@/hooks/useUpdateCart';
 import { useCart } from '@/contexts/cart-context';
 
 interface UpdateCartProps {

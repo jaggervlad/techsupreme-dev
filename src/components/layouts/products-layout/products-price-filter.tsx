@@ -35,7 +35,7 @@ export function ProductsPriceFilter() {
       <DropdownMenuTrigger asChild>
         <Button
           variant={'outline'}
-          className="justify-between font-normal bg-white gap-2 items-center"
+          className="justify-between bg-white gap-2 items-center"
         >
           Precio <ChevronDown className="h-4 w-4" />
         </Button>

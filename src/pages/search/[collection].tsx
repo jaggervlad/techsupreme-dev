@@ -30,15 +30,28 @@ export default function ProductCollectionPage({
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const collection = getAsString(ctx?.params?.collection || '');
   const sort = getAsString(ctx?.query?.sort || '');
+  const min = Number(getAsString(ctx?.query?.min || ''));
+  const max = Number(getAsString(ctx?.query?.max || ''));
 
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort;
+
+  let filters: { [key: string]: any } = {};
+
+  if (min && max) {
+    filters.price = { min, max };
+  } else if (min) {
+    filters.price = { min };
+  } else if (max) {
+    filters.price = { max };
+  }
 
   const collectionShopify = await getCollection(collection);
   const products = await getCollectionProducts({
     collection,
     sortKey,
     reverse,
+    filters,
   });
 
   const title = collectionShopify?.title || '';
