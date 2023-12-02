@@ -30,13 +30,11 @@ export const ScrollToTopButton = () => {
   };
 
   return (
-    <div className="fixed top-[92vh] right-3 z-20">
-      <div
-        className={`z-10 w-14 h-14 text-2xl ${isVisible ? 'block' : 'hidden'}`}
-      >
+    <div className="absolute top-0 right-8">
+      <div className={`w-12 h-12 text-2xl ${isVisible ? 'block' : 'hidden'}`}>
         <button
           onClick={scrollToTop}
-          className="relative flex items-center justify-center w-full h-full bg-primary overflow-hidden text-white duration-300 rounded-full group hover:scale-105"
+          className="relative flex items-center justify-center w-full h-full overflow-hidden text-white duration-300 border border-white rounded-full group hover:scale-105"
         >
           <AiOutlineArrowUp />
         </button>

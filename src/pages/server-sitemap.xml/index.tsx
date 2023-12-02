@@ -1,5 +1,4 @@
 import { getCollections, getPages, getProducts } from '@/lib/shopify';
-import { GetServerSideProps } from 'next';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 
 export default function Site() {}
@@ -21,6 +20,7 @@ export const getServerSideProps = async (ctx: any) => {
     loc: `https://techsupreme.store/${page.handle}`,
     lastmod: new Date().toISOString(),
   }));
+
   return getServerSideSitemap(ctx, [
     ...fields,
     ...fieldsProducts,

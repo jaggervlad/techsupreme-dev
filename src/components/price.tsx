@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-const Price = ({
+export const Price = ({
   amount,
   className,
   currencyCode = 'USD',
@@ -22,5 +22,3 @@ const Price = ({
     >{`${currencyCode}`}</span>
   </p>
 );
-
-export default Price;

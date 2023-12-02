@@ -39,26 +39,10 @@ function SamplePrevArrow(props: any) {
 export function BannerSlider() {
   return (
     <Slider {...settings}>
-      <div className="aspect-video max-h-96 relative">
+      <div className="aspect-video max-h-[500px] relative">
         <Image
           src="/banner-example.png"
-          className="h-full w-full rounded-lg"
-          alt=""
-          fill
-        />
-      </div>
-      <div className="aspect-video max-h-96 relative">
-        <Image
-          src="/banner-example.png"
-          className="h-full w-full rounded-lg"
-          alt=""
-          fill
-        />
-      </div>
-      <div className="aspect-video max-h-96 relative">
-        <Image
-          src="/banner-example.png"
-          className="h-full w-full rounded-lg"
+          className="w-full h-full rounded-lg"
           alt=""
           fill
         />

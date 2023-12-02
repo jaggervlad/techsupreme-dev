@@ -1,10 +1,11 @@
-import { BannerSlider } from '@/components/banner-slider';
-import { CollectionCard } from '@/components/collection-card';
 import { MainLayout } from '@/components/layouts/main-layout';
-import { ProductCard } from '@/components/product-card';
-import { buttonVariants } from '@/components/ui/button';
+import { BannerSlider } from '@/features/home/banner-slider';
+import { CollectionsSection } from '@/features/home/collections-section';
+import { CustomerBenefitsSection } from '@/features/home/customer-benefits-section';
+import { NewArrivalsSection } from '@/features/home/new-arrivals-section';
 import { getCollections, getProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface ProductsPageProps {
@@ -14,60 +15,23 @@ interface ProductsPageProps {
 export default function Home({ products, collections }: ProductsPageProps) {
   return (
     <MainLayout>
-      <main className="container space-y-12 py-8">
-        <BannerSlider />
+      <BannerSlider />
+      <main className="container py-8 space-y-12">
+        <CollectionsSection collections={collections} />
+        <NewArrivalsSection products={products} />
 
-        {/* Category Cards */}
-        <div className="space-y-10">
-          <div className="flex justify-between">
-            <h2 className="text-4xl font-bold" id="titulo-colecciones">
-              Colecciones
-            </h2>
-
-            <Link
-              href="/search"
-              className={buttonVariants({
-                size: 'lg',
-                className: 'md:inline-flex hidden',
-              })}
-            >
-              Ver mas
-            </Link>
-          </div>
-
-          <div className="grid lg:grid-cols-4 gap-4">
-            {collections.map((c) => (
-              <CollectionCard collection={c} key={c.path} />
-            ))}
-          </div>
-        </div>
-
-        {/* New Arrivals List */}
-
-        <div className="space-y-10">
-          <div className="flex justify-between">
-            <h3 className="text-4xl font-bold" id="titulo-novedades">
-              Novedades
-            </h3>
-
-            <Link
-              href="/search"
-              className={buttonVariants({
-                size: 'lg',
-                className: 'md:inline-flex hidden',
-              })}
-            >
-              Ver mas
-            </Link>
-          </div>
-
-          <div className="grid lg:grid-cols-4 gap-5">
-            {products.map((p) => (
-              <ProductCard product={p} key={p.id} />
-            ))}
-          </div>
+        <div className="py-20">
+          <Link href="/">
+            <Image
+              alt=""
+              width={1685}
+              height={220}
+              src={'/bottom-banner.png'}
+            />
+          </Link>
         </div>
       </main>
+      <CustomerBenefitsSection />
     </MainLayout>
   );
 }

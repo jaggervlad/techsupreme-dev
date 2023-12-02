@@ -1,18 +1,15 @@
+'use client';
 import Image from 'next/image';
-import Link from 'next/link';
-import * as React from 'react';
 
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Product } from '@/lib/shopify/types';
+import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
+
 import { cn, formatPrice } from '@/lib/utils';
-import { ImageIcon } from 'lucide-react';
+import Link from 'next/link';
+import { AddToCartButton } from './add-to-cart-button';
+import { useWishListState } from '@/contexts/wishlist-context';
+import { useEffect, useState } from 'react';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -29,66 +26,127 @@ export function ProductCard({
   className,
   ...props
 }: ProductCardProps) {
+  const { addItem, isSaved } = useWishListState();
+  const [isProductSaved, setIsProductSaved] = useState(false);
+
+  useEffect(() => {
+    setIsProductSaved(isSaved(product.id));
+  }, [product.id, isSaved]);
+
+  const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
+  const price = +product.priceRange.maxVariantPrice.amount;
+
+  const sizes =
+    product.options.filter((o) => o.name.toLowerCase() === 'talla')[0]
+      ?.values || [];
+  const colors =
+    product.options.filter((o) => o.name.toLowerCase() === 'color')[0]
+      ?.values || [];
+
+  const isDiscount = false;
+
   return (
     <Card
       className={cn(
-        'flex flex-col hover:scale-105 transition-all bg-white duration-200 ease-in overflow-hidden hover:shadow-lg',
+        'flex flex-col rounded-[8px] bg-white overflow-hidden shadow-[0_0_10px_theme("colors.slate.400")]',
         className
       )}
       {...props}
     >
-      <Link
-        aria-label={`Ver detalles ${product.title}`}
-        href={`/producto/${product.handle}`}
-      >
-        <CardHeader className="p-0 border-b">
-          <AspectRatio ratio={4 / 4}>
-            {product?.featuredImage ? (
-              <Image
-                src={
-                  product.featuredImage.url ??
-                  '/images/product-placeholder.webp'
-                }
-                alt={product.featuredImage.altText || product.title}
-                quality={100}
-                fill
-                priority
-                sizes="(min-width: 480px ) 50vw,
-                      (min-width: 728px) 33vw,
-                      (min-width: 976px) 25vw,
-                      100vw"
+      <div className="relative py-4">
+        <Link
+          href={`/producto/${product.handle}`}
+          className="relative block w-full h-80 aspect-auto"
+        >
+          {product?.featuredImage ? (
+            <Image
+              src={
+                product.featuredImage.url ?? '/images/product-placeholder.webp'
+              }
+              alt={product.featuredImage.altText || product.title}
+              quality={100}
+              fill
+              priority
+              sizes="(min-width: 480px ) 50vw,
+                     (min-width: 728px) 33vw,
+                     (min-width: 976px) 25vw,
+                     100vw"
+            />
+          ) : (
+            <div
+              aria-label="Placeholder"
+              role="img"
+              aria-roledescription="placeholder"
+              className="flex items-center justify-center w-full h-full bg-secondary"
+            >
+              <ImageIcon
+                className="h-9 w-9 text-muted-foreground"
+                aria-hidden="true"
               />
-            ) : (
-              <div
-                aria-label="Placeholder"
-                role="img"
-                aria-roledescription="placeholder"
-                className="flex items-center justify-center w-full h-full bg-secondary"
-              >
-                <ImageIcon
-                  className="h-9 w-9 text-muted-foreground"
-                  aria-hidden="true"
-                />
-              </div>
-            )}
-          </AspectRatio>
-        </CardHeader>
-      </Link>
-      <Link href={`/producto/${product.handle}`}>
-        <CardContent className="grid gap-2.5 p-4">
-          <CardTitle className="text-xl truncate">{product.title}</CardTitle>
-          <CardDescription>
-            <span className="text-lg">
-              {formatPrice(
-                +product.priceRange.maxVariantPrice.amount,
-                product.priceRange.maxVariantPrice.currencyCode
-              )}{' '}
-              {product.priceRange.maxVariantPrice.currencyCode}
+            </div>
+          )}
+        </Link>
+
+        <div className="absolute flex flex-col justify-center gap-1 top-4 right-3">
+          {colors.map((c) => (
+            <div
+              key={c}
+              className="flex cursor-pointer items-center justify-center w-6 h-6 p-[2px] border rounded-full"
+            >
+              <div className="w-full h-full bg-blue-600 rounded-full" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <CardContent className="border-t grid gap-2.5 p-4">
+        <CardTitle className="text-xl truncate">{product.title}</CardTitle>
+        <div className="flex gap-2">
+          {sizes.map((s) => (
+            <span key={s}>{s}</span>
+          ))}
+        </div>
+        <span className="sr-only">Ver detalles de {product.title}</span>
+      </CardContent>
+
+      <CardFooter className="flex justify-between px-4">
+        <div className="flex flex-col text-primary/70">
+          <div className="flex items-center gap-3">
+            <span className="text-lg font-medium">
+              {formatPrice(price, currencyCode)}
             </span>
-          </CardDescription>
-          <span className="sr-only">Ver detalles de {product.title}</span>
-        </CardContent>
-      </Link>
+
+            {isDiscount && (
+              <span className="flex text-base items-center px-1 text-white bg-orange-600 rounded-[3px]">
+                -45%
+              </span>
+            )}
+          </div>
+          {isDiscount && (
+            <span className="text-base font-medium line-through">
+              {formatPrice(price, currencyCode)}
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            className="p-2 bg-gray-100 rounded-full"
+            onClick={() => addItem(product)}
+          >
+            <HeartIcon
+              className={`w-5 h-5 ${
+                isProductSaved && 'fill-red-600 stroke-red-600'
+              }`}
+            />
+          </button>
+
+          {/* TODO: add to cart button feature */}
+          <button className="p-2 bg-gray-100 rounded-full">
+            <ShoppingCart className="w-5 h-5" />
+          </button>
+        </div>
+      </CardFooter>
     </Card>
   );
 }

@@ -19,7 +19,7 @@ import { ImageIcon, ShoppingCart } from 'lucide-react';
 import { Cart } from '@/lib/shopify/types';
 import { UpdateCart } from './cart-update';
 import { useCart } from '@/contexts/cart-context';
-import Price from './price';
+import { Price } from '@/components/price';
 
 export function CartSheet({ className }: { className?: string }) {
   const { cart } = useCart();
@@ -28,14 +28,14 @@ export function CartSheet({ className }: { className?: string }) {
     <Sheet>
       <SheetTrigger asChild>
         <Button
+          variant={'ghost'}
           aria-label="Cart"
-          size={'sm'}
-          className={cn('relative lg:h-12', className)}
+          className={cn('relative', className)}
         >
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"
-              className="absolute flex border border-primary items-center justify-center w-6 h-6 p-2 rounded-full -right-2 -top-2"
+              className="absolute top-0 flex items-center justify-center w-4 h-4 p-2 border rounded-full border-primary right-2"
             >
               {cart?.lines.length}
             </Badge>
@@ -94,7 +94,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                           }
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           fill
-                          className="absolute w-full h-full object-contain"
+                          className="absolute object-contain w-full h-full"
                           loading="lazy"
                         />
                       ) : (
@@ -106,7 +106,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                         </div>
                       )}
                     </div>
-                    <div className="space-y-4 flex-col flex">
+                    <div className="flex flex-col space-y-4">
                       <div className="flex flex-col self-start flex-1 gap-1 text-sm">
                         <span className="">
                           {item.merchandise.product.title}
@@ -139,22 +139,22 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
       <div className="grid pr-6 text-sm">
         <SheetFooter className="mt-1.5 flex !flex-col">
           <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-            <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
+            <div className="flex items-center justify-between pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
               <p>Impuestos</p>
               <Price
-                className="text-right text-base text-black dark:text-white"
+                className="text-base text-right text-black dark:text-white"
                 amount={cart.cost.totalTaxAmount.amount}
                 currencyCode={cart.cost.totalTaxAmount.currencyCode}
               />
             </div>
-            <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+            <div className="flex items-center justify-between pt-1 pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
               <p>Envío</p>
               <p className="text-right">Calculado al momento de pagar</p>
             </div>
-            <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+            <div className="flex items-center justify-between pt-1 pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
               <p>Total</p>
               <Price
-                className="text-right text-base text-black dark:text-white"
+                className="text-base text-right text-black dark:text-white"
                 amount={cart.cost.totalAmount.amount}
                 currencyCode={cart.cost.totalAmount.currencyCode}
               />

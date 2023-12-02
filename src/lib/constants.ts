@@ -1,4 +1,3 @@
-import { FaFacebook } from 'react-icons/fa';
 import {
   AlertOctagon,
   BookOpen,
@@ -7,6 +6,7 @@ import {
   Mail,
   Map,
 } from 'lucide-react';
+import { FaFacebook } from 'react-icons/fa';
 import { BsInstagram, BsYoutube } from 'react-icons/bs';
 
 export type SortFilterItem = {
@@ -62,19 +62,6 @@ export const DEFAULT_OPTION = 'Default Title';
 export const SHOPIFY_GRAPHQL_API_ENDPOINT = '/api/2023-01/graphql.json';
 
 export const footerNavigationData = {
-  aboutUs: [
-    { name: 'Acerca de nosotros', href: '/nosotros', icon: Info },
-    { name: 'Preguntas frecuentes', href: '/faq', icon: HelpCircle },
-    {
-      name: 'Terminos y condiciones',
-      href: '/terminos-y-condiciones',
-      icon: BookOpen,
-    },
-  ],
-  service: [
-    { name: 'Contacto', href: '/contacto', icon: AlertOctagon },
-    { name: 'Soporte', href: '/Soporte', icon: AlertOctagon },
-  ],
   social: [
     {
       name: 'Facebook',
@@ -97,16 +84,14 @@ export const footerNavigationData = {
   ],
   contact: [
     {
+      name: '+51 999 999 999',
+      href: 'tel:+51999999999',
+      isExternal: true,
+    },
+    {
       name: 'soporte@techsupreme.com',
       href: 'mailto:soporte@techsupreme.com',
       isExternal: true,
-      icon: Mail,
-    },
-    {
-      name: 'Av Alameda Sur 1380',
-      href: '/',
-      isExternal: true,
-      icon: Map,
     },
   ],
   utils: [

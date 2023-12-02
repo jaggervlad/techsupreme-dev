@@ -30,7 +30,6 @@ export default function ProductPage({
   product: Product;
   relatedProducts: Product[];
 }) {
-  const router = useRouter();
   const { href: currentUrl } = useUrl() ?? {};
   const { url, width, height, altText: alt } = product.featuredImage || {};
 
@@ -44,6 +43,11 @@ export default function ProductPage({
       images: url ? [{ url, width, height, alt }] : undefined,
     },
   };
+
+  const price = +product.priceRange.maxVariantPrice.amount;
+  const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
+
+  const isDiscount = true;
 
   return (
     <MainLayout seo={seoData}>
@@ -61,24 +65,8 @@ export default function ProductPage({
         }}
       />
       <div className="container py-14">
-        {/* <div className="flex items-center space-x-1 text-sm capitalize text-muted-foreground">
-          <Link href="/productos" className="truncate">
-            Productos
-          </Link>
-          <ChevronRight className="w-4 h-4" aria-hidden="true" />
-        </div> */}
-        <div className="flex flex-col items-start gap-8 lg:flex-row md:gap-16 mb-10">
-          <Button
-            variant={'outline'}
-            className="mb-4 lg:hidden"
-            onClick={() => {
-              router.back();
-            }}
-          >
-            <ChevronLeft className="mr-2" /> Regresar
-          </Button>
-
-          <div className="lg:sticky lg:top-12 w-full lg:w-1/2">
+        <div className="flex flex-col items-start gap-8 mb-10 lg:flex-row md:gap-16">
+          <div className="w-full lg:sticky lg:top-12 lg:w-1/2">
             <ProductImageGallery
               images={product.images ?? []}
               title={product.title}
@@ -88,33 +76,32 @@ export default function ProductPage({
           <Separator className="mt-4 lg:hidden" />
           <div className="flex flex-col w-full gap-4 lg:w-1/2">
             <div>
-              <Button
-                variant={'outline'}
-                className="mb-4 hidden lg:inline-flex"
-                onClick={() => {
-                  router.back();
-                }}
-              >
-                <ChevronLeft className="mr-2" /> Regresar
-              </Button>
-
-              <h2 className="text-2xl mb-8 font-bold lg:text-4xl">
-                {product.title}
-              </h2>
-
-              {/* <p className="text-xl font-medium">
-              {product.category.name.toUpperCase()}
-            </p> */}
+              <h2 className="mb-8 text-5xl font-bold">{product.title}</h2>
 
               <div className="space-y-8">
-                <div className="">
-                  <p className="font-bold text-sm">PRECIO</p>
+                <div className="flex flex-col text-primary/70">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl font-medium">
+                      {formatPrice(price, currencyCode)}
+                    </span>
 
-                  <p className="font-semibold text-primary text-3xl">
-                    {formatPrice(+product.priceRange.maxVariantPrice.amount)}{' '}
-                    {product.priceRange.maxVariantPrice.currencyCode}
-                  </p>
+                    {isDiscount && (
+                      <span className="flex text-base items-center px-1 text-white bg-orange-600 rounded-[3px]">
+                        -45%
+                      </span>
+                    )}
+                  </div>
+                  {isDiscount && (
+                    <span className="text-xl font-medium line-through">
+                      {formatPrice(price, currencyCode)}
+                    </span>
+                  )}
                 </div>
+
+                <div
+                  className="prose line-clamp-4"
+                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                />
                 <div className="">
                   <VariantSelector
                     options={product.options}
@@ -128,16 +115,6 @@ export default function ProductPage({
               variants={product.variants}
               availableForSale={product.availableForSale}
             />
-            <Separator className="mt-5" />
-
-            <div>
-              <h3>Descripción y caracteristicas</h3>
-
-              <div
-                className="prose"
-                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-              />
-            </div>
           </div>
         </div>
         {relatedProducts && relatedProducts.length > 0 ? (
@@ -147,7 +124,7 @@ export default function ProductPage({
             </h2>
             <Splide options={multipleSliderOptions}>
               {relatedProducts.map((product) => (
-                <SplideSlide key={product.id}>
+                <SplideSlide key={product.id} className="px-2 py-4">
                   <ProductCard product={product} className="min-w-[260px]" />
                 </SplideSlide>
               ))}

@@ -3,7 +3,7 @@ import { MainLayout } from '../main-layout';
 import { CollectionSidebar } from './collection-sidebar';
 import { ProductCard } from '@/components/product-card';
 import { useRouter } from 'next/router';
-import { ScrollToTopButton } from '@/components/scroll-to-top';
+import { ScrollToTopButton } from '@/components/layouts/main-layout/scroll-to-top';
 import { ProductHeaderFilters } from './product-header-filters';
 
 interface ProductLayoutProps {

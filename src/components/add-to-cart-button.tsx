@@ -3,16 +3,19 @@ import { useCart } from '@/contexts/cart-context';
 import { ProductVariant } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import { PlusIcon } from 'lucide-react';
-// @ts-ignore
 import { useSearchParams } from 'next/navigation';
+
+type AddToCartButtonProps = {
+  variants: ProductVariant[];
+  availableForSale: boolean;
+  type?: 'card' | 'view';
+};
 
 export function AddToCartButton({
   variants,
   availableForSale,
-}: {
-  variants: ProductVariant[];
-  availableForSale: boolean;
-}) {
+  type = 'view',
+}: AddToCartButtonProps) {
   const { addItem, isLoadingAdd } = useCart();
   const searchParams = useSearchParams();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
