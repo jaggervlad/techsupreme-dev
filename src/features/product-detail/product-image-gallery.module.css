@@ -1,0 +1,4 @@
+.thumbnail-column .splide__track .splide__list {
+  display: flex;
+  flex-direction: column;
+}

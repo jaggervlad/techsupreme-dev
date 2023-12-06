@@ -7,7 +7,6 @@ import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
 
 import { cn, formatPrice } from '@/lib/utils';
 import Link from 'next/link';
-import { AddToCartButton } from './add-to-cart-button';
 import { useWishListState } from '@/contexts/wishlist-context';
 import { useEffect, useState } from 'react';
 
@@ -48,7 +47,7 @@ export function ProductCard({
   return (
     <Card
       className={cn(
-        'flex flex-col rounded-[8px] bg-white overflow-hidden shadow-[0_0_10px_theme("colors.slate.400")]',
+        'flex flex-col rounded-[5px] bg-white overflow-hidden',
         className
       )}
       {...props}
