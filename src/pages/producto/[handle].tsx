@@ -8,7 +8,7 @@ import {
   getProduct,
   getProductRecommendations,
   getProducts,
-} from '@/lib/shopify';
+} from '@/lib/shopify/services/products';
 import { Product } from '@/lib/shopify/types';
 import { GetStaticProps } from 'next';
 import { ProductJsonLd } from 'next-seo';

@@ -47,7 +47,7 @@ export function ProductCard({
   return (
     <Card
       className={cn(
-        'flex flex-col rounded-[5px] bg-white overflow-hidden',
+        'flex shadow-md border-border/40 flex-col rounded-[5px] bg-white overflow-hidden',
         className
       )}
       {...props}
@@ -98,7 +98,7 @@ export function ProductCard({
         </div>
       </div>
 
-      <CardContent className="border-t grid gap-2.5 p-4">
+      <CardContent className="border-t border-border/40 grid gap-2.5 p-4">
         <CardTitle className="text-xl truncate">{product.title}</CardTitle>
         <div className="flex gap-2">
           {sizes.map((s) => (

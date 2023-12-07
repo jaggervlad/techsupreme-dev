@@ -2,7 +2,7 @@ import LoadingDots from '@/components/dots';
 import { useCart } from '@/contexts/cart-context';
 import { ProductVariant } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
-import { PlusIcon } from 'lucide-react';
+import { Loader2Icon, PlusIcon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 
@@ -12,7 +12,7 @@ type AddToCartButtonProps = {
 };
 
 const buttonClasses =
-  'relative flex rounded-lg items-center justify-center bg-primary py-4 px-6 tracking-wide text-white';
+  'relative flex rounded-lg items-center justify-center bg-primary py-3 px-6 tracking-wide text-white';
 const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
 export function AddToCartButton({
@@ -70,7 +70,7 @@ export function AddToCartButton({
     >
       <div className="mr-3">
         {isLoadingAdd ? (
-          <LoadingDots className="mb-3 bg-white" />
+          <Loader2Icon className="animate-spin " />
         ) : (
           <MdOutlineShoppingCart className="w-5 h-5" />
         )}

@@ -96,8 +96,8 @@ export function ProductImageGallery({
             return (
               <li
                 key={url}
-                className={`border rounded-[5px] ${
-                  index === activeIdx && 'border-blue-600/80 border-2'
+                className={`border rounded-[5px] w-full ${
+                  index === activeIdx && 'border-blue-600/80 border-2 '
                 }`}
               >
                 <button onClick={() => handleThumbs(index)} className="p-2">

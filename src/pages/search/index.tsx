@@ -1,6 +1,6 @@
 import { ProductsLayout } from '@/components/layouts/products-layout';
 import { defaultSort, sorting } from '@/config/products';
-import { getProducts } from '@/lib/shopify';
+import { getProducts } from '@/lib/shopify/services/products';
 import { Collection, Product } from '@/lib/shopify/types';
 import { getAsString } from '@/lib/utils';
 import { GetServerSideProps } from 'next';

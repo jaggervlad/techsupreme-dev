@@ -1,10 +1,11 @@
-import { getCollections, getPages, getProducts } from '@/lib/shopify';
+import { getCollections, getPages } from '@/lib/shopify';
+import { getProducts } from '@/lib/shopify/services/products';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 
 export default function Site() {}
 
 export const getServerSideProps = async (ctx: any) => {
-  const products = await getProducts({});
+  const products = await getProducts();
   const collections = await getCollections();
   const pages = await getPages();
 
