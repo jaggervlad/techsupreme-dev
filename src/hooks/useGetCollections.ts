@@ -1,4 +1,4 @@
-import { getCollections } from '@/lib/shopify';
+import { getCollections } from '@/lib/shopify/services/collections';
 import { Collection } from '@/lib/shopify/types';
 import { useEffect, useState } from 'react';
 

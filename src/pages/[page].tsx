@@ -1,16 +1,10 @@
 import { MainLayout } from '@/components/layouts/main-layout';
 import Prose from '@/components/prose';
-import { getCollections, getPage, getPages } from '@/lib/shopify';
-import { Collection, Page } from '@/lib/shopify/types';
+import { getPage, getPages } from '@/lib/shopify/services/pages';
+import { Page } from '@/lib/shopify/types';
 import { GetStaticProps } from 'next';
 
-export default function DynamicPages({
-  collections,
-  page,
-}: {
-  collections: Collection[];
-  page: Page;
-}) {
+export default function DynamicPages({ page }: { page: Page }) {
   return (
     <MainLayout
       seo={{

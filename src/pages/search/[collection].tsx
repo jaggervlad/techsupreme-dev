@@ -1,6 +1,6 @@
 import { ProductsLayout } from '@/components/layouts/products-layout';
 import { defaultSort, sorting } from '@/lib/constants';
-import { getCollection } from '@/lib/shopify';
+import { getCollection } from '@/lib/shopify/services/collections';
 import { getCollectionProducts } from '@/lib/shopify/services/products';
 import { Collection, Product } from '@/lib/shopify/types';
 import { getAsString } from '@/lib/utils';

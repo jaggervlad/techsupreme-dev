@@ -1,4 +1,4 @@
-import { getPages } from '@/lib/shopify';
+import { getPages } from '@/lib/shopify/services/pages';
 import { Page } from '@/lib/shopify/types';
 import { useEffect, useState } from 'react';
 

@@ -3,7 +3,7 @@ import { BannerSlider } from '@/features/home/banner-slider';
 import { CollectionsSection } from '@/features/home/collections-section';
 import { CustomerBenefitsSection } from '@/features/home/customer-benefits-section';
 import { NewArrivalsSection } from '@/features/home/new-arrivals-section';
-import { getCollections } from '@/lib/shopify';
+import { getCollections } from '@/lib/shopify/services/collections';
 import { getProducts } from '@/lib/shopify/services/products';
 import { Collection, Product } from '@/lib/shopify/types';
 import Image from 'next/image';

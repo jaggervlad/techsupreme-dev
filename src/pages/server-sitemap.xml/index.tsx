@@ -1,4 +1,5 @@
-import { getCollections, getPages } from '@/lib/shopify';
+import { getCollections } from '@/lib/shopify/services/collections';
+import { getPages } from '@/lib/shopify/services/pages';
 import { getProducts } from '@/lib/shopify/services/products';
 import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
 
