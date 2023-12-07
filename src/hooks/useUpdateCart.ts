@@ -1,6 +1,6 @@
-import { updateCart } from '@/lib/shopify';
+import { updateCart } from '@/lib/shopify/services/cart';
 import { Cart } from '@/lib/shopify/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 export function useUpdateCart() {

@@ -4,7 +4,7 @@ import {
   getCart,
   removeFromCart,
   updateCart,
-} from '@/lib/shopify';
+} from '@/lib/shopify/services/cart';
 import { Cart } from '@/lib/shopify/types';
 import {
   ReactNode,

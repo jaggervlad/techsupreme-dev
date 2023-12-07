@@ -1,4 +1,4 @@
-import { addToCart, createCart, getCart } from '@/lib/shopify';
+import { addToCart, createCart, getCart } from '@/lib/shopify/services/cart';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 
