@@ -1,4 +1,4 @@
-import { getMenu } from '@/lib/shopify';
+import { getMenu } from '@/lib/shopify/services/menus';
 import { Menu } from '@/lib/shopify/types';
 import { useEffect, useState } from 'react';
 
