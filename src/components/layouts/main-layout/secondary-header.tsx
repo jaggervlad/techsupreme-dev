@@ -1,28 +1,24 @@
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
 import { Menu } from '@/lib/shopify/types';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { forwardRef } from 'react';
-import Link from 'next/link';
 
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import { ChevronDown, TruckIcon } from 'lucide-react';
 import { useGetCollections } from '@/hooks/useGetCollections';
+import { ChevronDown, TruckIcon } from 'lucide-react';
 
 const secondaryMenu = [
   { id: 1, name: 'Productos', path: '/search' },
@@ -39,7 +35,7 @@ export function SecondaryHeader({ menu }: { menu: Menu[] }) {
       <div className="container flex items-center justify-between h-12 gap-5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button className="flex justify-between h-full w-60">
+            <Button className="flex justify-between h-full rounded-none w-60">
               Categorias
               <ChevronDown />
             </Button>

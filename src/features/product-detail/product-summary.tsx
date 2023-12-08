@@ -4,6 +4,7 @@ import { VariantSelector } from '@/components/variant-selector';
 import { Product } from '@/lib/shopify/types';
 import { formatPrice } from '@/lib/utils';
 import { MinusIcon, PlusIcon } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 type ProductSummaryProps = {
@@ -15,12 +16,23 @@ export function ProductSummary({ product }: ProductSummaryProps) {
 
   const price = +product.priceRange.maxVariantPrice.amount;
   const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
+  const collection = product?.collections[0];
 
   const isDiscount = true;
 
   return (
     <div className="flex flex-col w-full gap-4 lg:w-1/2">
       <div>
+        <div className="mb-2 text-lg font-medium">
+          <span className="opacity-80">Categoría:</span>{' '}
+          <Link
+            className="text-[#4332E2]"
+            href={`/search/${collection?.handle}`}
+          >
+            {collection?.title}
+          </Link>
+        </div>
+
         <h2 className="mb-6 text-5xl font-bold">{product.title}</h2>
 
         <div className="">
@@ -49,10 +61,10 @@ export function ProductSummary({ product }: ProductSummaryProps) {
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           />
           <div className="">
-            <VariantSelector
+            {/* <VariantSelector
               options={product.options}
               variants={product.variants}
-            />
+            /> */}
           </div>
         </div>
       </div>

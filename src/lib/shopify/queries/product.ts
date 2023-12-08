@@ -8,6 +8,7 @@ export const getProductQuery = /* GraphQL */ `
         edges {
           node {
             title
+            handle
           }
         }
       }

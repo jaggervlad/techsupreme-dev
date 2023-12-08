@@ -1,5 +1,6 @@
 import { MainLayout } from '@/components/layouts/main-layout';
 import { Separator } from '@/components/ui/separator';
+import { ProductBreadcrumbs } from '@/features/product-detail/product-breadcrumbs';
 import { ProductImageGallery } from '@/features/product-detail/product-image-gallery';
 import { ProductSummary } from '@/features/product-detail/product-summary';
 import { RelatedProductsSlider } from '@/features/product-detail/related-products-slider';
@@ -39,6 +40,12 @@ export default function ProductPage({
   const priceCurrency = product.priceRange.minVariantPrice.currencyCode;
   const highPrice = product.priceRange.maxVariantPrice.amount;
   const lowPrice = product.priceRange.minVariantPrice.amount;
+  const collection = product?.collections[0];
+
+  const pages = [
+    { name: collection?.title, href: `/search/${collection?.handle}` },
+    { name: product.title, href: `/producto/${product.handle}` },
+  ];
 
   return (
     <MainLayout seo={seoData}>
@@ -55,9 +62,12 @@ export default function ProductPage({
           lowPrice,
         }}
       />
-      <main className="container py-14">
-        <div className="flex flex-col items-start gap-8 mb-10 lg:flex-row md:gap-16">
-          <div className="w-full h-full lg:sticky lg:top-12 lg:w-1/2">
+      <div className="container pt-10">
+        <ProductBreadcrumbs pages={pages} />
+      </div>
+      <main className="container pt-10 pb-14">
+        <div className="flex flex-col items-center gap-8 mb-10 lg:flex-row md:gap-16">
+          <div className="w-full h-full lg:w-1/2">
             <ProductImageGallery
               images={product.images ?? []}
               title={product.title}

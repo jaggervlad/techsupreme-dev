@@ -91,7 +91,7 @@ export function ProductImageGallery({
         {...props}
       >
         {/* THUMBNAILS */}
-        <ul className="flex items-center justify-center gap-2 overflow-hidden list-none md:flex-col">
+        <ul className="max-h-[650px] flex items-center justify-center gap-2 overflow-hidden list-none md:flex-col">
           {images?.map(({ url, altText }, index) => {
             return (
               <li
@@ -122,8 +122,11 @@ export function ProductImageGallery({
           className="flex-grow w-full h-full"
         >
           {images.map((image, index) => (
-            <SplideSlide key={index} className="border rounded-[5px]">
-              <div className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative">
+            <SplideSlide
+              key={index}
+              className="border flex items-center justify-center rounded-[5px] h-[650px]"
+            >
+              <div className="aspect-square  lg:aspect-[4/5] lg:max-h-[550px] w-full relative">
                 <Image
                   fill
                   key={image.url}
