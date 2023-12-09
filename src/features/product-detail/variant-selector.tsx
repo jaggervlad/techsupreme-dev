@@ -1,11 +1,10 @@
 'use client';
 
-import clsx from 'clsx';
 import { ProductOption, ProductVariant } from '@/lib/shopify/types';
-import { createUrl } from '@/lib/utils';
+import { cn, createUrl } from '@/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 type Combination = {
   id: string;
@@ -67,7 +66,7 @@ export function VariantSelector({
 
   return options.map((option) => (
     <dl className="mb-8" key={option.id}>
-      <dt className="mb-4 text-sm font-bold uppercase tracking-wide">
+      <dt className="mb-4 text-sm font-bold tracking-wide uppercase">
         {option.name}
       </dt>
       <dd className="flex flex-wrap gap-3">
@@ -122,7 +121,7 @@ export function VariantSelector({
               title={`${option.name} ${value}${
                 !isAvailableForSale ? ' (Out of Stock)' : ''
               }`}
-              className={clsx(
+              className={cn(
                 'flex min-w-[48px] items-center justify-center rounded-full border bg-slate-100 px-2 py-1 text-sm dark:border-slate-800 dark:bg-slate-900',
                 {
                   'cursor-default ring-2 !bg-primary text-white ring-primary':

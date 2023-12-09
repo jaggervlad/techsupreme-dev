@@ -1,4 +1,3 @@
-import LoadingDots from '@/components/dots';
 import { useCart } from '@/contexts/cart-context';
 import { ProductVariant } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
@@ -46,7 +45,7 @@ export function AddToCartButton({
         aria-disabled
         className={cn(buttonClasses, disabledClasses)}
       >
-        <div className="absolute left-0 ml-4">
+        <div className="mr-3">
           <PlusIcon className="h-5" />
         </div>
         Añadir al carrito

@@ -55,7 +55,7 @@ function BreadcrumbItem({ href, name }: BreadcrumbItemProps) {
         <Link
           href={href}
           className={cn(
-            'ml-2 font-medium text-muted-foreground hover:text-foreground',
+            'ml-2 capitalize font-medium text-muted-foreground hover:text-foreground',
             isActive && 'font-bold text-foreground'
           )}
           aria-current={isActive ? 'page' : undefined}
