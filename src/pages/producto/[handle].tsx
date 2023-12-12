@@ -1,7 +1,6 @@
 import { MainLayout } from '@/components/layouts/main-layout';
-import { Separator } from '@/components/ui/separator';
 import { ProductBreadcrumbs } from '@/features/product-detail/product-breadcrumbs';
-import { ProductImageGallery } from '@/features/product-detail/product-image-gallery';
+import { ProductImageGalleryNew } from '@/features/product-detail/product-image-gallery_new';
 import { ProductSummary } from '@/features/product-detail/product-summary';
 import { RelatedProductsSlider } from '@/features/product-detail/related-products-slider';
 import { useUrl } from '@/hooks/useUrl';
@@ -62,19 +61,17 @@ export default function ProductPage({
           lowPrice,
         }}
       />
-      <div className="container pt-10">
+      <div className="container hidden pt-10 md:block">
         <ProductBreadcrumbs pages={pages} />
       </div>
       <main className="container pt-10 pb-14">
         <div className="flex flex-col items-center gap-8 mb-10 lg:flex-row md:gap-16">
           <div className="w-full h-full lg:w-1/2">
-            <ProductImageGallery
-              images={product.images ?? []}
+            <ProductImageGalleryNew
+              images={product.images}
               title={product.title}
             />
           </div>
-
-          <Separator className="mt-4 lg:hidden" />
 
           <ProductSummary product={product} />
         </div>
@@ -88,6 +85,7 @@ export default function ProductPage({
               alt=""
               width={1685}
               height={220}
+              className="h-28 md:h-auto"
               src={'/bottom-banner.png'}
             />
           </Link>

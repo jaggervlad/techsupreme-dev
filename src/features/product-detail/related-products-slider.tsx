@@ -17,13 +17,15 @@ export function RelatedProductsSlider({ products }: RelatedProductsProps) {
       className="overflow-hidden md:pt-6"
     >
       <div className="flex items-center justify-between">
-        <h3 className="flex-1 mb-6 text-4xl font-bold">
+        <h3 className="flex-1 mb-6 text-3xl font-bold md:text-4xl">
           Productos Relacionados
         </h3>
 
         <Link
           href="/search"
-          className={'flex text-indigo-600 text-xl items-center font-semibold'}
+          className={
+            'md:flex text-indigo-600 text-xl items-center font-semibold hidden'
+          }
         >
           Ver más <MoveRight className="w-5 h-5 mt-1 ml-2" />
         </Link>

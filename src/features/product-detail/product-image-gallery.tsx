@@ -1,5 +1,3 @@
-import '@splidejs/react-splide/css';
-
 import * as React from 'react';
 import Image from 'next/image';
 
@@ -24,19 +22,6 @@ const mainOptions: Options = {
   perMove: 1,
   gap: '1rem',
   pagination: false,
-};
-
-const thumbsOptions: Options = {
-  arrows: false,
-  type: 'slide',
-  rewind: true,
-  perPage: 3,
-  perMove: 1,
-  gap: '.5rem',
-  pagination: false,
-  cover: true,
-  focus: 'center',
-  isNavigation: true,
 };
 
 export function ProductImageGallery({
@@ -80,40 +65,47 @@ export function ProductImageGallery({
     }
   };
 
-  if (images.length > 1) {
-    return (
-      <div
-        aria-label="Carusel de imágenes de productos"
-        className={cn(
-          'flex flex-col-reverse md:flex-row w-full h-full items-center gap-4',
-          className
-        )}
-        {...props}
-      >
-        {/* THUMBNAILS */}
-        <ul className="max-h-[650px] flex items-center justify-center gap-2 overflow-hidden list-none md:flex-col">
-          {images?.map(({ url, altText }, index) => {
-            return (
-              <li
-                key={url}
-                className={`border rounded-[5px] w-full ${
-                  index === activeIdx && 'border-blue-600/80 border-2 '
-                }`}
-              >
-                <button onClick={() => handleThumbs(index)} className="p-2">
-                  <Image
-                    src={url}
-                    alt={altText}
-                    width={80}
-                    height={80}
-                    className="flex items-center justify-center w-20 h-20"
-                  />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+  const handleThumbClick = (index: number) => {
+    mainRef.current?.go(index);
+  };
 
+  return (
+    <div
+      aria-label="Carusel de imágenes de productos"
+      className={cn(
+        'flex flex-col-reverse h-[650px] md:flex-row w-full items-center gap-4',
+        className
+      )}
+      {...props}
+    >
+      {/* THUMBNAILS ACA NECECSITO QUE LOS SINCRINICES CON EL SLIDER MAIN */}
+      <ul
+        ref={thumbsRef}
+        className="flex items-center justify-center h-full gap-2 overflow-hidden list-none md:flex-col"
+      >
+        {images?.map(({ url, altText }, index) => {
+          return (
+            <li
+              key={url}
+              className={`border rounded-[5px] w-full  ${
+                index === activeIdx && 'border-blue-600/80 border-2 '
+              }`}
+            >
+              <button onClick={() => handleThumbs(index)} className="p-2">
+                <Image
+                  src={url}
+                  alt={altText}
+                  width={80}
+                  height={80}
+                  className="flex items-center justify-center w-20 h-20"
+                />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div>
         {/* MAIN SLIDER */}
         <Splide
           options={mainOptions}
@@ -148,25 +140,6 @@ export function ProductImageGallery({
             </SplideSlide>
           ))}
         </Splide>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <div
-        key={images[0].url}
-        className="aspect-square lg:aspect-[4/5] lg:max-h-[600px] w-full relative"
-      >
-        <Image
-          src={images[0]?.url}
-          alt={images[0]?.altText || title}
-          className="border rounded-[5px]"
-          sizes="(min-width:480px) 50vw, 100vw"
-          fill
-          priority
-          quality={100}
-        />
       </div>
     </div>
   );

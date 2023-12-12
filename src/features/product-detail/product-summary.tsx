@@ -1,19 +1,17 @@
 import Link from 'next/link';
-import { AddToCartButton } from '@/components/add-to-cart-button';
+
 import { Separator } from '@/components/ui/separator';
 import { Product } from '@/lib/shopify/types';
 import { formatPrice } from '@/lib/utils';
-import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useState } from 'react';
 import { VariantsSelector } from './variants-selector';
+import { ProductQuantitySelector } from './product-quantity-selector';
 
 type ProductSummaryProps = {
   product: Product;
 };
 
 export function ProductSummary({ product }: ProductSummaryProps) {
-  const [quantity, setQuantity] = useState(0);
-
   const price = +product.priceRange.maxVariantPrice.amount;
   const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
   const collection = product?.collections[0];
@@ -23,7 +21,7 @@ export function ProductSummary({ product }: ProductSummaryProps) {
   return (
     <div className="flex flex-col w-full gap-4 lg:w-1/2">
       <div>
-        <div className="mb-10 text-lg font-medium">
+        <div className="mb-3 text-lg font-medium">
           <span className="opacity-80">Categoría:</span>{' '}
           <Link
             className="text-[#4332E2]"
@@ -33,7 +31,7 @@ export function ProductSummary({ product }: ProductSummaryProps) {
           </Link>
         </div>
 
-        <h2 className="mb-6 text-5xl font-bold">{product.title}</h2>
+        <h2 className="mb-6 text-3xl font-bold md:text-5xl">{product.title}</h2>
 
         <div className="flex flex-col text-primary/70">
           <div className="flex items-center gap-3 mb-2">
@@ -63,42 +61,14 @@ export function ProductSummary({ product }: ProductSummaryProps) {
           />
           <VariantsSelector product={product} />
 
-          <div className="flex gap-5">
-            <div className="flex items-center ">
-              <button
-                onClick={() => {
-                  setQuantity((prev) => {
-                    if (prev === 0) return 0;
+          <ProductQuantitySelector
+            variants={product.variants}
+            availableForSale={product.availableForSale}
+          />
 
-                    return prev - 1;
-                  });
-                }}
-                className="h-full px-3 border rounded-l"
-              >
-                <MinusIcon />
-              </button>
-              <div className="flex items-center w-16 h-full px-2 text-lg border">
-                {quantity}
-              </div>
-              <button
-                onClick={() => {
-                  setQuantity((prev) => {
-                    if (prev === 25) return 25;
-
-                    return prev + 1;
-                  });
-                }}
-                className="h-full px-3 border rounded-r"
-              >
-                <PlusIcon />
-              </button>
-            </div>
-
-            <AddToCartButton
-              variants={product.variants}
-              availableForSale={product.availableForSale}
-            />
-          </div>
+          <p className="text-sm text-muted-foreground">
+            Standard delivery in 5 - 6 days or Premium delivery in 2 - 4 days.
+          </p>
         </div>
       </div>
     </div>

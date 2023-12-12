@@ -13,7 +13,7 @@ export function WishList() {
   }, []);
 
   return (
-    <Button variant={'ghost'} className="relative">
+    <Button variant={'ghost'} className="relative hidden md:inline-flex">
       {hasItems && isClient ? (
         <span>
           <Badge

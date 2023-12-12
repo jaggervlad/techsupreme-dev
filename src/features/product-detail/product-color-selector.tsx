@@ -44,7 +44,7 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
       >
         {colors.map((c) => (
           <RadioGroupItem
-            className="w-5 h-5 text-blue-600"
+            className="w-5 h-5 text-blue-600 [&>span>svg]:h-4 [&>span>svg]:w-4"
             value={c}
             id={c}
             key={c}

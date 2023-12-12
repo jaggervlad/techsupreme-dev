@@ -16,26 +16,21 @@ export function Header() {
       <header className="">
         <nav>
           <div className="container flex items-center justify-between h-24 py-4 overflow-hidden">
-            <div className="md:hidden">
-              <MobileNav menu={menu} />
-            </div>
             <Link
               href="/"
               aria-label="TechSupreme Logo"
               className="flex-shrink-0"
             >
-              <h1 className="text-2xl font-bold tracking-wide uppercase w-60 md:text-4xl">
+              <h1 className="text-2xl font-bold tracking-wide uppercase md:w-60 md:text-4xl">
                 Tech<span className="text-blue-600">Supreme</span>
               </h1>
             </Link>
 
-            <div className="flex-grow">
-              <div className="lg:w-full">
-                <Search />
-              </div>
+            <div className="flex-grow hidden md:block">
+              <Search />
             </div>
 
-            <div className="flex items-center ml-auto">
+            <div className="flex items-center md:ml-auto">
               <WishList />
               <CartSheet />
             </div>

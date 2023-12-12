@@ -20,7 +20,7 @@ export function VariantsSelector({ product }: { product: Product }) {
   );
 
   return (
-    <div className="flex gap-5">
+    <div className="flex flex-col gap-5 md:flex-row">
       {!!availableColors.length && (
         <ProductColorSelector colors={availableColors} />
       )}
