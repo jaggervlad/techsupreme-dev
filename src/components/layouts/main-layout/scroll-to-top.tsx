@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineArrowUp } from 'react-icons/ai';
 
-export const ScrollToTopButton = () => {
+export const ScrollToTopButton = ({ className }: { className?: string }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const ScrollToTopButton = () => {
   };
 
   return (
-    <div className="absolute top-0 right-8">
+    <div className={className}>
       <div className={`w-12 h-12 text-2xl ${isVisible ? 'block' : 'hidden'}`}>
         <button
           onClick={scrollToTop}

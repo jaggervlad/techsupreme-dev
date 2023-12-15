@@ -21,7 +21,10 @@ type ContextProps = {
   isLoadingAdd: boolean;
   isLoadingUpdate: boolean;
   isLoadingRemove: boolean;
-  addItem: (selectedVariantId: string | undefined) => Promise<void>;
+  addItem: (
+    selectedVariantId: string | undefined,
+    quantity?: number
+  ) => Promise<void>;
   removeItem: (id: string) => Promise<void>;
   updateItem: (payload: {
     id: string;
@@ -55,7 +58,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const cartId = cookies.cartId;
 
-  async function addItem(selectedVariantId: string | undefined) {
+  async function addItem(
+    selectedVariantId: string | undefined,
+    quantity: number = 1
+  ) {
     setIsLoadingAdd(true);
     let cartId = cookies?.cartId;
     let cart;
@@ -78,7 +84,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       const newCart = await addToCart(cartId, [
-        { merchandiseId: selectedVariantId, quantity: 1 },
+        { merchandiseId: selectedVariantId, quantity: quantity },
       ]);
 
       toast.success(`Se ha agregado un producto al carrito`);

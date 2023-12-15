@@ -1,5 +1,5 @@
 import { AddToCartButton } from '@/components/add-to-cart-button';
-import { ProductOption, ProductVariant } from '@/lib/shopify/types';
+import { ProductVariant } from '@/lib/shopify/types';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useState } from 'react';
 export const ProductQuantitySelector = ({
@@ -9,7 +9,7 @@ export const ProductQuantitySelector = ({
   variants: ProductVariant[];
   availableForSale: boolean;
 }) => {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="flex flex-col gap-5 md:flex-row">
@@ -17,9 +17,7 @@ export const ProductQuantitySelector = ({
         <button
           onClick={() => {
             setQuantity((prev) => {
-              if (prev === 0) return 0;
-
-              return prev - 1;
+              return prev > 1 ? prev - 1 : 1;
             });
           }}
           className="h-full px-3 border rounded-l"
@@ -43,12 +41,11 @@ export const ProductQuantitySelector = ({
         </button>
       </div>
 
-      <div className="md:w-full">
-        <AddToCartButton
-          variants={variants}
-          availableForSale={availableForSale}
-        />
-      </div>
+      <AddToCartButton
+        variants={variants}
+        availableForSale={availableForSale}
+        quantity={quantity}
+      />
     </div>
   );
 };

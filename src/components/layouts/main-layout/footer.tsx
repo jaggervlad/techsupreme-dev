@@ -23,16 +23,16 @@ export function Footer() {
   }));
 
   return (
-    <footer className="mt-auto text-white bg-primary pt-16 pb-10">
-      <div className="container relative space-y-8 lg:space-y-0 mb-12 grid md:grid-cols-2 lg:grid-cols-4">
-        <ScrollToTopButton />
-        <div>
+    <footer className="pb-8 mt-auto text-white md:pt-8 bg-primary">
+      <div className="container relative grid mb-8 space-y-8 lg:space-y-0 md:grid-cols-2 lg:grid-cols-4">
+        <ScrollToTopButton className="absolute top-0 hidden md:block right-8" />
+        <div className="hidden md:block">
           <Link
             href="/"
             aria-label="TechSupreme Logo"
             className="flex-shrink-0"
           >
-            <h4 className="font-bold tracking-wide uppercase w-60 text-3xl">
+            <h4 className="text-3xl font-bold tracking-wide uppercase w-60">
               Tech<span className="text-blue-600">Supreme</span>
             </h4>
           </Link>
@@ -44,14 +44,20 @@ export function Footer() {
             </FooterListItem>
           ))}
         </FooterListContainer>
-        <FooterListContainer title="COLECCIONES">
+        <FooterListContainer
+          title="COLECCIONES"
+          containerClassName="hidden md:block"
+        >
           {mappedCollections.map(({ name, href }) => (
             <FooterListItem key={href} href={href}>
               {name}
             </FooterListItem>
           ))}
         </FooterListContainer>
-        <FooterListContainer title="Páginas">
+        <FooterListContainer
+          title="Páginas"
+          containerClassName="hidden md:block"
+        >
           {[...mappedPages, ...footerNavigationData.utils].map(
             ({ name, href, isExternal }) => (
               <FooterListItem key={href} href={href} isExternal={isExternal}>
@@ -62,10 +68,8 @@ export function Footer() {
         </FooterListContainer>
       </div>
 
-      <div className="container flex justify-between  pt-8  text-center">
-        <p>© {new Date().getFullYear()} TECHSUPREME</p>
-
-        <div className="flex gap-3">
+      <div className="container md:hidden">
+        <div className="flex justify-center gap-3 mb-8 md:hidden">
           {footerNavigationData.social.map(
             ({ name, href, icon: Icon, isExternal }) => (
               <FooterListItem
@@ -75,8 +79,40 @@ export function Footer() {
                 isExternal={isExternal}
                 isListItem={false}
               >
-                <div className="border p-2 rounded-full bg-white">
-                  <Icon className="h-4 w-4 text-primary" aria-hidden />
+                <div className="p-2 bg-white border rounded-full">
+                  <Icon className="w-8 h-8 text-primary" aria-hidden />
+                </div>
+              </FooterListItem>
+            )
+          )}
+        </div>
+
+        <div className="flex items-center justify-between ">
+          <Link href="/" aria-label="TechSupreme Logo" className="w-[225px]">
+            <h4 className="text-2xl font-bold tracking-wide uppercase">
+              Tech<span className="text-blue-600">Supreme</span>
+            </h4>
+          </Link>
+
+          <ScrollToTopButton className="" />
+        </div>
+      </div>
+
+      <div className="container flex justify-center pt-8 text-center md:justify-between">
+        <p>© TECHSUPREME {new Date().getFullYear()}</p>
+
+        <div className="hidden gap-3 md:flex">
+          {footerNavigationData.social.map(
+            ({ name, href, icon: Icon, isExternal }) => (
+              <FooterListItem
+                label={`Red Social ${name}`}
+                key={href}
+                href={href}
+                isExternal={isExternal}
+                isListItem={false}
+              >
+                <div className="p-2 bg-white border rounded-full">
+                  <Icon className="w-4 h-4 text-primary" aria-hidden />
                 </div>
               </FooterListItem>
             )
@@ -90,16 +126,18 @@ export function Footer() {
 interface FooterListContainerProps extends PropsWithChildren {
   title: string;
   className?: string;
+  containerClassName?: string;
 }
 
 function FooterListContainer({
   title,
   children,
   className,
+  containerClassName,
 }: FooterListContainerProps) {
   return (
-    <div>
-      <h4 className="font-bold mb-3 text-lg uppercase text-white/70">
+    <div className={containerClassName}>
+      <h4 className="mb-3 text-lg font-bold uppercase text-white/70">
         {title}
       </h4>
       <ul className={cn(className, 'text-base space-y-2')}>{children}</ul>

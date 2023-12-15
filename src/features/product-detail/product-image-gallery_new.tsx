@@ -21,13 +21,9 @@ const mainSliderSettings: Settings = {
 
 const thumbsNailSliderSettings = (imageLength: number) => {
   let slidesToShow = 4;
-  let slidesToShowMobile = 3;
 
   if (imageLength < 4) {
     slidesToShow = imageLength;
-  }
-  if (imageLength < 3) {
-    slidesToShowMobile = imageLength;
   }
 
   const settings: Settings = {
@@ -45,7 +41,7 @@ const thumbsNailSliderSettings = (imageLength: number) => {
         settings: {
           vertical: false,
           verticalSwiping: false,
-          slidesToShow: slidesToShowMobile,
+          slidesToShow: slidesToShow - 1,
         },
       },
     ],
@@ -98,7 +94,7 @@ export function ProductImageGalleryNew({
         >
           {images?.map(({ url, altText }, index) => {
             return (
-              <div key={url} className="rounded-[8px] mx-auto !w-[98%] border">
+              <div key={url} className="rounded-[8px]  border">
                 <Image
                   src={url}
                   alt={altText}

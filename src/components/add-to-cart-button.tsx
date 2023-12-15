@@ -8,15 +8,17 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 type AddToCartButtonProps = {
   variants: ProductVariant[];
   availableForSale: boolean;
+  quantity: number;
 };
 
 const buttonClasses =
-  'relative flex rounded-lg items-center justify-center bg-primary py-3 px-6 tracking-wide text-white';
+  'relative md:w-auto w-full flex rounded-lg items-center justify-center bg-neo-green text-black py-3 px-6 tracking-wide font-medium';
 const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
 export function AddToCartButton({
   variants,
   availableForSale,
+  quantity,
 }: AddToCartButtonProps) {
   const { addItem, isLoadingAdd } = useCart();
 
@@ -58,7 +60,7 @@ export function AddToCartButton({
       onClick={(e: React.FormEvent<HTMLButtonElement>) => {
         if (isLoadingAdd) return;
 
-        addItem(selectedVariantId);
+        addItem(selectedVariantId, quantity);
       }}
       aria-label="Añadir al carrito"
       aria-disabled={isLoadingAdd}
