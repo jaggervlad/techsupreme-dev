@@ -8,9 +8,13 @@ import Link from 'next/link';
 
 type RelatedProductsProps = {
   products: Product[];
+  productTitle: string;
 };
 
-export function RelatedProductsSlider({ products }: RelatedProductsProps) {
+export function RelatedProductsSlider({
+  products,
+  productTitle,
+}: RelatedProductsProps) {
   return (
     <section
       aria-label="Productos relacionados"
@@ -30,13 +34,16 @@ export function RelatedProductsSlider({ products }: RelatedProductsProps) {
           Ver más <MoveRight className="w-5 h-5 mt-1 ml-2" />
         </Link>
       </div>
-      <Splide options={multipleSliderOptions}>
+      <section
+        aria-label={`Productos relacionados del producto ${productTitle}`}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+      >
         {products.map((product) => (
-          <SplideSlide key={product.id} className="px-2 py-4">
-            <ProductCard product={product} className="min-w-[260px]" />
-          </SplideSlide>
+          <article key={product.id}>
+            <ProductCard product={product} />
+          </article>
         ))}
-      </Splide>
+      </section>
     </section>
   );
 }

@@ -10,15 +10,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { forwardRef } from 'react';
 
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useGetCollections } from '@/hooks/useGetCollections';
-import { ChevronDown, TruckIcon } from 'lucide-react';
+import { TruckIcon } from 'lucide-react';
+import { CategoriesSelector } from './categories-selector';
 
 const secondaryMenu = [
   { id: 1, name: 'Productos', path: '/search' },
@@ -28,32 +21,10 @@ const secondaryMenu = [
 ];
 
 export function SecondaryHeader({ menu }: { menu: Menu[] }) {
-  const { collections } = useGetCollections();
-
   return (
     <div className="hidden border-t-2 lg:block bg-primary/5">
       <div className="container flex items-center justify-between h-12 gap-5">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button className="flex justify-between h-full rounded-none w-60">
-              Categorias
-              <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="center"
-            className="w-[242px] bg-primary"
-            sideOffset={0}
-          >
-            {collections
-              .filter((c) => c.title.toLowerCase() !== 'todos')
-              .map((c) => (
-                <DropdownMenuItem key={c.title} className="text-white" asChild>
-                  <Link href={c.path}>{c.title}</Link>
-                </DropdownMenuItem>
-              ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <CategoriesSelector />
 
         <NavigationMenu className="flex-grow">
           <NavigationMenuList className="gap-4">

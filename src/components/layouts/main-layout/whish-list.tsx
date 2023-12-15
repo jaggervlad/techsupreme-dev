@@ -13,18 +13,18 @@ export function WishList() {
   }, []);
 
   return (
-    <Button variant={'ghost'} className="relative hidden md:inline-flex">
+    <Button variant="circle" size="icon" className="relative ">
       {hasItems && isClient ? (
         <span>
           <Badge
             variant="secondary"
-            className="absolute top-0 flex items-center justify-center w-4 h-4 p-2 border rounded-full border-primary right-2"
+            className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-neo-green border-border -top-3 -right-2 hover:bg-neo-green"
           >
             {items.length}
           </Badge>
         </span>
       ) : null}
-      <HeartIcon />
+      <HeartIcon className="w-5 h-5" />
     </Button>
   );
 }

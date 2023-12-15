@@ -76,7 +76,10 @@ export default function ProductPage({
           <ProductSummary product={product} />
         </div>
         {relatedProducts && relatedProducts.length > 0 && (
-          <RelatedProductsSlider products={relatedProducts} />
+          <RelatedProductsSlider
+            productTitle={product.title}
+            products={relatedProducts}
+          />
         )}
 
         <div className="py-20">
@@ -85,7 +88,7 @@ export default function ProductPage({
               alt=""
               width={1685}
               height={220}
-              className="h-28 md:h-auto"
+              className="h-44 md:h-auto"
               src={'/bottom-banner.png'}
             />
           </Link>
@@ -107,12 +110,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       },
     };
 
+  // TODO: refactor query to accept limit
   const relatedProducts = await getProductRecommendations(product.id);
 
   return {
     props: {
       product,
-      relatedProducts,
+      relatedProducts: relatedProducts.slice(0, 4),
     },
     revalidate: 60 * 5,
   };

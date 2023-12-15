@@ -20,8 +20,8 @@ export function ProductBreadcrumbs({ pages }: ProductBreadcrumbsProps) {
             </Link>
           </div>
         </li>
-        {pages.map((page) => (
-          <BreadcrumbItem key={page.name} {...page} />
+        {pages.map((page, index) => (
+          <BreadcrumbItem key={index} {...page} />
         ))}
       </ol>
     </nav>

@@ -7,6 +7,9 @@ import { MobileNav } from './mobile-nav';
 import { useGetMenu } from '@/hooks/useGetMenu';
 import { WishList } from './whish-list';
 import { SecondaryHeader } from './secondary-header';
+import { CategoriesSelector } from './categories-selector';
+import { Button } from '@/components/ui/button';
+import { SearchIcon } from 'lucide-react';
 
 export function Header() {
   const { menu } = useGetMenu('main-menu');
@@ -15,7 +18,7 @@ export function Header() {
     <>
       <header className="">
         <nav>
-          <div className="container flex items-center justify-between h-24 py-4 overflow-hidden">
+          <div className="max-w-[1400px] mx-auto w-full flex items-center px-4 justify-between md:h-24 py-3 md:py-4 overflow-hidden">
             <Link
               href="/"
               aria-label="TechSupreme Logo"
@@ -30,10 +33,20 @@ export function Header() {
               <Search />
             </div>
 
-            <div className="flex items-center md:ml-auto">
+            <div className="flex items-center gap-1 md:ml-auto">
+              <Button size="icon" variant="circle" className="md:hidden">
+                <SearchIcon className="w-5 h-5" />
+              </Button>
               <WishList />
               <CartSheet />
             </div>
+          </div>
+
+          <div className="lg:hidden">
+            <CategoriesSelector
+              className="w-full "
+              contentClassName="w-[100vw] border-none rounded-none"
+            />
           </div>
 
           <SecondaryHeader menu={menu} />

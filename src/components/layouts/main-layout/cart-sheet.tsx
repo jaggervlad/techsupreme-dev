@@ -28,19 +28,20 @@ export function CartSheet({ className }: { className?: string }) {
     <Sheet>
       <SheetTrigger asChild>
         <Button
-          variant={'ghost'}
+          variant="circle"
+          size="icon"
           aria-label="Cart"
           className={cn('relative', className)}
         >
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"
-              className="absolute top-0 flex items-center justify-center w-4 h-4 p-2 border rounded-full border-primary right-2"
+              className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-neo-green border-border -top-3 -right-2 hover:bg-neo-green"
             >
               {cart?.lines.length}
             </Badge>
           )}
-          <ShoppingCart aria-hidden="true" />
+          <ShoppingCart aria-hidden="true" className="w-5 h-5" />
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full pr-0 sm:max-w-lg">

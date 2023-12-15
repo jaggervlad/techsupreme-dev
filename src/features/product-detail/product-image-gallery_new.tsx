@@ -19,25 +19,39 @@ const mainSliderSettings: Settings = {
   centerPadding: '0',
 };
 
-const thumbsNailSliderSettings: Settings = {
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  arrows: false,
-  infinite: true,
-  vertical: true,
-  verticalSwiping: true,
-  swipeToSlide: true,
-  focusOnSelect: true,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        vertical: false,
-        verticalSwiping: false,
-        slidesToShow: 3,
+const thumbsNailSliderSettings = (imageLength: number) => {
+  let slidesToShow = 4;
+  let slidesToShowMobile = 3;
+
+  if (imageLength < 4) {
+    slidesToShow = imageLength;
+  }
+  if (imageLength < 3) {
+    slidesToShowMobile = imageLength;
+  }
+
+  const settings: Settings = {
+    slidesToShow: slidesToShow,
+    slidesToScroll: 1,
+    arrows: false,
+    infinite: true,
+    vertical: true,
+    verticalSwiping: true,
+    swipeToSlide: true,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          vertical: false,
+          verticalSwiping: false,
+          slidesToShow: slidesToShowMobile,
+        },
       },
-    },
-  ],
+    ],
+  };
+
+  return settings;
 };
 
 interface ProductImageCarouselProps
@@ -70,37 +84,36 @@ export function ProductImageGalleryNew({
     <div
       aria-label="Carusel de imágenes de productos"
       className={cn(
-        'flex flex-col-reverse  md:flex-row w-full items-center gap-4',
+        'flex flex-col-reverse lg:flex-row lg:items-center justify-center w-full  gap-4',
         className
       )}
       {...props}
     >
-      <Slider
-        asNavFor={nav1}
-        ref={slider2}
-        {...thumbsNailSliderSettings}
-        className="w-full md:w-[20%]  max-h-[650px] flex-row md:flex-col"
-      >
-        {images?.map(({ url, altText }, index) => {
-          return (
-            <div
-              key={index}
-              className="w-[100px] flex  h-[100px] border rounded-[8px]"
-            >
-              <Image
-                src={url}
-                alt={altText}
-                width={100}
-                height={100}
-                className="w-[80px] my-2 h-[80px] mx-auto aspect-square"
-              />
-            </div>
-          );
-        })}
-      </Slider>
+      <div className="w-full lg:w-[20%] h-full relative">
+        <Slider
+          asNavFor={nav1}
+          ref={slider2}
+          {...thumbsNailSliderSettings(images.length)}
+          className="space-y-5"
+        >
+          {images?.map(({ url, altText }, index) => {
+            return (
+              <div key={url} className="rounded-[8px] mx-auto !w-[98%] border">
+                <Image
+                  src={url}
+                  alt={altText}
+                  width={100}
+                  height={100}
+                  className="my-2 h-[80px] mx-auto aspect-square"
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
 
       {/* MAIN SLIDER */}
-      <div className="flex-grow border rounded-[8px] w-full lg:w-[80%] relative py-0">
+      <div className="border rounded-[8px] w-full lg:w-[80%] relative py-0">
         <Slider
           asNavFor={nav2}
           ref={slider1}
@@ -109,7 +122,7 @@ export function ProductImageGalleryNew({
         >
           {images.map((image, index) => (
             <div
-              key={index}
+              key={image.url}
               className="h-[400px] md:h-[650px] flex items-center justify-center focus:outline-none"
             >
               <Image
