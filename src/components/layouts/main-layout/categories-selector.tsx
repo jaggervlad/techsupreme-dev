@@ -25,7 +25,7 @@ export const CategoriesSelector = ({
       <DropdownMenuTrigger asChild>
         <Button
           className={cn(
-            'flex w-60 justify-between h-full rounded-none',
+            'flex w-64 justify-between h-full rounded-none',
             className
           )}
         >
@@ -35,7 +35,7 @@ export const CategoriesSelector = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="center"
-        className={cn('w-60 bg-primary', contentClassName)}
+        className={cn('w-64 bg-primary', contentClassName)}
         sideOffset={0}
       >
         {collections

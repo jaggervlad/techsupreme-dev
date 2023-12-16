@@ -9,6 +9,7 @@ import { cn, formatPrice } from '@/lib/utils';
 import Link from 'next/link';
 import { useWishListState } from '@/contexts/wishlist-context';
 import { useEffect, useState } from 'react';
+import { Button, buttonVariants } from './ui/button';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -43,6 +44,7 @@ export function ProductCard({
       ?.values || [];
 
   const isDiscount = false;
+  const isNew = false;
 
   return (
     <Card
@@ -55,7 +57,7 @@ export function ProductCard({
       <div className="relative py-4">
         <Link
           href={`/producto/${product.handle}`}
-          className="relative block w-full h-80 aspect-auto"
+          className="relative block w-full max-h-80 h-full aspect-[9/16]"
         >
           {product?.featuredImage ? (
             <Image
@@ -86,7 +88,12 @@ export function ProductCard({
           )}
         </Link>
 
-        <div className="absolute flex flex-col justify-center gap-1 top-4 right-3">
+        {isNew && (
+          <span className="absolute text-sm left-5 bg-primary rounded-[8px] text-white px-2 py-1 top-3">
+            NUEVO
+          </span>
+        )}
+        {/* <div className="absolute flex flex-col justify-center gap-1 top-4 right-3">
           {colors.map((c) => (
             <div
               key={c}
@@ -95,16 +102,18 @@ export function ProductCard({
               <div className="w-full h-full bg-blue-600 rounded-full" />
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <CardContent className="border-t border-border/40 grid gap-2.5 p-4">
         <CardTitle className="text-xl truncate">{product.title}</CardTitle>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           {sizes.map((s) => (
-            <span key={s}>{s}</span>
+            <div className="truncate" key={s}>
+              {s}
+            </div>
           ))}
-        </div>
+        </div> */}
         <span className="sr-only">Ver detalles de {product.title}</span>
       </CardContent>
 
@@ -129,21 +138,32 @@ export function ProductCard({
         </div>
 
         <div className="flex items-center gap-3">
-          <button
-            className="p-2 bg-gray-100 rounded-full"
+          <Button
+            size="icon"
+            variant={'circle'}
+            className="hover:bg-neo-green"
             onClick={() => addItem(product)}
           >
             <HeartIcon
               className={`w-5 h-5 ${
-                isProductSaved && 'fill-red-600 stroke-red-600'
+                isProductSaved && 'fill-black stroke-black'
               }`}
             />
-          </button>
+          </Button>
 
           {/* TODO: add to cart button feature */}
-          <button className="p-2 bg-gray-100 rounded-full">
+          <Link
+            href={`/producto/${product.handle}`}
+            className={cn(
+              buttonVariants({
+                size: 'icon',
+                variant: 'circle',
+              }),
+              'hover:bg-neo-green'
+            )}
+          >
             <ShoppingCart className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </CardFooter>
     </Card>
