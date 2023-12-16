@@ -49,7 +49,7 @@ export function ProductCard({
   return (
     <Card
       className={cn(
-        'flex shadow-md border-border/40 flex-col rounded-[5px] bg-white overflow-hidden',
+        'flex shadow-[0px_10px_8px_0px_#00000012] border-border-ligth flex-col rounded-[5px] bg-white overflow-hidden',
         className
       )}
       {...props}

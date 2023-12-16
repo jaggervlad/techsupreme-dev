@@ -1,4 +1,4 @@
-import { AddToCartButton } from '@/components/add-to-cart-button';
+import { AddToCartButton } from '@/features/product-detail/add-to-cart-button';
 import { ProductVariant } from '@/lib/shopify/types';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { useState } from 'react';

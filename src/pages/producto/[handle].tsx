@@ -1,3 +1,4 @@
+import { BannerBottom } from '@/components/banner-bottom';
 import { MainLayout } from '@/components/layouts/main-layout';
 import { ProductBreadcrumbs } from '@/features/product-detail/product-breadcrumbs';
 import { ProductImageGalleryNew } from '@/features/product-detail/product-image-gallery_new';
@@ -82,17 +83,7 @@ export default function ProductPage({
           />
         )}
 
-        <div className="py-20">
-          <Link href="/">
-            <Image
-              alt=""
-              width={1685}
-              height={220}
-              className="h-44 md:h-auto"
-              src={'/bottom-banner.png'}
-            />
-          </Link>
-        </div>
+        <BannerBottom />
       </main>
     </MainLayout>
   );

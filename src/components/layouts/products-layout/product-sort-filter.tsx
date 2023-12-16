@@ -40,11 +40,14 @@ export function SortByProducts() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="gap-2 w-full items-center hidden md:inline-flex">
-            Ordernar por <ChevronDown className="h-4 w-4" />
+          <Button
+            variant={'outline'}
+            className="items-center hidden gap-2 md:inline-flex"
+          >
+            Ordernar por <ChevronDown className="w-4 h-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-full">
+        <DropdownMenuContent align="start" className="w-full">
           {sorting.map((option) => {
             const active = option.slug === sort;
 

@@ -27,7 +27,7 @@ const thumbsNailSliderSettings = (imageLength: number) => {
   }
 
   const settings: Settings = {
-    slidesToShow: slidesToShow,
+    slidesToShow: slidesToShow - 1,
     slidesToScroll: 1,
     arrows: false,
     infinite: true,
@@ -85,7 +85,7 @@ export function ProductImageGalleryNew({
       )}
       {...props}
     >
-      <div className="w-full lg:w-[20%] h-full relative">
+      <div className="w-full lg:w-[20%]  relative">
         <Slider
           asNavFor={nav1}
           ref={slider2}

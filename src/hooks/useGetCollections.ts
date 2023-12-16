@@ -8,8 +8,8 @@ export function useGetCollections() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchCollections = async () => {
-      setIsLoading(true);
       try {
         const data = await getCollections();
         setCollections(data);

@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useGetCollections } from '@/hooks/useGetCollections';
 import { cn, createUrl } from '@/lib/utils';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Loader2 } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 
@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import Link from 'next/link';
 
 export function ProductCollectionFilter() {
   const router = useRouter();
@@ -35,59 +36,88 @@ export function ProductCollectionFilter() {
   };
 
   return (
-    <>
-      <DropdownMenu modal={false}>
-        <DropdownMenuTrigger asChild>
-          <Button className="gap-2 items-center hidden md:inline-flex">
-            Colección <ChevronDown className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="start">
-          <DropdownMenuRadioGroup value={defaultCollectionSelect}>
-            {resCollections.collections.map((c, i) => {
-              const collectionSlug = c.path.split('/')[2];
-              const active = collectionSlug === defaultCollectionSelect;
+    <div className="p-4 border rounded-lg border-border-ligth">
+      <h4 className="mb-3 text-lg font-medium">Categorías</h4>
 
-              return (
-                <DropdownMenuRadioItem
-                  key={i}
-                  value={collectionSlug}
-                  className={cn('hover:underline cursor-pointer', {
-                    'underline font-medium': active,
-                  })}
-                  onSelect={() => handleClick(c.path)}
-                >
-                  {c.title}
-                </DropdownMenuRadioItem>
-              );
-            })}
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="flex flex-col space-y-2">
+        {resCollections.isLoading && (
+          <div className="flex items-center justify-center h-44">
+            <Loader2 className="w-6 h-6 animate-spin" />
+          </div>
+        )}
 
-      <Select
-        value={defaultCollectionSelect}
-        onValueChange={(v) => {
-          handleClick(v);
-        }}
-      >
-        <SelectTrigger className="w-full md:hidden">
-          <SelectValue placeholder="Filtrar por colección" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            {resCollections.collections.map((c) => {
-              const collectionSlug = c.path.split('/')[2];
+        {!resCollections.isLoading &&
+          resCollections.collections.map((c, i) => {
+            const collectionSlug = c.path.split('/')[2];
+            const active = collectionSlug === defaultCollectionSelect;
 
-              return (
-                <SelectItem value={collectionSlug} key={c.path}>
-                  {c.title}
-                </SelectItem>
-              );
-            })}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </>
+            return (
+              <Link
+                key={i}
+                href={`${createUrl(c.path, newSearchParams)}`}
+                scroll={false}
+                className={cn('hover:underline cursor-pointer', {
+                  'underline font-medium': active,
+                })}
+              >
+                {c.title}
+              </Link>
+            );
+          })}
+      </div>
+    </div>
   );
 }
+
+// <DropdownMenu modal={false}>
+//   <DropdownMenuTrigger asChild>
+//     <Button className="items-center hidden gap-2 md:inline-flex">
+//       Colección <ChevronDown className="w-4 h-4" />
+//     </Button>
+//   </DropdownMenuTrigger>
+//   <DropdownMenuContent className="w-56" align="start">
+//     <DropdownMenuRadioGroup value={defaultCollectionSelect}>
+//       {resCollections.collections.map((c, i) => {
+//         const collectionSlug = c.path.split('/')[2];
+//         const active = collectionSlug === defaultCollectionSelect;
+
+//         return (
+//           <DropdownMenuRadioItem
+//             key={i}
+//             value={collectionSlug}
+//             className={cn('hover:underline cursor-pointer', {
+//               'underline font-medium': active,
+//             })}
+//             onSelect={() => handleClick(c.path)}
+//           >
+//             {c.title}
+//           </DropdownMenuRadioItem>
+//         );
+//       })}
+//     </DropdownMenuRadioGroup>
+//   </DropdownMenuContent>
+// </DropdownMenu>;
+
+//  <Select
+//    value={defaultCollectionSelect}
+//    onValueChange={(v) => {
+//      handleClick(v);
+//    }}
+//  >
+//    <SelectTrigger className="w-full md:hidden">
+//      <SelectValue placeholder="Filtrar por colección" />
+//    </SelectTrigger>
+//    <SelectContent>
+//      <SelectGroup>
+//        {resCollections.collections.map((c) => {
+//          const collectionSlug = c.path.split('/')[2];
+
+//          return (
+//            <SelectItem value={collectionSlug} key={c.path}>
+//              {c.title}
+//            </SelectItem>
+//          );
+//        })}
+//      </SelectGroup>
+//    </SelectContent>
+//  </Select>;

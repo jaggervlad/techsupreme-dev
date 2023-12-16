@@ -135,3 +135,25 @@
     display: inline-block;
   }
 }
+
+.banner-slider-dots {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  top: 85%;
+}
+
+.banner-slider-dots > li > button::before {
+  font-size: 16px !important;
+  color: #a3a3a3 !important;
+}
+.banner-slider-dots li button:hover {
+  color: white !important;
+}
+
+.slick-dots li.slick-active button::before {
+  color: white !important;
+}

@@ -6,6 +6,10 @@ import { ProductHeaderFilters } from './product-header-filters';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { BannerSlider } from '@/components/banner-slider';
+import { SortByProducts } from './product-sort-filter';
+import { ProductCollectionFilter } from './product-collection-filter';
+import { BannerBottom } from '@/components/banner-bottom';
 
 interface ProductLayoutProps {
   title?: string;
@@ -37,16 +41,21 @@ export function ProductsLayout({
 
   const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
   };
 
   return (
     <MainLayout seo={{ title: headerTitle, description: description }}>
-      <div className="container flex flex-col py-10 space-y-8 lg:space-y-12">
-        <header id="products-page-header" className="space-y-8">
-          <h2 className="text-3xl font-bold lg:text-4xl">{headerTitle}</h2>
+      <BannerSlider />
 
-          <ProductHeaderFilters />
-        </header>
+      <div className="container flex flex-col pb-10 space-y-8 lg:space-y-12">
+        <h2 className="text-3xl font-bold sr-only lg:text-4xl">
+          {headerTitle}
+        </h2>
 
         <div className="flex flex-col w-full gap-10">
           {!searchQuery && displayProducts.length === 0 && (
@@ -63,10 +72,16 @@ export function ProductsLayout({
           )}
 
           <div className="flex gap-5">
-            <div className=" hidden md:block md:w-[20%]">Sidebar</div>
+            <div className=" hidden md:block md:w-[20%]">
+              <ProductCollectionFilter />
+            </div>
 
-            <div className="w-full md:w-[80%] flex flex-col gap-10">
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="w-full md:w-[80%] flex flex-col">
+              <div className="mb-8">
+                <SortByProducts />
+              </div>
+
+              <div className="grid gap-5 mb-10 sm:grid-cols-2 lg:grid-cols-3">
                 {displayProducts &&
                   displayProducts.length > 0 &&
                   displayProducts.map((p) => (
@@ -88,6 +103,8 @@ export function ProductsLayout({
             </div>
           </div>
         </div>
+
+        <BannerBottom />
       </div>
     </MainLayout>
   );

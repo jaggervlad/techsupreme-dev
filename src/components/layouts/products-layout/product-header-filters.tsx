@@ -10,22 +10,18 @@ export function ProductHeaderFilters() {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-center justify-between">
-      <div className="flex flex-col md:flex-row gap-4 md:items-center">
-        <span className="text-xl hidden md:block font-medium">Filtrar:</span>
+    <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center">
+        <span className="hidden text-xl font-medium md:block">Filtrar:</span>
         <ProductCollectionFilter />
         <ProductsPriceFilter />
         <Link
           href={{ pathname }}
           className={buttonVariants({ variant: 'outline' })}
         >
-          <XCircleIcon className="h-4 w-4 mr-2" />
+          <XCircleIcon className="w-4 h-4 mr-2" />
           Limpiar filtros
         </Link>
-      </div>
-
-      <div>
-        <SortByProducts />
       </div>
     </div>
   );

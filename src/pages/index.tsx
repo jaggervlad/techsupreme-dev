@@ -1,5 +1,5 @@
 import { MainLayout } from '@/components/layouts/main-layout';
-import { BannerSlider } from '@/features/home/banner-slider';
+import { BannerSlider } from '@/components/banner-slider';
 import { CollectionsSection } from '@/features/home/collections-section';
 import { CustomerBenefitsSection } from '@/features/home/customer-benefits-section';
 import { NewArrivalsSection } from '@/features/home/new-arrivals-section';
@@ -7,6 +7,7 @@ import { getCollections, getProducts } from '@/lib/shopify';
 import { Collection, Product } from '@/lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BannerBottom } from '@/components/banner-bottom';
 
 interface ProductsPageProps {
   products: Product[];
@@ -19,17 +20,7 @@ export default function Home({ products, collections }: ProductsPageProps) {
       <main className="container py-8 space-y-12">
         <CollectionsSection collections={collections} />
         <NewArrivalsSection products={products} />
-
-        <div className="py-20">
-          <Link href="/">
-            <Image
-              alt=""
-              width={1685}
-              height={220}
-              src={'/bottom-banner.png'}
-            />
-          </Link>
-        </div>
+        <BannerBottom />
       </main>
       <CustomerBenefitsSection />
     </MainLayout>
