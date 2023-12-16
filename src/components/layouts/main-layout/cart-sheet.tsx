@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
@@ -15,7 +16,7 @@ import {
 } from '@/components/ui/sheet';
 
 import Link from 'next/link';
-import { ImageIcon, ShoppingCart } from 'lucide-react';
+import { ImageIcon, ShoppingCart, X } from 'lucide-react';
 import { Cart } from '@/lib/shopify/types';
 import { UpdateCart } from './cart-update';
 import { useCart } from '@/contexts/cart-context';
@@ -44,16 +45,26 @@ export function CartSheet({ className }: { className?: string }) {
           <ShoppingCart aria-hidden="true" className="w-5 h-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full pr-0 sm:max-w-lg">
-        <SheetHeader className="px-1">
-          <SheetTitle>
+      <SheetContent
+        withCloseIcon={false}
+        className="flex flex-col w-full pr-6 text-white border-none bg-primary sm:max-w-3xl"
+      >
+        <SheetHeader className="flex flex-row items-center justify-between px-1 space-y-0">
+          <SheetTitle className="text-xl text-white">
             Carrito{' '}
             {cart?.totalQuantity &&
               cart?.totalQuantity > 0 &&
               `(${cart?.totalQuantity})`}
           </SheetTitle>
+
+          <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+            <X className="w-6 h-6" />
+            <span className="sr-only">Close</span>
+          </SheetClose>
         </SheetHeader>
-        <Separator />
+
+        <Separator className=" bg-white/20" />
+
         {cart && cart?.totalQuantity > 0 ? (
           <CartSheetContent cart={cart} />
         ) : (
@@ -77,60 +88,54 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
     <>
       <div className="flex flex-col flex-1 gap-5 overflow-hidden">
         <ScrollArea className="h-full">
-          <div className="flex flex-col gap-5 pr-6">
+          <div className="flex flex-col gap-5">
             {cart.lines.map((item) => {
               return (
                 <div key={item.id} className="space-y-3">
-                  <div className="flex items-center space-x-4">
-                    <div className="relative max-h-44 aspect-[3/6] h-full w-full overflow-hidden rounded">
-                      {item?.merchandise.product.featuredImage ? (
-                        <Image
-                          src={
-                            item?.merchandise.product.featuredImage.url ??
-                            '/images/product-placeholder.webp'
-                          }
-                          alt={
-                            item?.merchandise.product.featuredImage.altText ??
-                            'Product Name'
-                          }
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          fill
-                          className="absolute object-contain w-full h-full"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full bg-secondary">
-                          <ImageIcon
-                            className="w-4 h-4 text-muted-foreground"
-                            aria-hidden="true"
+                  <div className="flex flex-col justify-between gap-4 md:gap-0 md:items-center md:flex-row">
+                    <div className="flex items-center gap-6">
+                      <div className="relative bg-white max-h-28 w-28 aspect-[3/6] overflow-hidden rounded-lg">
+                        {item?.merchandise.product.featuredImage && (
+                          <Image
+                            src={
+                              item?.merchandise.product.featuredImage.url ??
+                              '/images/product-placeholder.webp'
+                            }
+                            alt={
+                              item?.merchandise.product.featuredImage.altText ??
+                              'Product Name'
+                            }
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            fill
+                            className="absolute object-contain w-full h-full"
+                            loading="lazy"
                           />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex flex-col space-y-4">
-                      <div className="flex flex-col self-start flex-1 gap-1 text-sm">
-                        <span className="">
+                        )}
+                      </div>
+
+                      <div className="flex flex-col justify-center flex-1 gap-1 text-sm">
+                        <div className="max-w-xs text-base lg:truncate lg:text-xl lg:whitespace-nowrap">
                           {item.merchandise.product.title}
-                          {' - '}
-                          {item.merchandise.title}
-                        </span>
-                        <span className="line-clamp-1 text-muted-foreground">
+                        </div>
+                        <div className="text-sm lg:text-lg text-[#C7C7C7]">
                           {formatPrice(
                             parseFloat(
                               item.merchandise.product.priceRange
                                 .maxVariantPrice.amount
                             ) ?? 0
-                          )}{' '}
-                          x {item.quantity} ={' '}
-                          {formatPrice(
-                            parseFloat(item.cost.totalAmount.amount)
                           )}
-                        </span>
+                        </div>
+                        <div className="text-sm lg:text-lg text-[#C7C7C7]">
+                          {item.merchandise.product.tags[0]}
+                        </div>
                       </div>
+                    </div>
+
+                    <div className="">
                       <UpdateCart cartLineItem={item} />
                     </div>
                   </div>
-                  <Separator />
+                  <Separator className="bg-white/20" />
                 </div>
               );
             })}
@@ -138,24 +143,31 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
         </ScrollArea>
       </div>
       <div className="grid pr-6 text-sm">
+        <Separator className="bg-white/20" />
         <SheetFooter className="mt-1.5 flex !flex-col">
-          <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-            <div className="flex items-center justify-between pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="py-4 text-base text-white md:text-xl">
+            <div className="flex items-center justify-between pb-1 mb-3">
               <p>Impuestos</p>
               <Price
-                className="text-base text-right text-black dark:text-white"
+                className="text-right"
                 amount={cart.cost.totalTaxAmount.amount}
                 currencyCode={cart.cost.totalTaxAmount.currencyCode}
               />
             </div>
-            <div className="flex items-center justify-between pt-1 pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
+            <div className="flex items-center justify-between pt-1 pb-1 mb-3">
               <p>Envío</p>
-              <p className="text-right">Calculado al momento de pagar</p>
+              <p className="text-right">
+                <Price
+                  className="text-right"
+                  amount={'0'}
+                  currencyCode={cart.cost.totalAmount.currencyCode}
+                />
+              </p>
             </div>
-            <div className="flex items-center justify-between pt-1 pb-1 mb-3 border-b border-neutral-200 dark:border-neutral-700">
+            <div className="flex items-center justify-between pt-1 pb-1 mb-3">
               <p>Total</p>
               <Price
-                className="text-base text-right text-black dark:text-white"
+                className="text-right"
                 amount={cart.cost.totalAmount.amount}
                 currencyCode={cart.cost.totalAmount.currencyCode}
               />
@@ -164,9 +176,12 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
           <Link
             aria-label="Registrar Pedido"
             href={cart?.checkoutUrl}
-            className={buttonVariants({
-              size: 'lg',
-            })}
+            className={cn(
+              buttonVariants({
+                size: 'lg',
+              }),
+              'bg-neo-green text-black hover:bg-neo-green hover:text-black'
+            )}
           >
             Registrar Pedido
           </Link>

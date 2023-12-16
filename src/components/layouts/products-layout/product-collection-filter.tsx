@@ -27,10 +27,10 @@ export function ProductCollectionFilter() {
   const resCollections = useGetCollections();
   const defaultCollectionSelect = (router.query?.collection as string) || 'all';
   const searchParams = useSearchParams();
-  const newSearchParams = new URLSearchParams(searchParams.toString());
+  const newSearchParams = new URLSearchParams();
 
   const handleClick = (url: string) => {
-    router.replace(createUrl(url, newSearchParams), undefined, {
+    router.replace(url, undefined, {
       scroll: false,
     });
   };

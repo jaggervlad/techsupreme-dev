@@ -2,7 +2,6 @@ import { cn, createUrl } from '@/lib/utils';
 import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { Button } from '@/components/ui/button';
 import { SearchIcon } from 'lucide-react';
 
 type SearchProps = {
@@ -32,19 +31,23 @@ export function Search({ className }: SearchProps) {
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const searchValue = formData.get('searchProducts');
+        const searchValue = formData.get('search');
         handleSearch(searchValue as string);
       }}
     >
-      <input
-        className="block px-2 w-full rounded-r-none z-20 text-sm text-gray-900 rounded-lg border-input  border focus:ring-1  focus:outline-none focus:ring-ring focus:border-primary"
-        placeholder="Buscador de productos"
-        name="searchProducts"
-        defaultValue={defaultValue}
-      />
-      <Button className="rounded-l-none">
-        <SearchIcon />
-      </Button>
+      <div>
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <SearchIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
+        </div>
+        <input
+          name="search"
+          id="search"
+          type="text"
+          defaultValue={defaultValue}
+          className="block w-[450px] active:outline-none focus-visible:outline-none rounded-md  h-12 py-1.5 pl-10 text-gray-900  placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+          placeholder="Buscar productos..."
+        />
+      </div>
     </form>
   );
 }

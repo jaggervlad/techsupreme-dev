@@ -15,12 +15,11 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
   // const { loading: isLoadingRemoving, removeCartItem } = useRemoveCartItem();
 
   return (
-    <div className="flex items-center space-x-1">
-      <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-3">
+      <div className="flex">
         <Button
-          variant="outline"
           size={'icon'}
-          className="w-8 h-8"
+          className="border rounded-l-lg rounded-r-none"
           onClick={async () => {
             try {
               const payload = {
@@ -37,14 +36,15 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           }}
           disabled={isLoadingUpdate}
         >
-          <Minus className="w-3 h-3" aria-hidden="true" />
+          <Minus className="w-4 h-4" aria-hidden="true" />
           <span className="sr-only">Remove one item</span>
         </Button>
 
-        <p className="px-3">{cartLineItem.quantity}</p>
+        <p className="flex items-center px-4 bg-white border text-primary">
+          {cartLineItem.quantity}
+        </p>
         <Button
-          variant="outline"
-          className="w-8 h-8"
+          className="border rounded-l-none rounded-r-lg"
           size="icon"
           onClick={async () => {
             try {
@@ -64,12 +64,12 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           }}
           disabled={isLoadingUpdate}
         >
-          <Plus className="w-3 h-3" aria-hidden="true" />
+          <Plus className="w-4 h-4" aria-hidden="true" />
           <span className="sr-only">Add one item</span>
         </Button>
       </div>
       <Button
-        variant="destructive"
+        variant={'circle'}
         size="icon"
         className="w-8 h-8"
         onClick={async () => {
@@ -83,7 +83,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
         }}
         disabled={isLoadingRemove}
       >
-        <Trash className="w-3 h-3" aria-hidden="true" />
+        <Trash className="w-4 h-4" aria-hidden="true" />
         <span className="sr-only">Delete item</span>
       </Button>
     </div>
