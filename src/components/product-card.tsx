@@ -43,13 +43,13 @@ export function ProductCard({
     product.options.filter((o) => o.name.toLowerCase() === 'color')[0]
       ?.values || [];
 
-  const isDiscount = false;
-  const isNew = false;
+  const isDiscount = true;
+  const isNew = true;
 
   return (
     <Card
       className={cn(
-        'flex shadow-[0px_10px_8px_0px_#00000012] border-border-ligth flex-col rounded-[5px] bg-white overflow-hidden',
+        'flex shadow-[0px_10px_8px_0px_#00000012] font-montserrat-regular border-border-ligth flex-col rounded-[5px] bg-white overflow-hidden',
         className
       )}
       {...props}
@@ -106,7 +106,9 @@ export function ProductCard({
       </div>
 
       <CardContent className="border-t border-border/40 grid gap-2.5 p-4">
-        <CardTitle className="text-xl truncate">{product.title}</CardTitle>
+        <CardTitle className="text-lg truncate font-montserrat-semibold">
+          {product.title}
+        </CardTitle>
         {/* <div className="flex gap-2">
           {sizes.map((s) => (
             <div className="truncate" key={s}>

@@ -21,11 +21,11 @@ export const CategoriesSelector = ({
 }: CategoriesSelectorProps) => {
   const { collections } = useGetCollections();
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
           className={cn(
-            'flex w-64 justify-between h-full rounded-none',
+            'flex w-64 font-montserrat-semibold justify-between h-full rounded-none',
             className
           )}
         >
@@ -41,7 +41,11 @@ export const CategoriesSelector = ({
         {collections
           .filter((c) => c.title.toLowerCase() !== 'todos')
           .map((c) => (
-            <DropdownMenuItem key={c.title} className="text-white" asChild>
+            <DropdownMenuItem
+              key={c.title}
+              className="text-white font-montserrat-regular"
+              asChild
+            >
               <Link href={c.path}>{c.title}</Link>
             </DropdownMenuItem>
           ))}

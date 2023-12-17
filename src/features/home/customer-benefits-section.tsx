@@ -37,8 +37,12 @@ export const CustomerBenefitsSection = () => {
             <Icon className="w-12 h-12" />
 
             <div>
-              <h5 className="text-lg font-bold">{title}</h5>
-              <p className="text-lg max-w-[200px]">{description}</p>
+              <h5 className="text-lg font-bold font-montserrat-bold">
+                {title}
+              </h5>
+              <p className="text-lg font-montserrat-regular max-w-[200px]">
+                {description}
+              </p>
             </div>
           </div>
         ))}

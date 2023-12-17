@@ -21,7 +21,7 @@ export function ProductSummary({ product }: ProductSummaryProps) {
   return (
     <div className="flex flex-col w-full gap-4 lg:w-1/2">
       <div>
-        <div className="mb-3 text-lg font-medium">
+        <div className="mb-3 text-lg font-medium font-montserrat-semibold">
           <span className="opacity-80">Categoría:</span>{' '}
           <Link
             className="text-[#4332E2]"
@@ -31,22 +31,24 @@ export function ProductSummary({ product }: ProductSummaryProps) {
           </Link>
         </div>
 
-        <h2 className="mb-6 text-3xl font-bold md:text-5xl">{product.title}</h2>
+        <h2 className="mb-6 text-3xl font-bold font-montserrat-bold md:text-5xl">
+          {product.title}
+        </h2>
 
         <div className="flex flex-col text-primary/70">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-3xl font-medium">
+            <span className="text-3xl font-medium font-montserrat-semibold">
               {formatPrice(price, currencyCode)}
             </span>
 
             {isDiscount && (
-              <span className="flex text-base items-center px-1 text-white bg-orange-600 rounded-[3px]">
+              <span className="flex text-base font-montserrat-regular items-center px-1 text-white bg-orange-600 rounded-[3px]">
                 -45%
               </span>
             )}
           </div>
           {isDiscount && (
-            <span className="text-xl font-medium line-through opacity-80">
+            <span className="text-xl font-medium line-through opacity-80 font-montserrat-semibold">
               {formatPrice(price, currencyCode)}
             </span>
           )}
@@ -56,7 +58,7 @@ export function ProductSummary({ product }: ProductSummaryProps) {
 
         <div className="space-y-6">
           <div
-            className="prose line-clamp-4"
+            className="prose font-montserrat-regular line-clamp-4"
             dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
           />
           <VariantsSelector product={product} />
@@ -66,7 +68,7 @@ export function ProductSummary({ product }: ProductSummaryProps) {
             availableForSale={product.availableForSale}
           />
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm font-montserrat-regular text-muted-foreground">
             Standard delivery in 5 - 6 days or Premium delivery in 2 - 4 days.
           </p>
         </div>

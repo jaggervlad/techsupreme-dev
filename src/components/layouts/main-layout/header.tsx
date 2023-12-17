@@ -24,7 +24,7 @@ export function Header() {
               aria-label="TechSupreme Logo"
               className="flex-shrink-0"
             >
-              <h1 className="text-2xl font-bold uppercase md:w-60 md:text-4xl">
+              <h1 className="text-2xl uppercase font-nexa-bold md:w-60 md:text-4xl">
                 Tech<span className="text-blue-600">Supreme</span>
               </h1>
             </Link>

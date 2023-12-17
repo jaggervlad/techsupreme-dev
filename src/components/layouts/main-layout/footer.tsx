@@ -137,7 +137,7 @@ function FooterListContainer({
 }: FooterListContainerProps) {
   return (
     <div className={containerClassName}>
-      <h4 className="mb-3 text-lg font-bold uppercase text-white/70">
+      <h4 className="mb-3 text-lg font-bold uppercase font-montserrat-bold text-white/70">
         {title}
       </h4>
       <ul className={cn(className, 'text-base space-y-2')}>{children}</ul>
@@ -159,13 +159,16 @@ function FooterListItem({
   isExternal,
   isListItem = true,
 }: FooterListItemProps) {
+  const itemClassname =
+    'flex items-center gap-2 font-montserrat-regular hover:underline hover:underline-offset-4';
+
   if (!isListItem) {
     return (
       <Link
         href={href}
         target={isExternal ? '_blank' : undefined}
         referrerPolicy={isExternal ? 'no-referrer' : undefined}
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        className={itemClassname}
         aria-label={label}
       >
         {children}
@@ -179,7 +182,7 @@ function FooterListItem({
         href={href}
         target={isExternal ? '_blank' : undefined}
         referrerPolicy={isExternal ? 'no-referrer' : undefined}
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        className={itemClassname}
         aria-label={label}
       >
         {children}

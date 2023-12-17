@@ -35,7 +35,10 @@ export function SecondaryHeader({ menu }: { menu: Menu[] }) {
         </NavigationMenu>
 
         <div>
-          <Link href="/estado-pedido" className="flex items-center">
+          <Link
+            href="/estado-pedido"
+            className="flex items-center font-montserrat-regular"
+          >
             <TruckIcon className="mr-2" />
             Estado del pedido
           </Link>
@@ -54,8 +57,8 @@ export const NavItem = ({ path, title, items }: Menu) => {
     <NavigationMenuItem>
       <Link href={path} legacyBehavior passHref aria-label={`Página ${title}`}>
         <NavigationMenuLink
-          className={cn('text-base  text-primary ', {
-            'font-bold ': active,
+          className={cn('text-base font-montserrat-regular text-primary ', {
+            'font-bold font-montserrat-bold': active,
           })}
         >
           {title}

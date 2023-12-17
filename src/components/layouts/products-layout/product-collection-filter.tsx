@@ -37,7 +37,9 @@ export function ProductCollectionFilter() {
 
   return (
     <div className="p-4 border rounded-lg border-border-ligth">
-      <h4 className="mb-3 text-lg font-medium">Categorías</h4>
+      <h4 className="mb-3 text-lg font-medium font-montserrat-semibold">
+        Categorías
+      </h4>
 
       <div className="flex flex-col space-y-2">
         {resCollections.isLoading && (
@@ -56,9 +58,12 @@ export function ProductCollectionFilter() {
                 key={i}
                 href={`${createUrl(c.path, newSearchParams)}`}
                 scroll={false}
-                className={cn('hover:underline cursor-pointer', {
-                  'underline font-medium': active,
-                })}
+                className={cn(
+                  'hover:underline font-montserrat-regular cursor-pointer',
+                  {
+                    'underline font-montserrat-semibold font-medium': active,
+                  }
+                )}
               >
                 {c.title}
               </Link>

@@ -23,7 +23,10 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <Label htmlFor="product-colors" className="font-medium">
+      <Label
+        htmlFor="product-colors"
+        className="font-medium font-montserrat-semibold"
+      >
         Color
       </Label>
 

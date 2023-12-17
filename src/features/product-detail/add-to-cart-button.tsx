@@ -12,7 +12,7 @@ type AddToCartButtonProps = {
 };
 
 const buttonClasses =
-  'relative md:w-auto w-full flex rounded-lg items-center justify-center bg-neo-green text-black py-3 px-6 tracking-wide font-medium';
+  'relative md:w-auto font-montserrat-semibold w-full flex rounded-lg items-center justify-center bg-neo-green text-black py-3 px-6 tracking-wide font-medium';
 const disabledClasses = 'cursor-not-allowed opacity-60 hover:opacity-60';
 
 export function AddToCartButton({

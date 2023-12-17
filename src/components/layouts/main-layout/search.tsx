@@ -27,7 +27,10 @@ export function Search({ className }: SearchProps) {
 
   return (
     <form
-      className={cn('relative flex max-w-md mx-auto w-full', className)}
+      className={cn(
+        'relative font-montserrat-regular flex max-w-md mx-auto w-full',
+        className
+      )}
       onSubmit={(e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

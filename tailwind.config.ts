@@ -16,6 +16,13 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'nexa-bold': ['var(--font-nexa-bold)', 'system-ui'],
+        'nexa-light': ['var(--font-nexa-light)', 'system-ui'],
+        'montserrat-bold': ['var(--font-montserrat-bold)', 'system-ui'],
+        'montserrat-regular': ['var(--font-montserrat-regular)', 'system-ui'],
+        'montserrat-semibold': ['var(--font-montserrat-semibold)', 'system-ui'],
+      },
       colors: {
         'border-ligth': '#E9E9E9',
         border: 'hsl(var(--border))',

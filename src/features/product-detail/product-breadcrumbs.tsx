@@ -14,7 +14,7 @@ export function ProductBreadcrumbs({ pages }: ProductBreadcrumbsProps) {
           <div>
             <Link
               href="/search"
-              className="font-medium text-muted-foreground hover:text-foreground"
+              className="font-medium font-montserrat-semibold text-muted-foreground hover:text-foreground"
             >
               Tienda
             </Link>
@@ -55,8 +55,8 @@ function BreadcrumbItem({ href, name }: BreadcrumbItemProps) {
         <Link
           href={href}
           className={cn(
-            'ml-2 capitalize font-medium text-muted-foreground hover:text-foreground',
-            isActive && 'font-bold text-foreground'
+            'ml-2 capitalize font-montserrat-semibold font-medium text-muted-foreground hover:text-foreground',
+            isActive && 'font-bold text-foreground font-montserrat-bold'
           )}
           aria-current={isActive ? 'page' : undefined}
         >

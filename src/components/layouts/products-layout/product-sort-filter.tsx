@@ -42,7 +42,7 @@ export function SortByProducts() {
         <DropdownMenuTrigger asChild>
           <Button
             variant={'outline'}
-            className="items-center hidden gap-2 md:inline-flex"
+            className="items-center hidden gap-2 font-montserrat-semibold md:inline-flex"
           >
             Ordernar por <ChevronDown className="w-4 h-4" />
           </Button>
@@ -55,8 +55,8 @@ export function SortByProducts() {
               <DropdownMenuItem
                 key={option.slug}
                 className={cn(
-                  active && 'font-bold underline',
-                  'hover:cursor-pointer hover:underline'
+                  active && 'font-semibold font-montserrat-semibold underline',
+                  'hover:cursor-pointer font-montserrat-regular hover:underline'
                 )}
                 onClick={() => handleClick(option.slug)}
               >

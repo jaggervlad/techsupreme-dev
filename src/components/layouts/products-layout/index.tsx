@@ -76,7 +76,7 @@ export function ProductsLayout({
               <ProductCollectionFilter />
             </div>
 
-            <div className="w-full md:w-[80%] flex flex-col">
+            <div className="w-full md:w-[80%] font-montserrat-regular flex flex-col">
               <div className="mb-8">
                 <SortByProducts />
               </div>

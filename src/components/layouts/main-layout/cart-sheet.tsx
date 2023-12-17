@@ -49,7 +49,7 @@ export function CartSheet({ className }: { className?: string }) {
         withCloseIcon={false}
         className="flex flex-col w-full pr-6 text-white border-none bg-primary sm:max-w-3xl"
       >
-        <SheetHeader className="flex flex-row items-center justify-between px-1 space-y-0">
+        <SheetHeader className="flex flex-row items-center justify-between px-1 space-y-0 font-montserrat-bold">
           <SheetTitle className="text-xl text-white">
             Carrito{' '}
             {cart?.totalQuantity &&
@@ -113,8 +113,8 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
                         )}
                       </div>
 
-                      <div className="flex flex-col justify-center flex-1 gap-1 text-sm">
-                        <div className="max-w-xs text-base lg:truncate lg:text-xl lg:whitespace-nowrap">
+                      <div className="flex flex-col justify-center flex-1 gap-1 text-sm font-montserrat-regular">
+                        <div className="max-w-xs text-base font-montserrat-semibold lg:truncate lg:text-xl lg:whitespace-nowrap">
                           {item.merchandise.product.title}
                         </div>
                         <div className="text-sm lg:text-lg text-[#C7C7C7]">
@@ -144,10 +144,10 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
       </div>
       <div className="grid pr-6 text-sm">
         <Separator className="bg-white/20" />
-        <SheetFooter className="mt-1.5 flex !flex-col">
-          <div className="py-4 text-base text-white md:text-xl">
+        <SheetFooter className="mt-1.5 font-montserrat-semibold flex !flex-col">
+          <div className="py-4 text-base text-white md:text-lg">
             <div className="flex items-center justify-between pb-1 mb-3">
-              <p>Impuestos</p>
+              <p className="text-[#D8D8D8]">Impuestos:</p>
               <Price
                 className="text-right"
                 amount={cart.cost.totalTaxAmount.amount}
@@ -155,7 +155,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
               />
             </div>
             <div className="flex items-center justify-between pt-1 pb-1 mb-3">
-              <p>Envío</p>
+              <p className="text-[#D8D8D8]">Envío:</p>
               <p className="text-right">
                 <Price
                   className="text-right"
@@ -165,7 +165,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
               </p>
             </div>
             <div className="flex items-center justify-between pt-1 pb-1 mb-3">
-              <p>Total</p>
+              <p className="text-[#D8D8D8]">Total:</p>
               <Price
                 className="text-right"
                 amount={cart.cost.totalAmount.amount}

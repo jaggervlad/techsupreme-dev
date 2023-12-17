@@ -31,7 +31,10 @@ export function ProductSizeSelector({ sizes }: ProductSizeSelectorProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <Label htmlFor="product-sizes" className="font-medium">
+      <Label
+        htmlFor="product-sizes"
+        className="font-medium font-montserrat-semibold"
+      >
         Talla
       </Label>
       <Select
@@ -48,10 +51,10 @@ export function ProductSizeSelector({ sizes }: ProductSizeSelectorProps) {
           router.replace(newUrl, undefined, { scroll: false });
         }}
       >
-        <SelectTrigger className="w-20">
+        <SelectTrigger className="w-20 font-montserrat-regular">
           <SelectValue placeholder="Tallas" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="font-montserrat-regular">
           <SelectGroup>
             {sizes.map((s) => (
               <SelectItem key={s} value={s}>
