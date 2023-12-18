@@ -138,7 +138,7 @@ export function ProductImageGalleryNew({
           ))}
         </Slider>
 
-        <span className="absolute left-5 bg-[#4332E2] rounded-[8px] text-white px-4 py-1 top-3">
+        <span className="absolute left-5 bg-cblue rounded-[8px] text-white px-4 py-1 top-3">
           NUEVO
         </span>
       </div>

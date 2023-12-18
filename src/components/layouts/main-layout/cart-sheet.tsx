@@ -37,7 +37,7 @@ export function CartSheet({ className }: { className?: string }) {
           {cart && cart?.lines.length > 0 && (
             <Badge
               variant="secondary"
-              className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-neo-green border-border -top-3 -right-2 hover:bg-neo-green"
+              className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-lemon-green border-border -top-3 -right-2 hover:bg-lemon-green"
             >
               {cart?.lines.length}
             </Badge>
@@ -180,7 +180,7 @@ const CartSheetContent = ({ cart }: { cart: Cart }) => {
               buttonVariants({
                 size: 'lg',
               }),
-              'bg-neo-green text-black hover:bg-neo-green hover:text-black'
+              'bg-lemon-green text-black hover:bg-lemon-green hover:text-black'
             )}
           >
             Registrar Pedido

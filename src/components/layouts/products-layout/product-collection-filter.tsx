@@ -36,7 +36,7 @@ export function ProductCollectionFilter() {
   };
 
   return (
-    <div className="p-4 border rounded-lg border-border-ligth">
+    <div className="p-4 border rounded-lg border-gray-light">
       <h4 className="mb-3 text-lg font-medium font-montserrat-semibold">
         Categorías
       </h4>

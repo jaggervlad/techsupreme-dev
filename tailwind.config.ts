@@ -24,7 +24,11 @@ module.exports = {
         'montserrat-semibold': ['var(--font-montserrat-semibold)', 'system-ui'],
       },
       colors: {
-        'border-ligth': '#E9E9E9',
+        'gray-light': '#E9E9E9',
+        'lemon-green': '#BCDB00',
+        cblue: '#4332E2',
+        'dark-blue': '#0F153F',
+        'night-blue': '#16171F',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -58,7 +62,6 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        'neo-green': '#BCDB00',
       },
       borderRadius: {
         lg: 'var(--radius)',

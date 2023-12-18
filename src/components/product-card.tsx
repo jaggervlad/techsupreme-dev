@@ -49,7 +49,7 @@ export function ProductCard({
   return (
     <Card
       className={cn(
-        'flex shadow-[0px_10px_8px_0px_#00000012] font-montserrat-regular border-border-ligth flex-col rounded-[5px] bg-white overflow-hidden',
+        'flex shadow-[0px_10px_8px_0px_#00000012] font-montserrat-regular border-gray-light flex-col rounded-[5px] bg-white overflow-hidden',
         className
       )}
       {...props}
@@ -143,7 +143,7 @@ export function ProductCard({
           <Button
             size="icon"
             variant={'circle'}
-            className="hover:bg-neo-green"
+            className="hover:bg-lemon-green"
             onClick={() => addItem(product)}
           >
             <HeartIcon
@@ -161,7 +161,7 @@ export function ProductCard({
                 size: 'icon',
                 variant: 'circle',
               }),
-              'hover:bg-neo-green'
+              'hover:bg-lemon-green'
             )}
           >
             <ShoppingCart className="w-5 h-5" />

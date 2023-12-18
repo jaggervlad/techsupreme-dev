@@ -18,7 +18,7 @@ export function WishList() {
         <span>
           <Badge
             variant="secondary"
-            className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-neo-green border-border -top-3 -right-2 hover:bg-neo-green"
+            className="absolute flex items-center justify-center w-6 h-6 p-2 rounded-full bg-lemon-green border-border -top-3 -right-2 hover:bg-lemon-green"
           >
             {items.length}
           </Badge>

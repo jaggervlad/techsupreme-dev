@@ -63,11 +63,13 @@ export function ProductsLayout({
           )}
 
           {searchQuery && (
-            <p className="mb-4">
+            <p className="mb-4 font-montserrat-regular">
               {displayProducts.length === 0
                 ? 'No hay productos que coincidan '
                 : `Enseñando ${displayProducts.length} ${resultsText} de `}
-              <span className="font-bold">&quot;{searchQuery}&quot;</span>
+              <span className="font-bold font-montserrat-bold">
+                &quot;{searchQuery}&quot;
+              </span>
             </p>
           )}
 

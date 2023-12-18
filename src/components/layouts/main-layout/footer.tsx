@@ -13,7 +13,7 @@ export function Footer() {
 
   const mappedCollections = collections.map((c) => ({
     name: c.title,
-    href: c.handle,
+    href: `/search/${c.handle}`,
   }));
 
   const mappedPages = pages.map((p) => ({
@@ -112,7 +112,7 @@ export function Footer() {
                 isListItem={false}
               >
                 <div className="p-2 bg-white border rounded-full">
-                  <Icon className="w-4 h-4 text-primary" aria-hidden />
+                  <Icon className="w-6 h-6 text-primary" aria-hidden />
                 </div>
               </FooterListItem>
             )

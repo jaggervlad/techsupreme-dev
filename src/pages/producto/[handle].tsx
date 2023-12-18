@@ -13,8 +13,6 @@ import {
 import { Product } from '@/lib/shopify/types';
 import { GetStaticProps } from 'next';
 import { ProductJsonLd } from 'next-seo';
-import Image from 'next/image';
-import Link from 'next/link';
 
 export default function ProductPage({
   product,
@@ -24,7 +22,7 @@ export default function ProductPage({
   relatedProducts: Product[];
 }) {
   const { href: currentUrl } = useUrl() ?? {};
-  const { url, width, height, altText: alt } = product.featuredImage || {};
+  const { url, width, height, altText: alt } = product?.featuredImage || {};
 
   const seoData = {
     title: product.title,
