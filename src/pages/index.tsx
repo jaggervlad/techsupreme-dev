@@ -28,12 +28,16 @@ export default function Home({ products, collections }: ProductsPageProps) {
 }
 
 export async function getStaticProps() {
-  const products = await getProducts({});
+  const products = await getProducts({
+    sortKey: 'CREATED_AT',
+    reverse: true,
+    first: 8,
+  });
   const collections = await getCollections();
 
   return {
     props: {
-      products: products.slice(0, 8) ?? [],
+      products: products ?? [],
       collections: collections ?? [],
     },
     revalidate: 60 * 5,

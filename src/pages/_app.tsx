@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@/styles/nprogress.css';
 import '@splidejs/react-splide/css';
 
 import { CookiesProvider } from 'react-cookie';
@@ -16,6 +17,7 @@ import {
   NexaBold,
   NexaLight,
 } from '@/lib/fonts';
+import Progress from '@/components/progress';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <CookiesProvider>
@@ -46,6 +48,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </WishListProvider>
       </ThemeProvider>
+
+      <Progress />
     </CookiesProvider>
   );
 }

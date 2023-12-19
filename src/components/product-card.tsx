@@ -18,6 +18,17 @@ interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   onSwitch?: () => Promise<void>;
 }
 
+function validateItsNew(date: string) {
+  const today = new Date();
+
+  const daysBefore = new Date();
+  daysBefore.setDate(today.getDate() - 60);
+
+  const fomartedDate = new Date(date);
+
+  return fomartedDate >= daysBefore;
+}
+
 export function ProductCard({
   product,
   variant = 'default',
@@ -34,7 +45,6 @@ export function ProductCard({
   }, [product.id, isSaved]);
 
   const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
-  const price = +product.priceRange.maxVariantPrice.amount;
 
   const sizes =
     product.options.filter((o) => o.name.toLowerCase() === 'talla')[0]
@@ -43,8 +53,14 @@ export function ProductCard({
     product.options.filter((o) => o.name.toLowerCase() === 'color')[0]
       ?.values || [];
 
+  const isNew = validateItsNew(product.createdAt);
+
+  const maxPrice = +product.priceRange.maxVariantPrice.amount;
+  const minPrice = +product.priceRange.minVariantPrice.amount;
+
   const isDiscount = true;
-  const isNew = true;
+
+  const price = +product.priceRange.maxVariantPrice.amount;
 
   return (
     <Card

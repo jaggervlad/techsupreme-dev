@@ -37,6 +37,7 @@
     "next-seo": "^6.4.0",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
+    "nprogress": "^0.2.0",
     "react": "^18",
     "react-cookie": "^6.1.1",
     "react-dom": "^18",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.11",

@@ -9,6 +9,12 @@ const productFragment = /* GraphQL */ `
     title
     description
     descriptionHtml
+    createdAt
+    compareAtPriceRange {
+      maxVariantPrice {
+        amount
+      }
+    }
     options {
       id
       name
@@ -70,6 +76,7 @@ export const productWithCollectionsFragment = /* GraphQL */ `
     title
     description
     descriptionHtml
+    createdAt
     options {
       id
       name
