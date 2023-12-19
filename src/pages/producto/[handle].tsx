@@ -11,6 +11,7 @@ import {
   getProducts,
 } from '@/lib/shopify/services/products';
 import { Product } from '@/lib/shopify/types';
+import { validateItsNewProduct } from '@/lib/validate-its-new-product';
 import { GetStaticProps } from 'next';
 import { ProductJsonLd } from 'next-seo';
 
@@ -39,6 +40,8 @@ export default function ProductPage({
   const highPrice = product.priceRange.maxVariantPrice.amount;
   const lowPrice = product.priceRange.minVariantPrice.amount;
   const collection = product?.collections[0];
+
+  const isNew = validateItsNewProduct(product.createdAt);
 
   const pages = [
     { name: collection?.title, href: `/search/${collection?.handle}` },
@@ -69,6 +72,7 @@ export default function ProductPage({
             <ProductImageGalleryNew
               images={product.images}
               title={product.title}
+              isNew={isNew}
             />
           </div>
 

@@ -10,23 +10,13 @@ import Link from 'next/link';
 import { useWishListState } from '@/contexts/wishlist-context';
 import { useEffect, useState } from 'react';
 import { Button, buttonVariants } from './ui/button';
+import { validateItsNewProduct } from '@/lib/validate-its-new-product';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
   variant?: 'default' | 'switchable';
   isAddedToCart?: boolean;
   onSwitch?: () => Promise<void>;
-}
-
-function validateItsNew(date: string) {
-  const today = new Date();
-
-  const daysBefore = new Date();
-  daysBefore.setDate(today.getDate() - 60);
-
-  const fomartedDate = new Date(date);
-
-  return fomartedDate >= daysBefore;
 }
 
 export function ProductCard({
@@ -53,7 +43,7 @@ export function ProductCard({
     product.options.filter((o) => o.name.toLowerCase() === 'color')[0]
       ?.values || [];
 
-  const isNew = validateItsNew(product.createdAt);
+  const isNew = validateItsNewProduct(product.createdAt);
 
   const maxPrice = +product.priceRange.maxVariantPrice.amount;
   const minPrice = +product.priceRange.minVariantPrice.amount;
@@ -72,7 +62,7 @@ export function ProductCard({
     >
       <div className="relative py-4">
         <Link
-          href={`/producto/${product.handle}`}
+          href={`/producto/${product.handle}?color=${colors[0]}&talla=${sizes[0]}`}
           className="relative block w-full max-h-80 h-full aspect-[9/16]"
         >
           {product?.featuredImage ? (

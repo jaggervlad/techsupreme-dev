@@ -38,7 +38,6 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
           const optionSearchParams = new URLSearchParams(
             searchParams.toString()
           );
-
           optionSearchParams.set('color', value);
           const newUrl = createUrl(pathname, optionSearchParams);
 

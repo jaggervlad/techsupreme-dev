@@ -15,7 +15,6 @@ export function ProductSummary({ product }: ProductSummaryProps) {
   const price = +product.priceRange.maxVariantPrice.amount;
   const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
   const collection = product?.collections[0];
-
   const isDiscount = true;
 
   return (

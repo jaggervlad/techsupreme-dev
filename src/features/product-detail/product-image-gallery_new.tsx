@@ -57,12 +57,14 @@ interface ProductImageCarouselProps
   > {
   images: ImageType[];
   title: string;
+  isNew: boolean;
 }
 
 export function ProductImageGalleryNew({
   images,
   className,
   title,
+  isNew,
   ...props
 }: ProductImageCarouselProps) {
   const [nav1, setNav1] = React.useState<any>(null);
@@ -138,9 +140,11 @@ export function ProductImageGalleryNew({
           ))}
         </Slider>
 
-        <span className="absolute left-5 bg-cblue rounded-[8px] text-white px-4 py-1 top-3">
-          NUEVO
-        </span>
+        {isNew && (
+          <span className="absolute left-5 bg-cblue rounded-[8px] text-white px-4 py-1 top-3">
+            NUEVO
+          </span>
+        )}
       </div>
     </div>
   );
