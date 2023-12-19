@@ -2,7 +2,6 @@ import { Product } from '@/lib/shopify/types';
 import { MainLayout } from '../main-layout';
 import { ProductCard } from '@/components/product-card';
 import { useRouter } from 'next/router';
-import { ProductHeaderFilters } from './product-header-filters';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
