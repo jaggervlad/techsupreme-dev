@@ -11,6 +11,7 @@ import {
   ShopifyProductOperation,
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
+  ShopifyProductsTagsOperation,
 } from '../types';
 import {
   shopifyFetch,
@@ -18,6 +19,7 @@ import {
   removeEdgesAndNodes,
   reshapeProduct,
 } from '../utils';
+import { getProductTagsQuery } from '../queries/tags';
 
 export async function getCollectionProducts({
   collection,
@@ -100,4 +102,16 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getProductTags(): Promise<string[]> {
+  const res = await shopifyFetch<ShopifyProductsTagsOperation>({
+    query: getProductTagsQuery,
+    tags: [TAGS.products],
+    variables: {
+      first: 250,
+    },
+  });
+
+  return removeEdgesAndNodes(res.body.data.productTags);
 }

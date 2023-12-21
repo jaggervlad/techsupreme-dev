@@ -3,19 +3,36 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { Product } from '@/lib/shopify/types';
 import { formatPrice } from '@/lib/utils';
-import { useState } from 'react';
 import { VariantsSelector } from './variants-selector';
 import { ProductQuantitySelector } from './product-quantity-selector';
+import { findMatchingVariant } from './utils.product-detail';
+import { useSearchParams } from 'next/navigation';
 
 type ProductSummaryProps = {
   product: Product;
 };
 
 export function ProductSummary({ product }: ProductSummaryProps) {
-  const price = +product.priceRange.maxVariantPrice.amount;
   const currencyCode = product.priceRange.maxVariantPrice.currencyCode;
   const collection = product?.collections[0];
-  const isDiscount = true;
+  const queryParams = useSearchParams();
+
+  const matchingVariant = findMatchingVariant(product, queryParams);
+
+  const currentPrice = matchingVariant ? +matchingVariant.price.amount : 0;
+  const compareAtPrice = matchingVariant
+    ? +matchingVariant?.compareAtPrice?.amount || 0
+    : 0;
+
+  const calculateDiscountPercentage = () => {
+    if (compareAtPrice) {
+      const discount = ((compareAtPrice - currentPrice) / compareAtPrice) * 100;
+      return Math.round(discount);
+    }
+    return 0;
+  };
+
+  const isDiscounted = compareAtPrice !== null && currentPrice < compareAtPrice;
 
   return (
     <div className="flex flex-col w-full gap-4 lg:w-1/2">
@@ -34,18 +51,18 @@ export function ProductSummary({ product }: ProductSummaryProps) {
         <div className="flex flex-col text-primary/70">
           <div className="flex items-center gap-3 mb-2">
             <span className="text-3xl font-medium font-montserrat-semibold">
-              {formatPrice(price, currencyCode)}
+              {formatPrice(currentPrice, currencyCode)}
             </span>
 
-            {isDiscount && (
+            {isDiscounted && (
               <span className="flex text-base font-montserrat-regular items-center px-1 text-white bg-orange-600 rounded-[3px]">
-                -45%
+                -{calculateDiscountPercentage()}%
               </span>
             )}
           </div>
-          {isDiscount && (
+          {isDiscounted && (
             <span className="text-xl font-medium line-through opacity-80 font-montserrat-semibold">
-              {formatPrice(price, currencyCode)}
+              {formatPrice(compareAtPrice, currencyCode)}
             </span>
           )}
         </div>

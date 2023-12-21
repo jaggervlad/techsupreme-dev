@@ -4,6 +4,7 @@ import { ProductBreadcrumbs } from '@/features/product-detail/product-breadcrumb
 import { ProductImageGalleryNew } from '@/features/product-detail/product-image-gallery_new';
 import { ProductSummary } from '@/features/product-detail/product-summary';
 import { RelatedProductsSlider } from '@/features/product-detail/related-products-slider';
+import { findMatchingVariant } from '@/features/product-detail/utils.product-detail';
 import { useUrl } from '@/hooks/useUrl';
 import {
   getProduct,
@@ -14,6 +15,7 @@ import { Product } from '@/lib/shopify/types';
 import { validateItsNewProduct } from '@/lib/validate-its-new-product';
 import { GetStaticProps } from 'next';
 import { ProductJsonLd } from 'next-seo';
+import { useSearchParams } from 'next/navigation';
 
 export default function ProductPage({
   product,

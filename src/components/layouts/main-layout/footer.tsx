@@ -23,7 +23,7 @@ export function Footer() {
   }));
 
   return (
-    <footer className="pb-8 mt-auto text-white md:pt-8 bg-primary">
+    <footer className="pb-8 mt-auto text-white md:pt-12 bg-primary">
       <div className="container relative grid mb-8 space-y-8 lg:space-y-0 md:grid-cols-2 lg:grid-cols-4">
         <ScrollToTopButton className="absolute top-0 hidden md:block right-8" />
         <div className="hidden md:block">

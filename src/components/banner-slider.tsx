@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Slider, { Settings } from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
 import { useRef } from 'react';
 
 const settings: Settings = {
@@ -17,26 +16,6 @@ const settings: Settings = {
   dotsClass: 'slick-dots banner-slider-dots',
 };
 
-function SampleNextArrow(props: any) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={cn(className, 'absolute block !right-5')}
-      onClick={onClick}
-    ></div>
-  );
-}
-
-function SamplePrevArrow(props: any) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={cn(className, '!block !left-5 z-10')}
-      style={{ ...style }}
-      onClick={onClick}
-    />
-  );
-}
 export function BannerSlider() {
   const slider = useRef<any>(null);
 

@@ -44,10 +44,6 @@ export function ProductCard({
       ?.values || [];
 
   const isNew = validateItsNewProduct(product.createdAt);
-
-  const maxPrice = +product.priceRange.maxVariantPrice.amount;
-  const minPrice = +product.priceRange.minVariantPrice.amount;
-
   const isDiscount = true;
 
   const price = +product.priceRange.maxVariantPrice.amount;

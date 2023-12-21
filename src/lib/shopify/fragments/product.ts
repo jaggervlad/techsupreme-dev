@@ -36,6 +36,9 @@ const productFragment = /* GraphQL */ `
           id
           title
           availableForSale
+          compareAtPrice {
+            amount
+          }
           selectedOptions {
             name
             value

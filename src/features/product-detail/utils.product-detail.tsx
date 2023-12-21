@@ -57,3 +57,29 @@ export const filterAvailableOptions = (
     )
   );
 };
+
+export const findMatchingVariant = (
+  product: { options: ProductOption[]; variants: ProductVariant[] },
+  queryParams: URLSearchParams
+): ProductVariant | undefined => {
+  const combinations = getCombinations(product.variants);
+  const selectedOptions = Array.from(queryParams.entries()) as Array<
+    [string, string]
+  >;
+
+  const matchingCombinations = filterOptions(combinations, selectedOptions);
+
+  if (matchingCombinations.length > 0) {
+    const matchingCombination = matchingCombinations.find(
+      (combination) => combination.availableForSale
+    );
+
+    if (matchingCombination) {
+      return product.variants.find(
+        (variant) => variant.id === matchingCombination.id
+      );
+    }
+  }
+
+  return undefined;
+};

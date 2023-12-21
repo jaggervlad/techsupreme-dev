@@ -81,12 +81,17 @@ export type ProductVariant = {
   id: string;
   title: string;
   availableForSale: boolean;
+  compareAtPrice: {
+    amount: number;
+  };
   selectedOptions: {
     name: string;
     value: string;
   }[];
   price: Money;
 };
+
+export type Tag = string;
 
 export type SEO = {
   title: string;
@@ -276,6 +281,14 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+    first?: number;
+  };
+};
+export type ShopifyProductsTagsOperation = {
+  data: {
+    productTags: Connection<String>;
+  };
+  variables: {
     first?: number;
   };
 };
