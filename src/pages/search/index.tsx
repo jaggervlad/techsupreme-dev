@@ -25,12 +25,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sort = getAsString(ctx?.query?.sort || '');
   const min = getAsString(ctx?.query?.min || '');
   const max = getAsString(ctx?.query?.max || '');
+  const tag = getAsString(ctx?.query?.tag || '');
 
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort;
 
   let query = '';
 
+  if (tag) {
+    query += `(tag:${tag})`;
+  }
   if (queryValue) {
     query += `(title:${queryValue})`;
   }

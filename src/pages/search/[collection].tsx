@@ -33,6 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sort = getAsString(ctx?.query?.sort || '');
   const min = Number(getAsString(ctx?.query?.min || ''));
   const max = Number(getAsString(ctx?.query?.max || ''));
+  const tag = getAsString(ctx?.query?.tag || '');
 
   const { sortKey, reverse } =
     sorting.find((item) => item.slug === sort) || defaultSort;
@@ -45,6 +46,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     filters.price = { min };
   } else if (max) {
     filters.price = { max };
+  }
+
+  if (tag) {
+    filters.tag = tag;
   }
 
   const collectionShopify = await getCollection(collection);

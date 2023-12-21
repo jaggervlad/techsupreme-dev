@@ -9,6 +9,8 @@ import { BannerSlider } from '@/components/banner-slider';
 import { SortByProducts } from './product-sort-filter';
 import { ProductCollectionFilter } from './product-collection-filter';
 import { BannerBottom } from '@/components/banner-bottom';
+import { ProductTagsFilter } from './product-tags-filter';
+import { ProductsPriceFilter } from './products-price-filter';
 
 interface ProductLayoutProps {
   title?: string;
@@ -57,10 +59,6 @@ export function ProductsLayout({
         </h2>
 
         <div className="flex flex-col w-full gap-10">
-          {!searchQuery && displayProducts.length === 0 && (
-            <p>No hay productos disponibles</p>
-          )}
-
           {searchQuery && (
             <p className="mb-4 font-montserrat-regular">
               {displayProducts.length === 0
@@ -73,15 +71,22 @@ export function ProductsLayout({
           )}
 
           <div className="flex gap-5">
-            <div className=" hidden md:block md:w-[20%]">
+            <div className=" hidden md:flex md:flex-col md:gap-5 md:w-[20%]">
               <ProductCollectionFilter />
+              <ProductTagsFilter />
             </div>
 
             <div className="w-full md:w-[80%] font-montserrat-regular flex flex-col">
-              <div className="mb-8">
+              <div className="flex gap-4 mb-8">
                 <SortByProducts />
+                <ProductsPriceFilter />
               </div>
 
+              {!searchQuery && displayProducts.length === 0 && (
+                <p className="font-montserrat-semibold">
+                  No hay productos disponibles
+                </p>
+              )}
               <div className="grid gap-5 mb-10 sm:grid-cols-2 lg:grid-cols-3">
                 {displayProducts &&
                   displayProducts.length > 0 &&
@@ -90,17 +95,19 @@ export function ProductsLayout({
                   ))}
               </div>
 
-              <ReactPaginate
-                previousLabel={<ChevronLeft />}
-                nextLabel={<ChevronRight />}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={'paginationBttns'}
-                previousLinkClassName={'previousBttn'}
-                nextLinkClassName={'nextBttn'}
-                disabledClassName={'paginationDisabled'}
-                activeClassName={'paginationActive'}
-              />
+              {!!displayProducts.length && (
+                <ReactPaginate
+                  previousLabel={<ChevronLeft />}
+                  nextLabel={<ChevronRight />}
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName={'paginationBttns'}
+                  previousLinkClassName={'previousBttn'}
+                  nextLinkClassName={'nextBttn'}
+                  disabledClassName={'paginationDisabled'}
+                  activeClassName={'paginationActive'}
+                />
+              )}
             </div>
           </div>
         </div>
