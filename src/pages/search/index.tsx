@@ -1,9 +1,11 @@
-import { ProductsLayout } from '@/components/layouts/products-layout';
-import { defaultSort, sorting } from '@/config/products';
+import { ProductsView } from '@/features/products-view';
+
 import { getProducts } from '@/lib/shopify/services/products';
-import { Collection, Product } from '@/lib/shopify/types';
 import { getAsString } from '@/lib/utils';
-import { GetServerSideProps } from 'next';
+import { defaultSort, sorting } from '@/config/products';
+
+import { type GetServerSideProps } from 'next';
+import { type Collection, type Product } from '@/lib/shopify/types';
 
 interface ProductsPageProps {
   products: Product[];
@@ -12,7 +14,7 @@ interface ProductsPageProps {
 
 export default function ProductsPage({ products }: ProductsPageProps) {
   return (
-    <ProductsLayout
+    <ProductsView
       title="Todos los productos"
       description="Todos los productos de nuestro catálogo"
       products={products}

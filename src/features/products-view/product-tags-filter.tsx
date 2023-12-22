@@ -1,18 +1,14 @@
-import { useGetCollections } from '@/hooks/useGetCollections';
-import { cn, createUrl } from '@/lib/utils';
-import { Loader2 } from 'lucide-react';
-import { useRouter } from 'next/router';
-
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
+
 import { useGetTags } from '@/hooks/useGetTags';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
+import { cn, createUrl } from '@/lib/utils';
 
 export function ProductTagsFilter() {
   const router = useRouter();
   const resTags = useGetTags();
   const defaultTag = router.query.tag;
-  const newSearchParams = new URLSearchParams();
-  const pathname = usePathname();
 
   return (
     <div className="p-4 border rounded-lg border-gray-light">

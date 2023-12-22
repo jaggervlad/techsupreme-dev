@@ -1,3 +1,5 @@
+import { ChevronDown } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -5,12 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { sorting } from '@/lib/constants';
-import { cn, createUrl } from '@/lib/utils';
-import { ChevronDown } from 'lucide-react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
-
 import {
   Select,
   SelectContent,
@@ -19,6 +15,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+
+import { sorting } from '@/lib/constants';
+import { cn, createUrl } from '@/lib/utils';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export function SortByProducts() {
   const router = useRouter();

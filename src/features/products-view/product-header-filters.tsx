@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { ProductCollectionFilter } from './product-collection-filter';
-import { SortByProducts } from './product-sort-filter';
-import { ProductsPriceFilter } from './products-price-filter';
-import { usePathname } from 'next/navigation';
-import { buttonVariants } from '@/components/ui/button';
 import { XCircleIcon } from 'lucide-react';
+
+import { ProductCollectionFilter } from './product-collection-filter';
+import { ProductsPriceFilter } from './products-price-filter';
+
+import { buttonVariants } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
 
 export function ProductHeaderFilters() {
   const pathname = usePathname();

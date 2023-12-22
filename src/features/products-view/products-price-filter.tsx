@@ -1,3 +1,5 @@
+import { ChevronDown } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -5,14 +7,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import { createUrl } from '@/lib/utils';
-import { ChevronDown } from 'lucide-react';
+
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
-
 import { useDebouncedCallback } from 'use-debounce';
-import { ProductCollectionFilter } from './product-collection-filter';
-import { SortByProducts } from './product-sort-filter';
+import { createUrl } from '@/lib/utils';
 
 export function ProductsPriceFilter() {
   const { replace } = useRouter();
