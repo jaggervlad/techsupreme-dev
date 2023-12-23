@@ -12,12 +12,13 @@ import { forwardRef } from 'react';
 
 import { TruckIcon } from 'lucide-react';
 import { CategoriesSelector } from './categories-selector';
+import { ROUTES } from '@/lib/routes';
 
 const secondaryMenu = [
-  { id: 1, name: 'Productos', path: '/search' },
-  { id: 2, name: 'Más vendidos', path: '/search/trending' },
-  { id: 3, name: 'Ofertas', path: '/search/offers' },
-  { id: 4, name: 'Novedades', path: '/search/novedades' },
+  { id: 1, name: 'Productos', path: ROUTES.products() },
+  { id: 2, name: 'Más vendidos', path: ROUTES.products() },
+  { id: 3, name: 'Ofertas', path: ROUTES.products() },
+  { id: 4, name: 'Novedades', path: ROUTES.products() },
 ];
 
 export function SecondaryHeader({ menu }: { menu: Menu[] }) {

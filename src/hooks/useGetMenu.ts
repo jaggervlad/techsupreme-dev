@@ -15,7 +15,7 @@ export function useGetMenu(handle: string) {
 
         const mapedData = data.map((d) => {
           if (d.title.toLocaleLowerCase() === 'catalogo') {
-            return { ...d, path: '/search' };
+            return { ...d, path: '/productos' };
           }
 
           return d;

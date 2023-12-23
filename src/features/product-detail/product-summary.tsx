@@ -7,6 +7,7 @@ import { VariantsSelector } from './variants-selector';
 import { ProductQuantitySelector } from './product-quantity-selector';
 import { findMatchingVariant } from './utils.product-detail';
 import { useSearchParams } from 'next/navigation';
+import { ROUTES } from '@/lib/routes';
 
 type ProductSummaryProps = {
   product: Product;
@@ -39,7 +40,10 @@ export function ProductSummary({ product }: ProductSummaryProps) {
       <div>
         <div className="mb-3 text-lg font-medium font-montserrat-semibold">
           <span className="opacity-80">Categoría:</span>{' '}
-          <Link className="text-cblue" href={`/search/${collection?.handle}`}>
+          <Link
+            className="text-cblue"
+            href={ROUTES.products(collection?.handle)}
+          >
             {collection?.title}
           </Link>
         </div>

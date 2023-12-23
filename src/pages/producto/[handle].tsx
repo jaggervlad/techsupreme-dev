@@ -6,6 +6,7 @@ import { ProductSummary } from '@/features/product-detail/product-summary';
 import { RelatedProductsSlider } from '@/features/product-detail/related-products-slider';
 import { findMatchingVariant } from '@/features/product-detail/utils.product-detail';
 import { useUrl } from '@/hooks/useUrl';
+import { ROUTES } from '@/lib/routes';
 import {
   getProduct,
   getProductRecommendations,
@@ -46,7 +47,7 @@ export default function ProductPage({
   const isNew = validateItsNewProduct(product.createdAt);
 
   const pages = [
-    { name: collection?.title, href: `/search/${collection?.handle}` },
+    { name: collection?.title, href: ROUTES.products(collection?.handle) },
     { name: product.title, href: `/producto/${product.handle}` },
   ];
 

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { SearchIcon } from 'lucide-react';
+import { ROUTES } from '@/lib/routes';
 
 type SearchProps = {
   className?: string;
@@ -22,7 +23,7 @@ export function Search({ className }: SearchProps) {
       newParams.delete('q');
     }
 
-    router.push(createUrl('/search', newParams));
+    router.push(createUrl(ROUTES.products(), newParams));
   }, 500);
 
   return (

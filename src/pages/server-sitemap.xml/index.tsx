@@ -11,7 +11,7 @@ export const getServerSideProps = async (ctx: any) => {
   const pages = await getPages();
 
   const fields: ISitemapField[] = collections.map((collection) => ({
-    loc: `https://techsupreme.store/search/${collection.handle}`,
+    loc: `https://techsupreme.store/productos/${collection.handle}`,
     lastmod: new Date().toISOString(),
   }));
   const fieldsProducts: ISitemapField[] = products.map((product) => ({

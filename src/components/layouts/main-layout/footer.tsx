@@ -6,6 +6,7 @@ import { useGetPages } from '@/hooks/useGetPages';
 import { footerNavigationData } from '@/lib/constants';
 import { useGetCollections } from '@/hooks/useGetCollections';
 import { ScrollToTopButton } from '@/components/layouts/main-layout/scroll-to-top';
+import { ROUTES } from '@/lib/routes';
 
 export function Footer() {
   const { pages } = useGetPages();
@@ -13,7 +14,7 @@ export function Footer() {
 
   const mappedCollections = collections.map((c) => ({
     name: c.title,
-    href: `/search/${c.handle}`,
+    href: ROUTES.products(c.handle),
   }));
 
   const mappedPages = pages.map((p) => ({

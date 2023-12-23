@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { ChevronLeft, ChevronRight, ShirtIcon } from 'lucide-react';
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 
 type TagsSliderProps = {
   tags: Tag[];
@@ -42,7 +43,7 @@ export const TagsSlider = ({ tags }: TagsSliderProps) => {
 
       <Slider ref={slider} {...settings} className="w-full !mx-auto px-4">
         {tags.map((t) => (
-          <Link key={t} href={`/search/${t}`}>
+          <Link key={t} href={`${ROUTES.products()}?tag=${t}`}>
             <div className="rounded-lg hover:bg-cblue hover:text-white group mx-auto flex flex-col gap-5 !w-[250px] justify-center  items-center p-6 bg-[#EFF2FF]">
               <ShirtIcon className="h-16 w-16 mx-auto text-[#393D46] group-hover:text-white" />
               <p className="text-xl font-montserrat-regular  capitalize">{t}</p>

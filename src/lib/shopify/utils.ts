@@ -1,4 +1,5 @@
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT } from '../constants';
+import { ROUTES } from '../routes';
 import { isShopifyError } from '../type-guards';
 import { ensureStartsWith } from '../utils';
 import {
@@ -101,7 +102,7 @@ export const reshapeCollection = (
 
   return {
     ...collection,
-    path: `/search/${collection.handle}`,
+    path: ROUTES.products(collection.handle),
   };
 };
 

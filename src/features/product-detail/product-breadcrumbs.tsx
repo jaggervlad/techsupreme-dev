@@ -1,3 +1,4 @@
+import { ROUTES } from '@/lib/routes';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -13,7 +14,7 @@ export function ProductBreadcrumbs({ pages }: ProductBreadcrumbsProps) {
         <li>
           <div>
             <Link
-              href="/search"
+              href={ROUTES.products()}
               className="font-medium font-montserrat-semibold text-muted-foreground hover:text-foreground"
             >
               Tienda

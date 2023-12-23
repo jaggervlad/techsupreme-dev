@@ -11,6 +11,7 @@ import {
   removeEdgesAndNodes,
   reshapeCollections,
 } from '../utils';
+import { ROUTES } from '@/lib/routes';
 
 export async function getCollection(
   handle: string
@@ -32,6 +33,7 @@ export async function getCollections(): Promise<Collection[]> {
     tags: [TAGS.collections],
   });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
+
   const collections = [
     {
       handle: '',
@@ -41,7 +43,7 @@ export async function getCollections(): Promise<Collection[]> {
         title: 'Todos',
         description: 'Todos productos',
       },
-      path: '/search',
+      path: ROUTES.products(),
       updatedAt: new Date().toISOString(),
     },
     // Filter out the `hidden` collections.

@@ -1,8 +1,8 @@
 import { ProductCard } from '@/components/product-card';
-import { buttonVariants } from '@/components/ui/button';
 import { Product } from '@/lib/shopify/types';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
+import { ROUTES } from '@/lib/routes';
 
 type NewArrivalsSectionProps = {
   products: Product[];
@@ -17,7 +17,7 @@ export const NewArrivalsSection = ({ products }: NewArrivalsSectionProps) => {
         </h3>
 
         <Link
-          href="/search"
+          href={ROUTES.products()}
           className={'flex text-indigo-600 text-xl items-center font-semibold'}
         >
           Ver más <MoveRight className="w-5 h-5 mt-1 ml-2" />

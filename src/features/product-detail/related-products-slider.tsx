@@ -1,5 +1,6 @@
 import { ProductCard } from '@/components/product-card';
 import { multipleSliderOptions } from '@/lib/constants';
+import { ROUTES } from '@/lib/routes';
 import { Product } from '@/lib/shopify/types';
 // @ts-ignore
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -26,7 +27,7 @@ export function RelatedProductsSlider({
         </h3>
 
         <Link
-          href="/search"
+          href={ROUTES.products()}
           className={
             'md:flex text-indigo-600 text-xl font-montserrat-semibold items-center font-semibold hidden'
           }

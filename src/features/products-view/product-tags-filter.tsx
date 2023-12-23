@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { useGetTags } from '@/hooks/useGetTags';
 import { useRouter } from 'next/router';
 import { cn, createUrl } from '@/lib/utils';
+import { ROUTES } from '@/lib/routes';
 
 export function ProductTagsFilter() {
   const router = useRouter();
@@ -30,7 +31,10 @@ export function ProductTagsFilter() {
             return (
               <Link
                 key={i}
-                href={`${createUrl(`/search?tag=${t}`, new URLSearchParams())}`}
+                href={`${createUrl(
+                  `${ROUTES.products()}?tag=${t}`,
+                  new URLSearchParams()
+                )}`}
                 className={cn(
                   'after:contet-[""] capitilize inline-block after:w-0 after:h-[1px] after:block after:bg-black after:duration-300 hover:after:w-full transition-all duration-500 ease-in font-montserrat-regular cursor-pointer',
                   {
