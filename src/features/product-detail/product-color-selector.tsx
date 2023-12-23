@@ -1,6 +1,6 @@
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { createUrl } from '@/lib/utils';
+import { Circle } from 'lucide-react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -21,6 +21,12 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
     setDefaultValue(searchParams.get('color') ?? colors[0]);
   }, [searchParams, colors]);
 
+  const mappedColors = colors.map((color) => {
+    const colorValue = color.split('#')[1];
+
+    return { name: color, value: colorValue ? `#${colorValue}` : '' };
+  });
+
   return (
     <div className="flex items-center gap-3">
       <Label
@@ -30,29 +36,36 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
         Color
       </Label>
 
-      <RadioGroup
-        name="product-colors"
-        className="flex"
-        defaultValue={defaultValue}
-        onValueChange={(value) => {
-          const optionSearchParams = new URLSearchParams(
-            searchParams.toString()
-          );
-          optionSearchParams.set('color', value);
-          const newUrl = createUrl(pathname, optionSearchParams);
+      <div className="flex gap-1">
+        {mappedColors.map((c) => {
+          const isActive = defaultValue === c.name;
 
-          router.replace(newUrl, undefined, { scroll: false });
-        }}
-      >
-        {colors.map((c) => (
-          <RadioGroupItem
-            className="w-5 h-5 text-blue-600 [&>span>svg]:h-4 [&>span>svg]:w-4"
-            value={c}
-            id={c}
-            key={c}
-          />
-        ))}
-      </RadioGroup>
+          return (
+            <button
+              key={c.name}
+              disabled={!isActive}
+              className={`h-7 flex items-center justify-center w-7 rounded-full ${
+                isActive ? 'border-2 border-black' : ''
+              }`}
+              onClick={() => {
+                const optionSearchParams = new URLSearchParams(
+                  searchParams.toString()
+                );
+                optionSearchParams.set('color', c.name);
+                const newUrl = createUrl(pathname, optionSearchParams);
+
+                router.replace(newUrl, undefined, { scroll: false });
+              }}
+            >
+              <span className="sr-only">{c.name}</span>
+
+              <Circle
+                style={{ fill: c.value ? c.value : 'black', stroke: 'none' }}
+              />
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
