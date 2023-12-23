@@ -1,15 +1,14 @@
 import Link from 'next/link';
+import { SearchIcon } from 'lucide-react';
 
-import { CartSheet } from '@/components/layouts/main-layout/cart-sheet';
+import { Button } from '@/components/ui/button';
+import { CartSheet } from '@/features/cart/cart-sheet';
 import { Search } from './search';
-
-import { MobileNav } from './mobile-nav';
-import { useGetMenu } from '@/hooks/useGetMenu';
-import { WishList } from './whish-list';
 import { SecondaryHeader } from './secondary-header';
 import { CategoriesSelector } from './categories-selector';
-import { Button } from '@/components/ui/button';
-import { SearchIcon } from 'lucide-react';
+import { WishList } from './whish-list';
+
+import { useGetMenu } from '@/hooks/useGetMenu';
 
 export function Header() {
   const { menu } = useGetMenu('main-menu');

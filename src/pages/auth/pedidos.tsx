@@ -1,5 +1,4 @@
 import { AuthLayout } from '@/components/layouts/auth-layout';
-import { MainLayout } from '@/components/layouts/main-layout';
 import { Separator } from '@/components/ui/separator';
 
 export default function OrdersPages() {

@@ -1,19 +1,6 @@
-import { MainLayout } from '@/components/layouts/main-layout';
-import { SidebarNav } from '@/components/layouts/auth-layout/sidebar-nav-profile';
 import { AuthLayout } from '@/components/layouts/auth-layout';
-import { ProfileForm } from '@/features/auth/profile-form';
 import { Separator } from '@/components/ui/separator';
-
-const sidebarNavItems = [
-  {
-    title: 'Perfil',
-    href: '/perfil',
-  },
-  {
-    title: 'Compras',
-    href: '/orders',
-  },
-];
+import { ProfileForm } from '@/features/auth/profile-form';
 
 export default function ProfilePage() {
   return (
