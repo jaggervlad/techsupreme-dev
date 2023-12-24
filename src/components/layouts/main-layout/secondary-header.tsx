@@ -28,7 +28,7 @@ export function SecondaryHeader({ menu }: { menu: Menu[] }) {
         <CategoriesSelector />
 
         <NavigationMenu className="flex-grow">
-          <NavigationMenuList className="gap-4">
+          <NavigationMenuList className="gap-8">
             {secondaryMenu.map((c) => (
               <NavItem path={c.path} title={c.name} key={c.id} />
             ))}

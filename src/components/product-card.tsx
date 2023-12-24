@@ -1,16 +1,16 @@
+import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
 
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Product } from '@/lib/shopify/types';
-import { Button, buttonVariants } from '@/components/ui/button';
 
-import { useEffect, useState } from 'react';
 import { useWishListState } from '@/contexts/wishlist-context';
-import { validateItsNewProduct } from '@/lib/validate-its-new-product';
-import { cn, createUrl, formatPrice } from '@/lib/utils';
 import { ROUTES } from '@/lib/routes';
+import { cn, createUrl, formatPrice } from '@/lib/utils';
+import { validateItsNewProduct } from '@/lib/validate-its-new-product';
+import { useEffect, useState } from 'react';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -44,7 +44,7 @@ export function ProductCard({
       ?.values || [];
 
   const isNew = validateItsNewProduct(product.createdAt);
-  const isDiscount = true;
+  const isDiscount = false;
 
   const price = +product.priceRange.maxVariantPrice.amount;
 

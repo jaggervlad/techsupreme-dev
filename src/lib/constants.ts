@@ -1,13 +1,5 @@
-import {
-  AlertOctagon,
-  BookOpen,
-  HelpCircle,
-  Info,
-  Mail,
-  Map,
-} from 'lucide-react';
-import { FaFacebook } from 'react-icons/fa';
-import { BsInstagram, BsYoutube } from 'react-icons/bs';
+import { FacebookIcon, TwitterIcon } from '@/components/icons';
+import { InstagramIcon } from 'lucide-react';
 
 export type SortFilterItem = {
   title: string;
@@ -67,19 +59,19 @@ export const footerNavigationData = {
       name: 'Facebook',
       href: 'https://facebook.com',
       isExternal: true,
-      icon: FaFacebook,
+      icon: FacebookIcon,
     },
     {
       name: 'Instagram',
       href: 'https://instagram.com',
       isExternal: true,
-      icon: BsInstagram,
+      icon: InstagramIcon,
     },
     {
       name: 'Youtube',
       href: 'https://youtube.com',
       isExternal: true,
-      icon: BsYoutube,
+      icon: TwitterIcon,
     },
   ],
   contact: [

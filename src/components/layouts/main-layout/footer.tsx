@@ -8,6 +8,7 @@ import { useGetCollections } from '@/hooks/useGetCollections';
 import { ScrollToTopButton } from '@/components/layouts/main-layout/scroll-to-top';
 import { ROUTES } from '@/lib/routes';
 import { Logo, LogoDark } from '@/components/logo';
+import { InstagramLogo } from '@/components/icons';
 
 export function Footer() {
   const { pages } = useGetPages();
@@ -88,9 +89,9 @@ export function Footer() {
           )}
         </div>
 
-        <div className="flex items-center gap-10 justify-center">
+        <div className="flex items-center justify-between">
           <Link href="/" aria-label="TechSupreme Logo">
-            <LogoDark />
+            <LogoDark className="w-48" />
           </Link>
 
           <ScrollToTopButton className="" />

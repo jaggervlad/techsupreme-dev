@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const BannerBottom = () => {
   return (
-    <div className="py-20">
+    <div className="mt-8">
       <Link href="/">
         <Image
           alt=""

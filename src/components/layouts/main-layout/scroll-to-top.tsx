@@ -31,7 +31,11 @@ export const ScrollToTopButton = ({ className }: { className?: string }) => {
 
   return (
     <div className={className}>
-      <div className={`w-12 h-12 text-2xl ${isVisible ? 'block' : 'hidden'}`}>
+      <div
+        className={`w-10 lg:w-12 h-10 lg:h-12 text-2xl ${
+          isVisible ? 'block' : 'hidden'
+        }`}
+      >
         <button
           onClick={scrollToTop}
           className="relative flex items-center justify-center w-full h-full overflow-hidden text-white duration-300 border border-white rounded-full group hover:scale-105"

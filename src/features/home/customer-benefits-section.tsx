@@ -30,7 +30,7 @@ const customerBenefitsData = [
 
 export const CustomerBenefitsSection = () => {
   return (
-    <section className="py-24 bg-[#F2F2F2]">
+    <section className="py-24 hidden lg:block bg-[#F2F2F2]">
       <div className="container grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         {customerBenefitsData.map(({ id, title, description, icon: Icon }) => (
           <div className="flex items-center gap-10" key={id}>

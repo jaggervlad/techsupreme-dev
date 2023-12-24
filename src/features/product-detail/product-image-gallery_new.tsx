@@ -92,6 +92,7 @@ export function ProductImageGalleryNew({
           asNavFor={nav1}
           ref={slider2}
           {...thumbsNailSliderSettings(images.length)}
+          className={'product-thumbs-slider'}
         >
           {images?.map(({ url, altText }, index) => {
             return (

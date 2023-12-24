@@ -23,15 +23,15 @@ export function BannerSlider() {
     <div className="relative overflow-hidden">
       <button
         onClick={() => slider.current?.slickNext()}
-        className="absolute bg-[#2E2E2EB2] h-14 w-14 flex items-center justify-center rounded-full z-10 right-10 top-[50%] [transform:translateY(-50%)]"
+        className="absolute bg-[#2E2E2EB2] h-6 lg:h-14 w-6 lg:w-14 flex items-center justify-center rounded-full z-10 right-2 lg:right-10 top-[50%] [transform:translateY(-50%)]"
       >
-        <ChevronRight className="text-white w-7 h-7" />
+        <ChevronRight className="w-4 h-4 text-white lg:w-7 lg:h-7" />
       </button>
       <button
         onClick={() => slider.current?.slickPrev()}
-        className="absolute bg-[#2E2E2EB2] h-14 w-14 flex items-center justify-center rounded-full z-10 left-10 top-[50%] [transform:translateY(-50%)]"
+        className="absolute bg-[#2E2E2EB2] h-6 lg:h-14 w-6 lg:w-14 flex items-center justify-center rounded-full z-10 left-2 lg:left-10 top-[50%] [transform:translateY(-50%)]"
       >
-        <ChevronLeft className="text-white w-7 h-7" />
+        <ChevronLeft className="w-4 h-4 text-white lg:w-7 lg:h-7" />
       </button>
 
       <Slider ref={slider} {...settings} className="">

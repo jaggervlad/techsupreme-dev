@@ -25,7 +25,7 @@ export function Header() {
               className="flex-shrink-0"
             >
               <h1 className="sr-only">TechSupreme</h1>
-              <Logo className="w-64" />
+              <Logo className="w-44 lg:w-64" />
             </Link>
 
             <div className="flex-grow hidden md:block">
