@@ -1,4 +1,3 @@
-import { Card } from '@/components/ui/card';
 import { CreditCard, Headphones, TruckIcon } from 'lucide-react';
 
 const customerBenefitsData = [
@@ -33,7 +32,7 @@ export const CustomerBenefitsSection = () => {
     <section className="py-24 hidden lg:block bg-[#F2F2F2]">
       <div className="container grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         {customerBenefitsData.map(({ id, title, description, icon: Icon }) => (
-          <div className="flex items-center gap-10" key={id}>
+          <article className="flex items-center gap-10" key={id}>
             <Icon className="w-12 h-12" />
 
             <div>
@@ -44,7 +43,7 @@ export const CustomerBenefitsSection = () => {
                 {description}
               </p>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>
