@@ -1,10 +1,9 @@
-import { Link } from 'lucide-react';
-
 import { Price } from '@/components/price';
 
 import { buttonVariants } from '@/components/ui/button';
 import { useCart } from '@/contexts/cart-context';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export const CartFooter = () => {
   const { cart } = useCart();
