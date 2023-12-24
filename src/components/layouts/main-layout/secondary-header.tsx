@@ -30,7 +30,7 @@ export function SecondaryHeader({ menu }: { menu: Menu[] }) {
         <NavigationMenu className="flex-grow">
           <NavigationMenuList className="gap-4">
             {secondaryMenu.map((c) => (
-              <NavItem path={c.path} title={c.name} key={c.path} />
+              <NavItem path={c.path} title={c.name} key={c.id} />
             ))}
           </NavigationMenuList>
         </NavigationMenu>

@@ -9,6 +9,7 @@ import { CategoriesSelector } from './categories-selector';
 import { WishList } from './whish-list';
 
 import { useGetMenu } from '@/hooks/useGetMenu';
+import { Logo } from '@/components/logo';
 
 export function Header() {
   const { menu } = useGetMenu('main-menu');
@@ -23,9 +24,8 @@ export function Header() {
               aria-label="TechSupreme Logo"
               className="flex-shrink-0"
             >
-              <h1 className="text-2xl uppercase font-nexa-bold md:w-60 md:text-4xl">
-                Tech<span className="text-blue-600">Supreme</span>
-              </h1>
+              <h1 className="sr-only">TechSupreme</h1>
+              <Logo className="w-64" />
             </Link>
 
             <div className="flex-grow hidden md:block">

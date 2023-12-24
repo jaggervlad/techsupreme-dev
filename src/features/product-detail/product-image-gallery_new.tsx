@@ -92,7 +92,6 @@ export function ProductImageGalleryNew({
           asNavFor={nav1}
           ref={slider2}
           {...thumbsNailSliderSettings(images.length)}
-          className="space-y-5"
         >
           {images?.map(({ url, altText }, index) => {
             return (

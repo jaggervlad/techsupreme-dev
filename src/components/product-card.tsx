@@ -1,16 +1,16 @@
-'use client';
 import Image from 'next/image';
+import Link from 'next/link';
+import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
 
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Product } from '@/lib/shopify/types';
-import { HeartIcon, ImageIcon, ShoppingCart } from 'lucide-react';
+import { Button, buttonVariants } from '@/components/ui/button';
 
-import { cn, formatPrice } from '@/lib/utils';
-import Link from 'next/link';
-import { useWishListState } from '@/contexts/wishlist-context';
 import { useEffect, useState } from 'react';
-import { Button, buttonVariants } from './ui/button';
+import { useWishListState } from '@/contexts/wishlist-context';
 import { validateItsNewProduct } from '@/lib/validate-its-new-product';
+import { cn, createUrl, formatPrice } from '@/lib/utils';
+import { ROUTES } from '@/lib/routes';
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -48,6 +48,12 @@ export function ProductCard({
 
   const price = +product.priceRange.maxVariantPrice.amount;
 
+  const searchParams = new URLSearchParams();
+  searchParams.set('color', colors[0]);
+  searchParams.set('talla', sizes[0]);
+
+  const route = createUrl(ROUTES.productBySlug(product.handle), searchParams);
+
   return (
     <Card
       className={cn(
@@ -58,7 +64,7 @@ export function ProductCard({
     >
       <div className="relative py-4">
         <Link
-          href={`/producto/${product.handle}?color=${colors[0]}&talla=${sizes[0]}`}
+          href={route}
           className="relative block w-full max-h-80 h-full aspect-[9/16]"
         >
           {product?.featuredImage ? (
@@ -157,7 +163,7 @@ export function ProductCard({
 
           {/* TODO: add to cart button feature */}
           <Link
-            href={`/producto/${product.handle}`}
+            href={route}
             className={cn(
               buttonVariants({
                 size: 'icon',

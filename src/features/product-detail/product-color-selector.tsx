@@ -43,9 +43,8 @@ export function ProductColorSelector({ colors }: ProductColorSelectorProps) {
           return (
             <button
               key={c.name}
-              disabled={!isActive}
-              className={`h-7 flex items-center justify-center w-7 rounded-full ${
-                isActive ? 'border-2 border-black' : ''
+              className={`h-7 border-2 flex items-center justify-center w-7 rounded-full ${
+                isActive ? 'border-black' : ''
               }`}
               onClick={() => {
                 const optionSearchParams = new URLSearchParams(

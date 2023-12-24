@@ -7,6 +7,7 @@ import { footerNavigationData } from '@/lib/constants';
 import { useGetCollections } from '@/hooks/useGetCollections';
 import { ScrollToTopButton } from '@/components/layouts/main-layout/scroll-to-top';
 import { ROUTES } from '@/lib/routes';
+import { Logo, LogoDark } from '@/components/logo';
 
 export function Footer() {
   const { pages } = useGetPages();
@@ -33,9 +34,8 @@ export function Footer() {
             aria-label="TechSupreme Logo"
             className="flex-shrink-0"
           >
-            <h4 className="text-3xl font-bold tracking-wide uppercase w-60">
-              Tech<span className="text-blue-600">Supreme</span>
-            </h4>
+            <span className="sr-only">TECHSUPREME LOGO</span>
+            <LogoDark />
           </Link>
         </div>
         <FooterListContainer title="CONTACTO">
@@ -88,11 +88,9 @@ export function Footer() {
           )}
         </div>
 
-        <div className="flex items-center justify-between ">
-          <Link href="/" aria-label="TechSupreme Logo" className="w-[225px]">
-            <h4 className="text-2xl font-bold tracking-wide uppercase">
-              Tech<span className="text-blue-600">Supreme</span>
-            </h4>
+        <div className="flex items-center gap-10 justify-center">
+          <Link href="/" aria-label="TechSupreme Logo">
+            <LogoDark />
           </Link>
 
           <ScrollToTopButton className="" />

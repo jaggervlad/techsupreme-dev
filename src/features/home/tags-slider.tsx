@@ -41,14 +41,22 @@ export const TagsSlider = ({ tags }: TagsSliderProps) => {
         <ChevronLeft className="w-9 h-9" />
       </button>
 
-      <Slider ref={slider} {...settings} className="w-full !mx-auto px-4">
+      <Slider
+        ref={slider}
+        {...settings}
+        className="w-full !mx-auto px-4 tags-slider"
+      >
         {tags.map((t) => (
-          <Link key={t} href={`${ROUTES.products()}?tag=${t}`}>
-            <div className="rounded-lg hover:bg-cblue hover:text-white group mx-auto flex flex-col gap-5 !w-[250px] justify-center  items-center p-6 bg-[#EFF2FF]">
-              <ShirtIcon className="h-16 w-16 mx-auto text-[#393D46] group-hover:text-white" />
-              <p className="text-xl font-montserrat-regular  capitalize">{t}</p>
-            </div>
-          </Link>
+          <div key={t}>
+            <Link href={`${ROUTES.products()}?tag=${t}`}>
+              <div className="rounded-lg hover:bg-cblue hover:text-white group mx-auto flex flex-col gap-5 justify-center  items-center p-6 bg-[#EFF2FF]">
+                <ShirtIcon className="h-16 w-16 mx-auto text-[#393D46] group-hover:text-white" />
+                <p className="text-xl font-montserrat-regular  capitalize">
+                  {t}
+                </p>
+              </div>
+            </Link>
+          </div>
         ))}
       </Slider>
     </section>
