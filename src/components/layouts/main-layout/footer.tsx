@@ -26,8 +26,8 @@ export function Footer() {
   }));
 
   return (
-    <footer className="pb-8 mt-auto text-white md:pt-12 bg-primary">
-      <div className="container relative grid mb-8 space-y-8 lg:space-y-0 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="pb-8 mt-auto  md:pt-12 bg-primary">
+      <div className="container relative text-white grid mb-8 space-y-8 lg:space-y-0 md:grid-cols-2 lg:grid-cols-4">
         <ScrollToTopButton className="absolute top-0 hidden md:block right-8" />
         <div className="hidden md:block">
           <Link
@@ -71,23 +71,7 @@ export function Footer() {
       </div>
 
       <div className="container md:hidden">
-        <div className="flex justify-center gap-3 mb-8 md:hidden">
-          {footerNavigationData.social.map(
-            ({ name, href, icon: Icon, isExternal }) => (
-              <FooterListItem
-                label={`Red Social ${name}`}
-                key={href}
-                href={href}
-                isExternal={isExternal}
-                isListItem={false}
-              >
-                <div className="p-2 bg-white border rounded-full">
-                  <Icon className="w-8 h-8 text-primary" aria-hidden />
-                </div>
-              </FooterListItem>
-            )
-          )}
-        </div>
+        <SocialIcons className="flex justify-center gap-3 mb-8" />
 
         <div className="flex items-center justify-between">
           <Link href="/" aria-label="TechSupreme Logo">
@@ -98,28 +82,33 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container flex justify-center pt-8 text-center md:justify-between">
-        <p>© TECHSUPREME {new Date().getFullYear()}</p>
-
-        <div className="hidden gap-3 md:flex">
-          {footerNavigationData.social.map(
-            ({ name, href, icon: Icon, isExternal }) => (
-              <FooterListItem
-                label={`Red Social ${name}`}
-                key={href}
-                href={href}
-                isExternal={isExternal}
-                isListItem={false}
-              >
-                <div className="p-2 bg-white border rounded-full">
-                  <Icon className="w-6 h-6 text-primary" aria-hidden />
-                </div>
-              </FooterListItem>
-            )
-          )}
-        </div>
+      <div className="container  flex justify-center pt-8 text-center md:justify-between">
+        <p className="text-white">© TECHSUPREME {new Date().getFullYear()}</p>
+        <SocialIcons className="gap-3 hidden md:flex" />
       </div>
     </footer>
+  );
+}
+
+export function SocialIcons({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      {footerNavigationData.social.map(
+        ({ name, href, icon: Icon, isExternal }) => (
+          <FooterListItem
+            label={`Red Social ${name}`}
+            key={name}
+            href={href}
+            isExternal={isExternal}
+            isListItem={false}
+          >
+            <div className="p-2 border bg-white rounded-full">
+              <Icon className="w-6 h-6" aria-hidden />
+            </div>
+          </FooterListItem>
+        )
+      )}
+    </div>
   );
 }
 

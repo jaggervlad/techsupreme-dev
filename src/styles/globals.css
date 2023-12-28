@@ -139,6 +139,12 @@
   top: 80%;
 }
 
+@media (min-width: 1024px) {
+  .banner-slider-dots {
+    top: 85%;
+  }
+}
+
 .banner-slider-dots > li > button::before {
   font-size: 16px !important;
   color: #a3a3a3 !important;

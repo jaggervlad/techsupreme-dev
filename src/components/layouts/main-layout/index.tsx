@@ -3,6 +3,7 @@ import { Footer } from './footer';
 import { Header } from './header';
 import { CartProvider } from '@/contexts/cart-context';
 import { NextSeo, NextSeoProps } from 'next-seo';
+import { InstagramLogo } from '@/components/icons';
 
 interface MainLayoutProps extends PropsWithChildren {
   seo?: NextSeoProps;
@@ -15,6 +16,7 @@ export const MainLayout = ({ children, seo }: MainLayoutProps) => {
       <div className="flex flex-col min-h-screen">
         <Header />
         {children}
+
         <Footer />
       </div>
     </CartProvider>

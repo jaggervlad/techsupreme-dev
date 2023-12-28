@@ -16,9 +16,13 @@ import { ROUTES } from '@/lib/routes';
 
 const secondaryMenu = [
   { id: 1, name: 'Productos', path: ROUTES.products() },
-  { id: 2, name: 'Más vendidos', path: ROUTES.products() },
-  { id: 3, name: 'Ofertas', path: ROUTES.products() },
-  { id: 4, name: 'Novedades', path: ROUTES.products() },
+  {
+    id: 2,
+    name: 'Más vendidos',
+    path: ROUTES.products() + '?sort=trending-desc',
+  },
+  { id: 3, name: 'Ofertas', path: ROUTES.products() + '?sort=price-asc' },
+  { id: 4, name: 'Novedades', path: ROUTES.products() + '?sort=latest-desc' },
 ];
 
 export function SecondaryHeader({ menu }: { menu: Menu[] }) {
@@ -58,9 +62,9 @@ export const NavItem = ({ path, title, items }: Menu) => {
     <NavigationMenuItem>
       <Link href={path} legacyBehavior passHref aria-label={`Página ${title}`}>
         <NavigationMenuLink
-          className={cn('text-base font-montserrat-regular text-primary ', {
-            'font-bold font-montserrat-bold': active,
-          })}
+          className={cn(
+            'text-base font-montserrat-regular text-primary hover:font-semibold'
+          )}
         >
           {title}
         </NavigationMenuLink>

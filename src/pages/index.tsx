@@ -1,12 +1,9 @@
 import { MainLayout } from '@/components/layouts/main-layout';
 import { BannerSlider } from '@/components/banner-slider';
 import { CollectionsSection } from '@/features/home/collections-section';
-import { CustomerBenefitsSection } from '@/features/home/customer-benefits-section';
 import { NewArrivalsSection } from '@/features/home/new-arrivals-section';
 import { getCollections, getProductTags, getProducts } from '@/lib/shopify';
 import { Collection, Product, Tag } from '@/lib/shopify/types';
-import Image from 'next/image';
-import Link from 'next/link';
 import { BannerBottom } from '@/components/banner-bottom';
 import { TagsSlider } from '@/features/home/tags-slider';
 
@@ -29,7 +26,6 @@ export default function Home({
         <NewArrivalsSection products={products} />
         <BannerBottom />
       </main>
-      <CustomerBenefitsSection />
     </MainLayout>
   );
 }

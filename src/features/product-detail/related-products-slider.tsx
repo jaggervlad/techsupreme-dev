@@ -19,17 +19,17 @@ export function RelatedProductsSlider({
   return (
     <section
       aria-label="Productos relacionados"
-      className="overflow-hidden md:pt-6"
+      className="overflow-hidden md:py-6"
     >
-      <div className="flex items-center justify-between">
-        <h3 className="flex-1 mb-6 text-3xl font-bold font-montserrat-bold md:text-4xl">
+      <div className="flex items-center justify-between mb-8">
+        <h3 className="flex-1 text-3xl font-bold font-montserrat-bold md:text-4xl">
           Productos Relacionados
         </h3>
 
         <Link
           href={ROUTES.products()}
           className={
-            'md:flex text-indigo-600 text-xl font-montserrat-semibold items-center font-semibold hidden'
+            'md:flex text-cblue text-xl font-montserrat-semibold items-center font-semibold hidden'
           }
         >
           Ver más <MoveRight className="w-5 h-5 mt-1 ml-2" />

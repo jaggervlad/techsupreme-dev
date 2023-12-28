@@ -6,6 +6,7 @@ import Slider, { Settings } from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useRef } from 'react';
+import { cn } from '@/lib/utils';
 
 const settings: Settings = {
   dots: true,
@@ -16,6 +17,11 @@ const settings: Settings = {
   dotsClass: 'slick-dots banner-slider-dots',
 };
 
+const className =
+  'absolute bg-[#2E2E2EB2]/50 h-6 w-6 lg:h-12 lg:w-12 flex items-center justify-center rounded-full z-10  top-[50%] [transform:translateY(-50%)]';
+
+const classNameIcon = 'w-4 h-4 text-white lg:w-7 lg:h-7';
+
 export function BannerSlider() {
   const slider = useRef<any>(null);
 
@@ -23,15 +29,15 @@ export function BannerSlider() {
     <div className="relative overflow-hidden">
       <button
         onClick={() => slider.current?.slickNext()}
-        className="absolute bg-[#2E2E2EB2] h-6 lg:h-14 w-6 lg:w-14 flex items-center justify-center rounded-full z-10 right-2 lg:right-10 top-[50%] [transform:translateY(-50%)]"
+        className={cn(className, 'right-2 lg:right-10')}
       >
-        <ChevronRight className="w-4 h-4 text-white lg:w-7 lg:h-7" />
+        <ChevronRight className={classNameIcon} />
       </button>
       <button
         onClick={() => slider.current?.slickPrev()}
-        className="absolute bg-[#2E2E2EB2] h-6 lg:h-14 w-6 lg:w-14 flex items-center justify-center rounded-full z-10 left-2 lg:left-10 top-[50%] [transform:translateY(-50%)]"
+        className={cn(className, 'left-2 lg:left-10')}
       >
-        <ChevronLeft className="w-4 h-4 text-white lg:w-7 lg:h-7" />
+        <ChevronLeft className={classNameIcon} />
       </button>
 
       <Slider ref={slider} {...settings} className="">

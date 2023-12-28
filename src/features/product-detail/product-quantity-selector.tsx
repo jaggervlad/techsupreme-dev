@@ -24,7 +24,7 @@ export const ProductQuantitySelector = ({
         >
           <MinusIcon />
         </button>
-        <div className="flex items-center w-16 h-full px-2 text-lg border font-montserrat-regular">
+        <div className="flex items-center justify-center w-16 h-full text-lg border font-montserrat-regular">
           {quantity}
         </div>
         <button

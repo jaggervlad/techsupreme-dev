@@ -3,11 +3,9 @@ import '@/styles/nprogress.css';
 import '@splidejs/react-splide/css';
 
 import { CookiesProvider } from 'react-cookie';
-
-import type { AppProps } from 'next/app';
-import { DefaultSeo } from 'next-seo';
-import seoConfig from '../../next-seo.config';
 import { Toaster } from 'sonner';
+import { DefaultSeo } from 'next-seo';
+
 import { ThemeProvider } from '@/contexts/theme-provider';
 import { WishListProvider } from '@/contexts/wishlist-context';
 import {
@@ -18,6 +16,10 @@ import {
   NexaLight,
 } from '@/lib/fonts';
 import Progress from '@/components/progress';
+
+import seoConfig from '../../next-seo.config';
+import type { AppProps } from 'next/app';
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <CookiesProvider>

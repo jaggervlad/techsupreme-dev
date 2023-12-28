@@ -1,5 +1,4 @@
-import { FacebookIcon, TwitterIcon } from '@/components/icons';
-import { InstagramIcon } from 'lucide-react';
+import { FacebookIcon, InstagramLogo, TwitterIcon } from '@/components/icons';
 
 export type SortFilterItem = {
   title: string;
@@ -65,7 +64,7 @@ export const footerNavigationData = {
       name: 'Instagram',
       href: 'https://instagram.com',
       isExternal: true,
-      icon: InstagramIcon,
+      icon: InstagramLogo,
     },
     {
       name: 'Youtube',
